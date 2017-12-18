@@ -3,13 +3,16 @@
 
 <script>
 import Vue2Leaflet from 'vue2-leaflet'
+import PmMarker from '@/components/PmMarker/PmMarker'
 
 export default {
   name: 'PmMap',
   components: {
-    'v-map': Vue2Leaflet.Map,
-    'v-tilelayer': Vue2Leaflet.TileLayer,
-    'v-marker': Vue2Leaflet.Marker
+    'vl-map': Vue2Leaflet.Map,
+    'vl-tilelayer': Vue2Leaflet.TileLayer,
+    'pm-marker': PmMarker,
+    'vl-popup': Vue2Leaflet.Popup,
+    'vl-tooltip': Vue2Leaflet.Tooltip
   },
   data: () => ({
     zoom: 14,

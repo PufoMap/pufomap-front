@@ -1,4 +1,19 @@
-<v-map :zoom="zoom" :center="center">
-  <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
-  <v-marker :lat-lng="[40.4360, -3.6714]"></v-marker>
-</v-map>
+<vl-map :zoom="zoom" :center="center">
+  <vl-tilelayer :url="url" :attribution="attribution"></vl-tilelayer>
+  <pm-marker :lat-lng="[40.4360, -3.6684]" :status="'PUB'" :severity="15" :visited="true">
+    <vl-tooltip :content="'lolailo'"></vl-tooltip>
+  </pm-marker>
+  <pm-marker :lat-lng="[40.4361, -3.6691]" :status="'PUB'" :severity="45" :visited="false">
+    <vl-tooltip :content="'lolailo'"></vl-tooltip>
+  </pm-marker>
+  <pm-marker :lat-lng="[40.4362, -3.6745]" :status="'PEN'" :severity="65" :visited="true"></pm-marker>
+  <pm-marker :lat-lng="[40.4363, -3.6733]" :status="'PUB'" :severity="80" :visited="false"></pm-marker>
+  <pm-marker :lat-lng="[40.4312, -3.6724]" :status="'PUB'" :severity="70" :visited="true"></pm-marker>
+  <pm-marker :lat-lng="[40.4323, -3.6714]" :status="'PUB'" :severity="95" :visited="false"></pm-marker>
+  <pm-marker :lat-lng="[40.4335, -3.6743]" :status="'PEN'" :severity="40" :visited="true">
+    <vl-popup :content="'cacota'"></vl-popup>
+  </pm-marker>
+  <pm-marker :lat-lng="[40.4346, -3.6732]" :status="'PUB'" :severity="20" :visited="false"></pm-marker>
+  <pm-marker :lat-lng="[40.4357, -3.6715]" :status="'PUB'" :severity="42" :visited="true"></pm-marker>
+  <pm-marker :lat-lng="[40.4366, -3.6691]" :status="'PEN'" :severity="12" :visited="false"></pm-marker>
+</vl-map>
