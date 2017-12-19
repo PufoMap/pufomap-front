@@ -101,16 +101,16 @@ export default {
     icon () {
       if (!this.visited) {
         if (this.status === 'PEN') { return markerIcons.editor }
-        if (this.severity <= 25) { return markerIcons.one }
-        if (this.severity <= 50) { return markerIcons.two }
-        if (this.severity <= 75) { return markerIcons.three }
-        return markerIcons.four
+        if (this.severity === 4) { return markerIcons.four }
+        if (this.severity === 3) { return markerIcons.three }
+        if (this.severity === 2) { return markerIcons.two }
+        return markerIcons.one
       }
       if (this.status === 'PEN') { return markerIconsVisited.editor }
-      if (this.severity <= 25) { return markerIconsVisited.one }
-      if (this.severity <= 50) { return markerIconsVisited.two }
-      if (this.severity <= 75) { return markerIconsVisited.three }
-      return markerIcons.four
+      if (this.severity === 4) { return markerIconsVisited.four }
+      if (this.severity === 3) { return markerIconsVisited.three }
+      if (this.severity === 2) { return markerIconsVisited.two }
+      return markerIcons.one
     }
   },
   components: {

@@ -2,7 +2,9 @@
 <style src='./PmMap.css' scoped></style>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
+
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 import PmMarker from '@/components/PmMarker/PmMarker'
 
@@ -14,6 +16,16 @@ export default {
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
     attribution: 'Tiles &copy; Esri & Co.'
   }),
+  computed: {
+    ...mapGetters({
+      pois: 'map/pois'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getPOIs: 'map/getPOIs'
+    })
+  },
   mounted () {
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -22,6 +34,7 @@ export default {
         }
       )
     }
+    this.getPOIs()
   },
   components: {
     'vl-map': Vue2Leaflet.Map,

@@ -1,6 +1,15 @@
 .pm-map
   vl-map(:zoom='zoom', :center='center')
     vl-tilelayer(:url='url', :attribution='attribution')
+    template(v-for="poi in pois")
+      pm-marker(
+        :tooltip="poi.name"
+        :lat-lng="[poi.location.coordinates[1], poi.location.coordinates[0]]"
+        :status="poi.status"
+        :severity="poi.severity"
+        :visited="poi.visited"
+      )
+
     pm-marker(:tooltip="'cacota1'", :lat-lng='[40.4360, -3.6684]', :status="'PUB'", :severity='15', :visited='true')
     pm-marker(:tooltip="'cacota2'", :lat-lng='[40.4361, -3.6691]', :status="'PUB'", :severity='45', :visited='false')
     pm-marker(:tooltip="'cacota3'", :lat-lng='[40.4362, -3.6745]', :status="'PEN'", :severity='65', :visited='true')
