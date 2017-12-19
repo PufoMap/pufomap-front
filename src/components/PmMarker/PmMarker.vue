@@ -1,4 +1,4 @@
-<template src='./PmMarker.html'></template>
+<template lang="pug" src='./PmMarker.pug'></template>
 <style src='./PmMarker.css' scoped></style>
 <script>
 import Vue2Leaflet from 'vue2-leaflet'

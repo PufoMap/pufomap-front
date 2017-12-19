@@ -3,6 +3,6 @@
   "plugins": {
     'postcss-import',
     'postcss-mixins',
-    'postcss-cssnext
+    'postcss-cssnext'
   }
 }

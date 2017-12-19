@@ -1,4 +1,4 @@
-<template src='./PmHome.html'></template>
+<template lang="pug" src='./PmHome.pug'></template>
 <style src='./PmHome.css'></style>
 
 <script>

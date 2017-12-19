@@ -1,4 +1,4 @@
-<template src='./PmMap.html'></template>
+<template lang="pug" src='./PmMap.pug'></template>
 <style src='./PmMap.css' scoped></style>
 
 <script>

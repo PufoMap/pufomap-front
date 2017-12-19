@@ -1,4 +1,4 @@
-<template src='./App.html'></template>
+<template lang="pug" src='./App.pug'></template>
 <style src='./App.css'></style>
 
 <script>

@@ -14,11 +14,11 @@
 
 .info-box-header {
   display: flex;
-}
 
-.title-tags {
-  display: flex;
-  flex-direction: column;
+  & .title-tags {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 h2.title {
