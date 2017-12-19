@@ -1,12 +1,27 @@
 .info-box {
-  display: flex;
-  height: calc(100% - 4rem);
-  position: fixed;
-  right: 2rem;
-  top: 2rem;
-  width: 35%;
-  z-index: 1000;
   background-color: white;
-  border-radius: 30px;
-  box-shadow: -10px -10px 35px -10px rgba(136,136,136,0.75);
+  border-radius: 10px;
+  box-shadow: 0 10px 55px -10px rgba(136,136,136,0.85);
+  display: flex;
+  height: calc(100% - 2rem);
+  padding: 1.5rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  width: 40%;
+  z-index: 1000;
+}
+
+.info-box-header {
+  display: flex;
+}
+
+.title-tags {
+  display: flex;
+  flex-direction: column;
+}
+
+h2.title {
+  font-size: 2rem;
+  font-weight: bold;
 }
