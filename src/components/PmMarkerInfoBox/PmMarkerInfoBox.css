@@ -18,10 +18,10 @@
   & .title-tags {
     display: flex;
     flex-direction: column;
-  }
-}
 
-h2.title {
-  font-size: 2rem;
-  font-weight: bold;
+    & h2.title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
 }
