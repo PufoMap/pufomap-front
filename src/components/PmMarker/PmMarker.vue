@@ -1,4 +1,5 @@
 <template src='./PmMarker.html'></template>
+<style src='./PmMarker.css' scoped></style>
 <script>
 import Vue2Leaflet from 'vue2-leaflet'
 import L from 'leaflet'
@@ -18,9 +19,9 @@ import EditorVisitedIcon from '@/assets/img/markers/editor-mark-visited.svg'
 const MarkerIcon = ({...props}) => (
   L.icon(
     Object.assign({
-      iconSize: [37, 30],
-      iconAnchor: [37, 30],
-      popupAnchor: [0, -28]
+      iconSize: [44, 36],
+      iconAnchor: [44, 36],
+      tooltipAnchor: [0, -22]
     }, props)
   )
 )
@@ -30,7 +31,11 @@ const markerIcons = {
   two: MarkerIcon({iconUrl: TwoIcon}),
   three: MarkerIcon({iconUrl: ThreeIcon}),
   four: MarkerIcon({iconUrl: FourIcon}),
-  editor: MarkerIcon({iconUrl: EditorIcon})
+  editor: MarkerIcon({
+    iconUrl: EditorIcon,
+    iconSize: [40, 40],
+    iconAnchor: [40, 40]
+  })
 }
 
 const markerIconsVisited = {
@@ -38,13 +43,17 @@ const markerIconsVisited = {
   two: MarkerIcon({iconUrl: TwoVisitedIcon}),
   three: MarkerIcon({iconUrl: ThreeVisitedIcon}),
   four: MarkerIcon({iconUrl: FourVisitedIcon}),
-  editor: MarkerIcon({iconUrl: EditorVisitedIcon})
+  editor: MarkerIcon({
+    iconUrl: EditorVisitedIcon,
+    iconSize: [40, 40],
+    iconAnchor: [40, 40]
+  })
 }
 
 export default {
-  name: 'PmMap',
+  name: 'PmMarker',
   props: {
-    // Customs
+    // Customs params
     status: {
       type: String,
       custom: false,
@@ -60,7 +69,11 @@ export default {
       custom: true,
       default: false
     },
-    // From Default marker
+    tooltip: {
+      type: String,
+      custom: false
+    },
+    // From Leaflet marker
     latLng: {
       type: [Object, Array]
     },
@@ -101,7 +114,8 @@ export default {
     }
   },
   components: {
-    'vl-marker': Vue2Leaflet.Marker
+    'vl-marker': Vue2Leaflet.Marker,
+    'vl-tooltip': Vue2Leaflet.Tooltip
   }
 }
 </script>

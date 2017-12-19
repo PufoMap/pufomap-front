@@ -4,6 +4,9 @@
   :lat-lng="latLng"
   :z-index-offset="zIndexOffset"
   :options="options"
-  :icon="icon">
-  <slot></slot>
+  :icon="icon"
+>
+  <vl-tooltip class="tooltip" :opacity="0">
+    {{ tooltip }}
+  </vl-tooltip>
 </vl-marker>
