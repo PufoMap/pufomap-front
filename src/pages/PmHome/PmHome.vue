@@ -3,11 +3,13 @@
 
 <script>
 import PmMap from '@/components/PmMap/PmMap'
+import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 
 export default {
   name: 'PmHome',
   components: {
-    'pm-map': PmMap
+    'pm-map': PmMap,
+    'pm-marker-infobox': PmMarkerInfoBox
   }
 }
 </script>

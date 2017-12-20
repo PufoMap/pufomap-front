@@ -11,8 +11,8 @@ const getters = {
 }
 
 const mutationTypes = {
-  SET_POIS: '@pufomap/UI/map/SET_POIS',
-  SET_SELECTED_POI: '@pufomap/UI/map/SET_SELECTED_POI'
+  SET_POIS: 'SET_POIS',
+  SET_SELECTED_POI: 'SET_SELECTED_POI'
 }
 
 const mutations = {

@@ -83,6 +83,18 @@
       color: var(--color-yellow);
       font-weight: bold;
       text-align: center;
+      &.low {
+        color: var(--color-yellow);
+      }
+      &.medium {
+        color: var(--color-orange);
+      }
+      &.high {
+        color: var(--color-red);
+      }
+      &.dangerous {
+        color: var(--color-black);
+      }
     }
   }
 }
@@ -248,7 +260,6 @@ ul.info-box-nav {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.5rem;
-
     & svg {
       fill: var(--color-gray);
       height: 30px;

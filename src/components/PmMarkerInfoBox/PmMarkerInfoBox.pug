@@ -1,56 +1,75 @@
-.info-box
+.info-box(v-if="poi")
   .info-box-content
     .info-box-header
       .title-tags
-        h2.title Nombre de la pufotienda
+        h2.title {{ poi.name }}
         .place
           include ../../assets/img/icons/location.svg
-          span latitud / longitud
-      .severity
-        img(src="../../assets/img/markers/1-mark.png" border="0" alt="Severidad media")
-        span Severidad media
+          span
+            | {{ poi.location.coordinates[1] }} / {{ poi.location.coordinates[0] }}
+      .severity(v-if="poi.severity === 1")
+        img(src="../../assets/img/markers/1-mark.png" border="0" alt="Baja")
+        span.low Baja
+      .severity(v-if="poi.severity === 2")
+        img(src="../../assets/img/markers/2-mark.png" border="0" alt="Media")
+        span.medium Media
+      .severity(v-if="poi.severity === 3")
+        img(src="../../assets/img/markers/3-mark.png" border="0" alt="Alta")
+        span.high Alta
+      .severity(v-if="poi.severity === 4")
+        img(src="../../assets/img/markers/4-mark.png" border="0" alt="Peligroso")
+        span.dangerous Peligroso
     ul.tags
-      li.tag Tag 1
-      li.tag Tag 3
-      li.tag Tag 44
-      li.tag Tag 455
-      li.tag Tag 1
-    
-    .info-content
+      li.tag(v-for="tag in poi.tags") {{ tag }}
+
+    .info-content(v-if="activedSection === 'info'")
       .date-author
         include ../../assets/img/icons/calendar.svg
-        span 21/02/2017 - Autor anónimo
-      p.info-text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue pretium maximus. Etiam quis euismod lectus, quis sagittis mi. Nullam sed luctus elit. Nullam erat lacus, condimentum vitae suscipit id, fringilla quis ex. Phasellus sodales nibh non ligula eleifend aliquet. Integer in felis nec augue egestas semper ac eget sem. Ut consectetur sit amet arcu at condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        span
+          | {{ poi.created_date | moment('L') }} - {{ poi.author.username }}
+      p.info-text {{ poi.description }}
       ul.img-gallery-th
-        li
-          img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
-        li
-          img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
-        li
-          img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
-        li
-          img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
-    
+        li(v-for="photo in poi.photos")
+          img(:src="photo.photo" border="0")
+
+    .comments-content(v-if="activedSection === 'comments'")
+      .comment(v-for="comment in poi.poi_comments")
+        .author {{ comment.user.username }}
+        .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
+        .message {{ comment.comment }}
+
+    .shared-content(v-if="activedSection === 'shared'")
+      .shared #TODO SHARED
+
     .valoration
       a.thumbs.thumbs-up.current
         include ../../assets/img/icons/thumbs-up.svg
-        span 21
+        span {{ poi.positive_ratings_count }}
       a.thumbs.thumbs-down
         include ../../assets/img/icons/thumbs-down.svg
-        span 4
-  
+        span {{ poi.negative_ratings_count }}
+
   ul.info-box-nav
-    li
+    li(
+      @click="handleClose()"
+    )
       include ../../assets/img/icons/close.svg
       span cerrar
-    li.current
+    li(
+      :class="{current: activedSection == 'info'}"
+      @click="handleSetActiveSection('info')",
+    )
       include ../../assets/img/icons/info.svg
       span info
-    li
+    li(
+      :class="{current: activedSection == 'comments'}"
+      @click="handleSetActiveSection('comments')"
+    )
       include ../../assets/img/icons/comments.svg
       span comentarios
-    li
+    li(
+      :class="{current: activedSection == 'shared'}"
+      @click="handleSetActiveSection('shared')"
+    )
       include ../../assets/img/icons/share.svg
       span compartir
-      
-        

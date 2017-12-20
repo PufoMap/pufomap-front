@@ -16,7 +16,7 @@ export default new Router({
     },
     {
       path: '/login',
-      name: 'Home',
+      name: 'Login',
       component: PmLogin
     },
     {

@@ -1,7 +1,29 @@
 <template lang='pug' src='./PmMarkerInfoBox.pug'></template>
 <style src='./PmMarkerInfoBox.css' scoped></style>
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
-  name: 'PmMarkerInfoBox'
+  name: 'PmMarkerInfoBox',
+  data: () => ({
+    activedSection: 'info'
+  }),
+  computed: {
+    ...mapGetters({
+      poi: 'map/selectedPoi'
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setSelectedPOI: 'map/SET_SELECTED_POI'
+    }),
+    handleClose () {
+      this.setSelectedPOI(null)
+      this.activedSection = 'info'
+    },
+    handleSetActiveSection (section) {
+      this.activedSection = section
+    }
+  }
 }
 </script>

@@ -1,10 +1,9 @@
-.pm-map
-  vl-map(ref="map", :zoom="zoom", :center="center")
-    vl-tilelayer(:url="url", :attribution="attribution")
-    vl-marker(
-      v-for="poi in pois"
-      :key="poi.id"
-      :lat-lng="poiLatLong(poi)"
-      :icon="poiIcon(poi)"
-    )
-  pm-marker-infobox
+vl-map.map(ref="map", :zoom="zoom", :center="center")
+  vl-tilelayer(:url="url", :attribution="attribution")
+  vl-marker(
+    v-for="poi in pois"
+    :key="poi.id"
+    :lat-lng="poiLatLong(poi)"
+    :icon="poiSvgIcon(poi)"
+    @l-click="handleClickMarker($event, poi.id)"
+  )
