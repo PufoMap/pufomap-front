@@ -7,7 +7,6 @@ import router from '@/router'
 import store from '@/store'
 
 import { fixMarkerIcons } from './utils/leaflet'
-
 fixMarkerIcons()
 
 Vue.config.productionTip = false

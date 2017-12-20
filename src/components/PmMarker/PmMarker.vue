@@ -54,6 +54,9 @@ export default {
   name: 'PmMarker',
   props: {
     // Customs params
+    location: {
+      type: Object
+    },
     status: {
       type: String,
       custom: false,
@@ -74,9 +77,6 @@ export default {
       custom: false
     },
     // From Leaflet marker
-    latLng: {
-      type: [Object, Array]
-    },
     draggable: {
       type: Boolean,
       custom: true,

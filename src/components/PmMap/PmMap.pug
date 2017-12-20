@@ -1,23 +1,20 @@
 .pm-map
-  vl-map(:zoom='zoom', :center='center')
-    vl-tilelayer(:url='url', :attribution='attribution')
-    template(v-for="poi in pois")
-      pm-marker(
-        :tooltip="poi.name"
-        :lat-lng="[poi.location.coordinates[1], poi.location.coordinates[0]]"
-        :status="poi.status"
-        :severity="poi.severity"
-        :visited="poi.visited"
-      )
-
-    pm-marker(:tooltip="'cacota1'", :lat-lng='[40.4360, -3.6684]', :status="'PUB'", :severity='15', :visited='true')
-    pm-marker(:tooltip="'cacota2'", :lat-lng='[40.4361, -3.6691]', :status="'PUB'", :severity='45', :visited='false')
-    pm-marker(:tooltip="'cacota3'", :lat-lng='[40.4362, -3.6745]', :status="'PEN'", :severity='65', :visited='true')
-    pm-marker(:tooltip="'cacota4'", :lat-lng='[40.4363, -3.6733]', :status="'PUB'", :severity='80', :visited='false')
-    pm-marker(:tooltip="'cacota5'", :lat-lng='[40.4312, -3.6724]', :status="'PUB'", :severity='70', :visited='true')
-    pm-marker(:tooltip="'cacota6'", :lat-lng='[40.4323, -3.6714]', :status="'PUB'", :severity='95', :visited='false')
-    pm-marker(:tooltip="'cacota7'", :lat-lng='[40.4335, -3.6743]', :status="'PEN'", :severity='40', :visited='true')
-    pm-marker(:tooltip="'cacota8'", :lat-lng='[40.4346, -3.6732]', :status="'PUB'", :severity='20', :visited='false')
-    pm-marker(:tooltip="'cacota9'", :lat-lng='[40.4357, -3.6715]', :status="'PUB'", :severity='42', :visited='true')
-    pm-marker(:tooltip="'cacota10'", :lat-lng='[40.4366, -3.6691]', :status="'PEN'", :severity='12', :visited='false')
+  vl-map(ref="map", :zoom="zoom", :center="center")
+    vl-tilelayer(:url="url", :attribution="attribution")
+    pm-marker(
+      :tooltip="pois[0].name"
+      :location="pois[0].location"
+      :status="pois[0].status"
+      :severity="pois[0].severity"
+      :visited="pois[0].visited"
+    )
+    pm-marker(
+      v-for="poi in pois"
+      :key="poi.id"
+      :tooltip="poi.name"
+      :location="poi.location"
+      :status="poi.status"
+      :severity="poi.severity"
+      :visited="poi.visited"
+    )
   pm-marker-infobox

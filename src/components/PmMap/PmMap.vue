@@ -11,7 +11,7 @@ import PmMarker from '@/components/PmMarker/PmMarker'
 export default {
   name: 'PmMap',
   data: () => ({
-    zoom: 14,
+    zoom: 10,
     center: [40.4360, -3.6714],
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
     attribution: 'Tiles &copy; Esri & Co.'
@@ -31,10 +31,12 @@ export default {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           this.center = [pos.coords.latitude, pos.coords.longitude]
+          this.getPOIs()
         }
       )
+    } else {
+      this.getPOIs()
     }
-    this.getPOIs()
   },
   components: {
     'vl-map': Vue2Leaflet.Map,

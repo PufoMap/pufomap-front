@@ -3,8 +3,6 @@ import { localStorage } from '@/services/storage'
 
 import PoisResource from './pois'
 
-console.log('API_SERVER_URL', process.env)
-
 const client = axios.create({
   baseURL: process.env.API_SERVER_URL
 })
