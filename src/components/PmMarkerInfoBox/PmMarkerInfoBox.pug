@@ -2,12 +2,39 @@
   .info-box-header
     .title-tags
       h2.title Nombre de la pufotienda
-      .place latitud / longitud
-      ul.tags
-        li.tag Tag 1
-        li.tag Tag 3
-        li.tag Tag 44
-        li.tag Tag 455
+      .place
+        include ../../assets/img/icons/location.svg
+        span latitud / longitud
     .severity
-      include ../../assets/img/markers/1-mark.svg
+      img(src="../../assets/img/markers/1-mark.png" border="0" alt="Severidad media")
       span Severidad media
+  ul.tags
+    li.tag Tag 1
+    li.tag Tag 3
+    li.tag Tag 44
+    li.tag Tag 455
+    li.tag Tag 1
+  
+  .info-content
+    .date-author
+      include ../../assets/img/icons/calendar.svg
+      span 21/02/2017 - Autor anónimo
+    p.info-text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue pretium maximus. Etiam quis euismod lectus, quis sagittis mi. Nullam sed luctus elit. Nullam erat lacus, condimentum vitae suscipit id, fringilla quis ex. Phasellus sodales nibh non ligula eleifend aliquet. Integer in felis nec augue egestas semper ac eget sem. Ut consectetur sit amet arcu at condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    ul.img-gallery-th
+      li
+        img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
+      li
+        img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
+      li
+        img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
+      li
+        img(src="https://broulims.com/wp-content/uploads/2016/12/7tQA7DkPQzu6d5ACTu2N_pharmacy.jpg" border="0")
+  
+  .valoration
+    a.thumbs.thumbs-up.current
+      include ../../assets/img/icons/thumbs-up.svg
+      span 21
+    a.thumbs.thumbs-down
+      include ../../assets/img/icons/thumbs-down.svg
+      span 4
+        
