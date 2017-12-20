@@ -5,6 +5,8 @@
   --color-yellow: #c7c928;
   --color-red: #f73e30;
   --color-white: #ffffff;
+  --color-white-trans: rgba(255,255,255, .5);
+  --color-white-trans-2: rgba(255,255,255, .2);
   --color-gray-light: #ced7e2;
   --color-gray: #8da2bf;
   --color-black: #000000;
