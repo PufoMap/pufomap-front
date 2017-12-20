@@ -1,20 +1,11 @@
 .pm-map
+  span --{{ pois }}
   vl-map(ref="map", :zoom="zoom", :center="center")
     vl-tilelayer(:url="url", :attribution="attribution")
-    pm-marker(
-      :tooltip="pois[0].name"
-      :location="pois[0].location"
-      :status="pois[0].status"
-      :severity="pois[0].severity"
-      :visited="pois[0].visited"
-    )
-    pm-marker(
+    vl-marker(
       v-for="poi in pois"
       :key="poi.id"
-      :tooltip="poi.name"
-      :location="poi.location"
-      :status="poi.status"
-      :severity="poi.severity"
-      :visited="poi.visited"
+      :lat-lng="poiLatLong(poi)"
+      :icon="poiIcon(poi)"
     )
   pm-marker-infobox
