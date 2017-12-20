@@ -8,6 +8,7 @@ import PmSignIn from '@/pages/PmSignIn/PmSignIn'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

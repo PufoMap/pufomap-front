@@ -13,6 +13,11 @@ export default {
       poi: 'map/selectedPoi'
     })
   },
+  watch: {
+    poi (newVal, oldVal) {
+      this.activedSection = 'info'
+    }
+  },
   methods: {
     ...mapMutations({
       setSelectedPOI: 'map/SET_SELECTED_POI'

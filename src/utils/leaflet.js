@@ -57,7 +57,7 @@ const markerSvgIconsVisited = {
 }
 
 export function poiSvgIcon (poi) {
-  if (!poi.visited) {
+  if (!poi.visit) {
     if (poi.status === 'PEN') { return markerSvgIcons.editor }
     if (poi.severity === 4) { return markerSvgIcons.four }
     if (poi.severity === 3) { return markerSvgIcons.three }

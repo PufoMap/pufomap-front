@@ -3,14 +3,14 @@ import Vuex from 'vuex'
 
 import createLogger from 'vuex/dist/logger'
 
-import user from '@/store/modules/user'
+import auth from '@/store/modules/auth'
 import map from '@/store/modules/map'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    user,
+    auth,
     map
   },
   strict: process.env.DEBUG,

@@ -2,16 +2,33 @@
   .signin-content
     include ../../assets/img/icons/skull-map.svg
     h1.title PUFOMAP
-    
+
     ul.signin-nav
       li
         a(href="#").current LOG IN
       li
         a(href="#") SIGN UP
-        
-    form(action="").signin-form
+
+    form.signin-form(
+      @submit.prevent="handleSubmit()"
+      autocomplete="off"
+    )
       label(for="email") Email
-      input(type="email" placeholder="Enter email" name="email" required)
+      input(
+        id="email"
+        name="email"
+        type="text"
+        placeholder="Enter email"
+        required
+        v-model="email"
+      )
       label(for="password") Password
-      input(type="password" placeholder="Enter password" name="password" required)
-      input(type="submit" value="LOG IN").btn-login
+      input(
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        required
+        v-model="password"
+      )
+      input.btn-login(type="submit" value="LOG IN")
