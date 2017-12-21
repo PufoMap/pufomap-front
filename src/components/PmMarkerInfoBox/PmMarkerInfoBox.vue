@@ -1,13 +1,15 @@
 <template lang='pug' src='./PmMarkerInfoBox.pug'></template>
 <style src='./PmMarkerInfoBox.css' scoped></style>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'PmMarkerInfoBox',
   data: () => ({
     activedSection: 'info',
-    isExtended: false
+    isExtended: false,
+    comment: '',
+    changeRequest: ''
   }),
   computed: {
     ...mapGetters({
@@ -16,12 +18,21 @@ export default {
   },
   watch: {
     poi (newVal, oldVal) {
-      this.activedSection = 'info'
+      if (oldVal && newVal && oldVal.id !== newVal.id) {
+        this.activedSection = 'info'
+        this.isExtended = false
+      }
+      this.comment = ''
+      this.changeRequest = ''
     }
   },
   methods: {
     ...mapMutations({
       setSelectedPOI: 'map/SET_SELECTED_POI'
+    }),
+    ...mapActions({
+      addComent: 'map/addComment',
+      addChangeRequest: 'map/addChangeRequest'
     }),
     handleClose () {
       this.setSelectedPOI(null)
@@ -30,6 +41,12 @@ export default {
     },
     handleSetActiveSection (section) {
       this.activedSection = section
+    },
+    handleSubmitComment () {
+      this.addComent({ poiId: this.poi.id, comment: this.comment })
+    },
+    handleSubmitChangeRequest () {
+      this.addChangeRequest({ poiId: this.poi.id, changeRequest: this.changeRequest })
     }
   }
 }

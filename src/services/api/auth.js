@@ -5,8 +5,6 @@ export default (client) => ({
         username: email,
         password: password
       })
-      .then(response => {
-        return response.data.token
-      })
+      .then(response => response.data.token)
   }
 })

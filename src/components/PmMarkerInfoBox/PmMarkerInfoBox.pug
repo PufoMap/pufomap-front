@@ -40,30 +40,61 @@
 
     .comments-content(v-if="activedSection === 'comments'")
       h3.info-content-title Comentarios
-      form(action="", id="comment-form").comment-form
-        textarea(form="comment-form", name="message", placeholder="Escribe un comentario")
+      form.comment-form(
+        id="comment-form"
+        @submit.prevent="handleSubmitComment()"
+        autocomplete="off"
+      )
+        textarea(
+          id="comment"
+          name="comment"
+          form="comment-form"
+          placeholder="Escribe un comentario"
+          required
+          v-model="comment"
+        )
         input(type="submit", value="Enviar")
       .comment(v-for="comment in poi.poi_comments")
         .comment-info
-          img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
+          img.comment-img(
+            src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
+            border="0"
+          )
           .comment-info-detail
             .author {{ comment.user.username }}
             .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
         .message {{ comment.comment }}
 
     .comments-content(v-if="activedSection === 'enmiendas'")
-      h3.info-content-title Propuestas de cambios
-      form(action="", id="comment-form").comment-form
-        textarea(form="comment-form", name="message", placeholder="Escribe tu propuesta")
+      h3.info-content-title Enmiendas
+      form.comment-form(
+        id="change-request-form"
+        @submit.prevent="handleSubmitChangeRequest()"
+        autocomplete="off"
+      )
+        textarea(
+          id="change-request"
+          name="change-request"
+          form="change-request-form"
+          placeholder="Escribe tu propuesta"
+          required
+          v-model="changeRequest"
+        )
         input(type="submit", value="Enviar")
-      .comment(v-for="changes in poi.poi_changes")
+      .comment(v-for="change in poi.poi_changes")
         .comment-info
-          img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
+          img.comment-img(
+            src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
+            border="0"
+          )
           .comment-info-detail
-            .author {{ changes.user.username }}
-            .date {{ changes.created_date | moment('LL') }} | {{ changes.created_date | moment('LT') }}
-        .message {{ changes.comment }}
-
+            .author {{ change.user.username }}
+            .date
+              | {{ change.created_date | moment('LL') }} | {{ change.created_date | moment('LT') }}
+            .status.accepted(v-if="change.status === 'ACE'") Aceptada
+            .status.pending(v-if="change.status === 'PEN'") Pendiente
+            .status.rejected(v-if="change.status === 'REC'") Rechazada
+        .message {{ change.change }}
 
     .shared-content(v-if="activedSection === 'shared'")
       .shared

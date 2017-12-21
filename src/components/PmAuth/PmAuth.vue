@@ -3,7 +3,7 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'PmAuth',
-  template: '<div></div>',
+  template: ' ',
   methods: {
     ...mapActions({
       auth: 'auth/auth'

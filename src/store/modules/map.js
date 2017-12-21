@@ -34,6 +34,16 @@ const actions = {
     return api.pois.get(id)
       .then(poi => commit(mutationTypes.SET_SELECTED_POI, poi))
       .catch(error => console.error('vuex error:', error))
+  },
+  addComment ({dispatch, commit, state}, { poiId, comment }) {
+    return api.pois.addComent(poiId, comment)
+      .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
+      .catch(error => console.error('vuex error:', error))
+  },
+  addChangeRequest ({dispatch, commit, state}, { poiId, changeRequest }) {
+    return api.pois.addChangeRequest(poiId, changeRequest)
+      .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
+      .catch(error => console.error('vuex error:', error))
   }
 }
 

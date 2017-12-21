@@ -375,6 +375,17 @@ ul.info-box-nav {
         color: var(--color-gray);
         font-size: .8rem;
       }
+      & .status {
+        color: var(--color-gray);
+        font-size: .8rem;
+        font-weight: bold;
+        &.accepted {
+          color:  var(--color-main);
+        }
+        &.rejected {
+          color: var(--color-red);
+        }
+      }
     }
   }
   & .message {

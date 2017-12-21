@@ -8,5 +8,21 @@ export default client => ({
     return client
       .get(`pois/${id}`)
       .then(response => response.data)
+  },
+  addComent (poiId, comment) {
+    return client
+      .post('comments/', {
+        poi: poiId,
+        comment: comment
+      })
+      .then(response => response.data)
+  },
+  addChangeRequest (poiId, change) {
+    return client
+      .post('changerequests/', {
+        poi: poiId,
+        change: change
+      })
+      .then(response => response.data)
   }
 })
