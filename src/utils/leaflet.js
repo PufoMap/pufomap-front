@@ -22,7 +22,7 @@ export function fixMarkerIcons () {
   })
 }
 
-const MarkerIcon = ({...props}) => (
+const MarkerLeafletIcon = ({...props}) => (
   L.icon(
     Object.assign({
       iconSize: [44, 36],
@@ -32,43 +32,43 @@ const MarkerIcon = ({...props}) => (
   )
 )
 
-const markerSvgIcons = {
-  one: MarkerIcon({iconUrl: OneIcon}),
-  two: MarkerIcon({iconUrl: TwoIcon}),
-  three: MarkerIcon({iconUrl: ThreeIcon}),
-  four: MarkerIcon({iconUrl: FourIcon}),
-  editor: MarkerIcon({
+const markerLeafletIcons = {
+  one: MarkerLeafletIcon({iconUrl: OneIcon}),
+  two: MarkerLeafletIcon({iconUrl: TwoIcon}),
+  three: MarkerLeafletIcon({iconUrl: ThreeIcon}),
+  four: MarkerLeafletIcon({iconUrl: FourIcon}),
+  editor: MarkerLeafletIcon({
     iconUrl: EditorIcon,
     iconSize: [40, 40],
     iconAnchor: [40, 40]
   })
 }
 
-const markerSvgIconsVisited = {
-  one: MarkerIcon({iconUrl: OneVisitedIcon}),
-  two: MarkerIcon({iconUrl: TwoVisitedIcon}),
-  three: MarkerIcon({iconUrl: ThreeVisitedIcon}),
-  four: MarkerIcon({iconUrl: FourVisitedIcon}),
-  editor: MarkerIcon({
+const markerLeafletIconsVisited = {
+  one: MarkerLeafletIcon({iconUrl: OneVisitedIcon}),
+  two: MarkerLeafletIcon({iconUrl: TwoVisitedIcon}),
+  three: MarkerLeafletIcon({iconUrl: ThreeVisitedIcon}),
+  four: MarkerLeafletIcon({iconUrl: FourVisitedIcon}),
+  editor: MarkerLeafletIcon({
     iconUrl: EditorVisitedIcon,
     iconSize: [40, 40],
     iconAnchor: [40, 40]
   })
 }
 
-export function poiSvgIcon (poi) {
+export function poiLeafletIcon (poi) {
   if (!poi.visit) {
-    if (poi.status === 'PEN') { return markerSvgIcons.editor }
-    if (poi.severity === 4) { return markerSvgIcons.four }
-    if (poi.severity === 3) { return markerSvgIcons.three }
-    if (poi.severity === 2) { return markerSvgIcons.two }
-    return markerSvgIcons.one
+    if (poi.status === 'PEN') { return markerLeafletIcons.editor }
+    if (poi.severity === 4) { return markerLeafletIcons.four }
+    if (poi.severity === 3) { return markerLeafletIcons.three }
+    if (poi.severity === 2) { return markerLeafletIcons.two }
+    return markerLeafletIcons.one
   }
-  if (poi.status === 'PEN') { return markerSvgIconsVisited.editor }
-  if (poi.severity === 4) { return markerSvgIconsVisited.four }
-  if (poi.severity === 3) { return markerSvgIconsVisited.three }
-  if (poi.severity === 2) { return markerSvgIconsVisited.two }
-  return markerSvgIcons.one
+  if (poi.status === 'PEN') { return markerLeafletIconsVisited.editor }
+  if (poi.severity === 4) { return markerLeafletIconsVisited.four }
+  if (poi.severity === 3) { return markerLeafletIconsVisited.three }
+  if (poi.severity === 2) { return markerLeafletIconsVisited.two }
+  return markerLeafletIcons.one
 }
 
 export function poiLatLong (poi) {

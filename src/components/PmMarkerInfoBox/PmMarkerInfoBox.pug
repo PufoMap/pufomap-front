@@ -10,16 +10,20 @@
           span
             | {{ poi.location.coordinates[1] }} / {{ poi.location.coordinates[0] }}
       .severity(v-if="poi.severity === 1")
-        img(src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
+        img(v-if="!poi.visit" src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
+        img(v-if="poi.visit" src="../../assets/img/markers/1-mark-visited.svg" border="0" alt="Baja")
         span.low Baja
       .severity(v-if="poi.severity === 2")
-        img(src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
+        img(v-if="!poi.visit" src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
+        img(v-if="poi.visit" src="../../assets/img/markers/2-mark-visited.svg" border="0" alt="Media")
         span.medium Media
       .severity(v-if="poi.severity === 3")
-        img(src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
+        img(v-if="!poi.visit" src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
+        img(v-if="poi.visit" src="../../assets/img/markers/3-mark-visited.svg" border="0" alt="Alta")
         span.high Alta
       .severity(v-if="poi.severity === 4")
-        img(src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
+        img(v-if="!poi.visit" src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
+        img(v-if="poi.visit" src="../../assets/img/markers/4-mark-visited.svg" border="0" alt="Peligroso")
         span.dangerous Peligroso
     ul.tags
       li.tag(v-for="tag in poi.tags") {{ tag }}

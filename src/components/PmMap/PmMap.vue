@@ -5,7 +5,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 
-import { poiSvgIcon, poiLatLong } from '@/utils/leaflet'
+import { poiLeafletIcon, poiLatLong } from '@/utils/leaflet'
 
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 
@@ -27,7 +27,7 @@ export default {
       getPOIs: 'map/getPOIs',
       getPOI: 'map/getPOI'
     }),
-    poiSvgIcon,
+    poiLeafletIcon,
     poiLatLong,
     handleClickMarker (event, id) {
       this.getPOI(id)

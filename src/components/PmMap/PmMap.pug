@@ -4,6 +4,6 @@ vl-map.map(ref="map", :zoom="zoom", :center="center")
     v-for="poi in pois"
     :key="poi.id"
     :lat-lng="poiLatLong(poi)"
-    :icon="poiSvgIcon(poi)"
+    :icon="poiLeafletIcon(poi)"
     @l-click="handleClickMarker($event, poi.id)"
   )
