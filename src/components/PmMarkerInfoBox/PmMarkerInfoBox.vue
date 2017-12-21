@@ -6,7 +6,8 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'PmMarkerInfoBox',
   data: () => ({
-    activedSection: 'info'
+    activedSection: 'info',
+    isExtended: 'true'
   }),
   computed: {
     ...mapGetters({
@@ -25,6 +26,7 @@ export default {
     handleClose () {
       this.setSelectedPOI(null)
       this.activedSection = 'info'
+      this.isExtended = 'true'
     },
     handleSetActiveSection (section) {
       this.activedSection = section

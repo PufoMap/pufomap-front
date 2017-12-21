@@ -1,4 +1,6 @@
-.info-box(v-if="poi")
+.info-box(v-if="poi"
+  :class="{extend: isExtended}"
+)
     
   .info-box-content
     .info-box-header
@@ -43,10 +45,16 @@
         .message {{ comment.comment }}
 
     .shared-content(v-if="activedSection === 'shared'")
-      .shared #TODO SHARED
+      .shared
+        span Compartir vía
+        ul.share-icons
+          li
+            a(href="", target="_blank")
+              include ../../assets/img/icons/email.svg
+              span Email
 
     .valoration
-      a.thumbs.thumbs-up.current
+      a.thumbs.thumbs-up
         include ../../assets/img/icons/thumbs-up.svg
         span {{ poi.positive_ratings_count }}
       a.thumbs.thumbs-down
@@ -54,7 +62,7 @@
         span {{ poi.negative_ratings_count }}
 
   ul.info-box-nav
-    .box-handler
+    .box-handler(@click="isExtended = !isExtended")
       include ../../assets/img/icons/arrow.svg
     li(
       @click="handleClose()"

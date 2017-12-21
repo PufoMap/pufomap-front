@@ -385,3 +385,34 @@ ul.info-box-nav {
     }
   }
 }
+
+.shared {
+  display: flex;
+  flex-direction: column;
+
+  & span {
+    color: var(--color-gray);
+  }
+
+  & ul.share-icons {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    & li {
+
+      & a {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        & svg {
+          fill: var(--color-gray);
+          height: 40px;
+          width: 40px;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
