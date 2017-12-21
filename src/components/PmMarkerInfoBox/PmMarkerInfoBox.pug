@@ -41,6 +41,7 @@
     .comments-content(v-if="activedSection === 'comments'")
       h3.info-content-title Comentarios
       form.comment-form(
+        v-if="isAuthenticated"
         id="comment-form"
         @submit.prevent="handleSubmitComment()"
         autocomplete="off"
@@ -68,6 +69,7 @@
     .comments-content(v-if="activedSection === 'enmiendas'")
       h3.info-content-title Enmiendas
       form.comment-form(
+        v-if="isAuthenticated"
         id="change-request-form"
         @submit.prevent="handleSubmitChangeRequest()"
         autocomplete="off"
@@ -114,10 +116,20 @@
               span Facebook
 
     .valoration
-      a.thumbs.thumbs-up
+      button.thumbs.thumbs-up(
+        type="button"
+        :disabled="poi.voted !== null || !isAuthenticated"
+        :class="{current: poi.voted === -1}"
+        @click="handleClickVoteNegative()"
+      )
         include ../../assets/img/icons/thumbs-up.svg
         span {{ poi.positive_ratings_count }}
-      a.thumbs.thumbs-down
+      button.thumbs.thumbs-down(
+        type="button"
+        :disabled="poi.voted !== null || !isAuthenticated"
+        :class="{current: poi.voted === 1}"
+        @click="handleClickVotePositive()"
+      )
         include ../../assets/img/icons/thumbs-down.svg
         span {{ poi.negative_ratings_count }}
 
@@ -130,25 +142,25 @@
       include ../../assets/img/icons/close.svg
       span cerrar
     li(
-      :class="{current: activedSection == 'info'}"
+      :class="{current: activedSection === 'info'}"
       @click="handleSetActiveSection('info')",
     )
       include ../../assets/img/icons/info.svg
       span info
     li(
-      :class="{current: activedSection == 'comments'}"
+      :class="{current: activedSection === 'comments'}"
       @click="handleSetActiveSection('comments')"
     )
       include ../../assets/img/icons/comments.svg
       span comentarios
     li(
-      :class="{current: activedSection == 'enmiendas'}"
+      :class="{current: activedSection === 'enmiendas'}"
       @click="handleSetActiveSection('enmiendas')"
     )
       include ../../assets/img/icons/changes.svg
       span enmiendas
     li(
-      :class="{current: activedSection == 'shared'}"
+      :class="{current: activedSection === 'shared'}"
       @click="handleSetActiveSection('shared')"
     )
       include ../../assets/img/icons/share.svg

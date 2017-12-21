@@ -13,7 +13,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      poi: 'map/selectedPoi'
+      poi: 'map/selectedPoi',
+      isAuthenticated: 'auth/isAuthenticated'
     })
   },
   watch: {
@@ -32,7 +33,8 @@ export default {
     }),
     ...mapActions({
       addComent: 'map/addComment',
-      addChangeRequest: 'map/addChangeRequest'
+      addChangeRequest: 'map/addChangeRequest',
+      vote: 'map/vote'
     }),
     handleClose () {
       this.setSelectedPOI(null)
@@ -47,6 +49,12 @@ export default {
     },
     handleSubmitChangeRequest () {
       this.addChangeRequest({ poiId: this.poi.id, changeRequest: this.changeRequest })
+    },
+    handleClickVoteNegative () {
+      this.vote({ poiId: this.poi.id, vote: -1 })
+    },
+    handleClickVotePositive () {
+      this.vote({ poiId: this.poi.id, vote: 1 })
     }
   }
 }

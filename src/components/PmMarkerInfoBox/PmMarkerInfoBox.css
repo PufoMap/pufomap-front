@@ -198,7 +198,7 @@ ul.img-gallery-th {
   padding: 1rem;
   padding-bottom: 0;
 
-  & a.thumbs {
+  & button.thumbs {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -224,6 +224,10 @@ ul.img-gallery-th {
       justify-content: center;
       margin-left: .6rem;
       width: 1.6rem;
+    }
+
+    &.disabled {
+      pointer-events: none;
     }
 
     &.current {

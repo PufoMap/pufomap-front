@@ -9,6 +9,14 @@ export default client => ({
       .get(`pois/${id}`)
       .then(response => response.data)
   },
+  addVote (poiId, vote) {
+    return client
+      .post('ratings/', {
+        poi: poiId,
+        vote: vote
+      })
+      .then(response => response.data)
+  },
   addComent (poiId, comment) {
     return client
       .post('comments/', {
