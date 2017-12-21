@@ -22,7 +22,6 @@ ul.ui-nav {
       align-items: center;
       background-color: var(--color-blue-dark);
       border-radius: 50%;
-      box-shadow: 0 10px 55px -10px rgba(136,136,136,0.85);
       display: flex;
       height: 65px;
       justify-content: center;
