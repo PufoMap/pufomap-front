@@ -1,4 +1,5 @@
 .info-box(v-if="poi")
+    
   .info-box-content
     .info-box-header
       .title-tags
@@ -53,6 +54,8 @@
         span {{ poi.negative_ratings_count }}
 
   ul.info-box-nav
+    .box-handler
+      include ../../assets/img/icons/arrow.svg
     li(
       @click="handleClose()"
     )
