@@ -40,6 +40,9 @@
 
     .comments-content(v-if="activedSection === 'comments'")
       h3.info-content-title Comentarios
+      form(action="", id="comment-form").comment-form
+        textarea(form="comment-form", name="message", placeholder="Escribe un comentario")
+        input(type="submit", value="Enviar")
       .comment(v-for="comment in poi.poi_comments")
         .comment-info
           img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
