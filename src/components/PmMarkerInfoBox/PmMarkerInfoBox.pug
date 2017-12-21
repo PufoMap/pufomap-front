@@ -51,6 +51,20 @@
             .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
         .message {{ comment.comment }}
 
+    .comments-content(v-if="activedSection === 'enmiendas'")
+      h3.info-content-title Propuestas de cambios
+      form(action="", id="comment-form").comment-form
+        textarea(form="comment-form", name="message", placeholder="Escribe tu propuesta")
+        input(type="submit", value="Enviar")
+      .comment(v-for="changes in poi.poi_changes")
+        .comment-info
+          img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
+          .comment-info-detail
+            .author {{ changes.user.username }}
+            .date {{ changes.created_date | moment('LL') }} | {{ changes.created_date | moment('LT') }}
+        .message {{ changes.comment }}
+
+
     .shared-content(v-if="activedSection === 'shared'")
       .shared
         h3.info-content-title Compartir vía
@@ -96,6 +110,12 @@
     )
       include ../../assets/img/icons/comments.svg
       span comentarios
+    li(
+      :class="{current: activedSection == 'enmiendas'}"
+      @click="handleSetActiveSection('enmiendas')"
+    )
+      include ../../assets/img/icons/changes.svg
+      span enmiendas
     li(
       :class="{current: activedSection == 'shared'}"
       @click="handleSetActiveSection('shared')"
