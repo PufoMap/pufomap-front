@@ -22,53 +22,62 @@ export function fixMarkerIcons () {
   })
 }
 
-const MarkerLeafletIcon = ({...props}) => (
-  L.icon(
+const MarkerLeafletIcon = ({isSelected, ...props}) => {
+  return L.icon(
     Object.assign({
       iconSize: [44, 36],
       iconAnchor: [44, 36],
-      tooltipAnchor: [0, -22]
+      tooltipAnchor: [0, -22],
+      className: isSelected ? 'selected-marker' : ''
     }, props)
   )
-)
-
-const markerLeafletIcons = {
-  one: MarkerLeafletIcon({iconUrl: OneIcon}),
-  two: MarkerLeafletIcon({iconUrl: TwoIcon}),
-  three: MarkerLeafletIcon({iconUrl: ThreeIcon}),
-  four: MarkerLeafletIcon({iconUrl: FourIcon}),
-  editor: MarkerLeafletIcon({
-    iconUrl: EditorIcon,
-    iconSize: [40, 40],
-    iconAnchor: [40, 40]
-  })
 }
 
-const markerLeafletIconsVisited = {
-  one: MarkerLeafletIcon({iconUrl: OneVisitedIcon}),
-  two: MarkerLeafletIcon({iconUrl: TwoVisitedIcon}),
-  three: MarkerLeafletIcon({iconUrl: ThreeVisitedIcon}),
-  four: MarkerLeafletIcon({iconUrl: FourVisitedIcon}),
-  editor: MarkerLeafletIcon({
-    iconUrl: EditorVisitedIcon,
-    iconSize: [40, 40],
-    iconAnchor: [40, 40]
-  })
-}
-
-export function poiLeafletIcon (poi) {
+export function poiLeafletIcon (poi, isSelected = false) {
   if (!poi.visit) {
-    if (poi.status === 'PEN') { return markerLeafletIcons.editor }
-    if (poi.severity === 4) { return markerLeafletIcons.four }
-    if (poi.severity === 3) { return markerLeafletIcons.three }
-    if (poi.severity === 2) { return markerLeafletIcons.two }
-    return markerLeafletIcons.one
+    if (poi.status === 'PEN') {
+      return MarkerLeafletIcon({
+        iconUrl: EditorIcon,
+        isSelected: isSelected,
+        iconSize: [40, 40],
+        iconAnchor: [40, 40]
+      })
+    }
+    if (poi.severity === 4) {
+      return MarkerLeafletIcon({ iconUrl: FourIcon, isSelected: isSelected })
+    }
+    if (poi.severity === 3) {
+      return MarkerLeafletIcon({ iconUrl: ThreeIcon, isSelected: isSelected })
+    }
+    if (poi.severity === 2) {
+      return MarkerLeafletIcon({ iconUrl: TwoIcon, isSelected: isSelected })
+    }
+    return MarkerLeafletIcon({
+      iconUrl: OneIcon,
+      isSelected: isSelected
+    })
   }
-  if (poi.status === 'PEN') { return markerLeafletIconsVisited.editor }
-  if (poi.severity === 4) { return markerLeafletIconsVisited.four }
-  if (poi.severity === 3) { return markerLeafletIconsVisited.three }
-  if (poi.severity === 2) { return markerLeafletIconsVisited.two }
-  return markerLeafletIcons.one
+  if (poi.status === 'PEN') {
+    return MarkerLeafletIcon({
+      iconUrl: EditorVisitedIcon,
+      isSelected: isSelected,
+      iconSize: [40, 40],
+      iconAnchor: [40, 40]
+    })
+  }
+  if (poi.severity === 4) {
+    return MarkerLeafletIcon({ iconUrl: FourVisitedIcon, isSelected: isSelected })
+  }
+  if (poi.severity === 3) {
+    return MarkerLeafletIcon({ iconUrl: ThreeVisitedIcon, isSelected: isSelected })
+  }
+  if (poi.severity === 2) {
+    return MarkerLeafletIcon({ iconUrl: TwoVisitedIcon, isSelected: isSelected })
+  }
+  return MarkerLeafletIcon({
+    iconUrl: OneVisitedIcon,
+    isSelected: isSelected
+  })
 }
 
 export function poiLatLong (poi) {

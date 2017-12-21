@@ -19,7 +19,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      pois: 'map/pois'
+      pois: 'map/pois',
+      selectedPoi: 'map/selectedPoi'
     })
   },
   methods: {
