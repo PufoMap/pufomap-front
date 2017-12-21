@@ -4,12 +4,14 @@
 <script>
 import PmMap from '@/components/PmMap/PmMap'
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
+import PmMapUi from '@/components/PmMapUi/PmMapUi'
 
 export default {
   name: 'PmHome',
   components: {
     'pm-map': PmMap,
-    'pm-marker-infobox': PmMarkerInfoBox
+    'pm-marker-infobox': PmMarkerInfoBox,
+    'pm-map-ui': PmMapUi
   }
 }
 </script>

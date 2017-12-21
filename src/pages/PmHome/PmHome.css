@@ -1,4 +1,36 @@
+@import '../../assets/css/colors.css';
+@import '../../assets/css/mixins.css';
+
 .home {
   height: 100%;
   width: 100%;
+}
+
+.main-logo {
+  align-items: center;
+  border-radius: 50px;
+  background-color: var(--color-blue-dark);
+  box-shadow: 0 10px 55px -10px rgba(136,136,136,0.85);
+  display: flex;
+  left: 4rem;
+  padding: .6rem 1rem;
+  position: fixed;
+  top: .7rem;
+  z-index: 900;
+  @media (--mobile) {
+    display: none;
+  }
+
+  & svg {
+    fill: var(--color-main);
+    height: 40px;
+    width: 40px;
+  }
+
+  & h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-white);
+    margin-left: .5rem;
+  }
 }
