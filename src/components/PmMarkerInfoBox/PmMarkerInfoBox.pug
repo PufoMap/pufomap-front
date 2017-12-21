@@ -36,6 +36,7 @@
           img(:src="photo.photo" border="0")
 
     .comments-content(v-if="activedSection === 'comments'")
+      h3.info-content-title Comentarios
       .comment(v-for="comment in poi.poi_comments")
         .comment-info
           img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
@@ -46,12 +47,20 @@
 
     .shared-content(v-if="activedSection === 'shared'")
       .shared
-        span Compartir vía
+        h3.info-content-title Compartir vía
         ul.share-icons
           li
             a(href="", target="_blank")
               include ../../assets/img/icons/email.svg
               span Email
+          li
+            a(href="", target="_blank")
+              include ../../assets/img/icons/twitter.svg
+              span Twitter
+          li
+            a(href="", target="_blank")
+              include ../../assets/img/icons/facebook.svg
+              span Facebook
 
     .valoration
       a.thumbs.thumbs-up

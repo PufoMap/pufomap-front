@@ -336,7 +336,8 @@ ul.info-box-nav {
   }
 }
 
-.comments-content {
+.comments-content,
+.shared-content {
   margin: 1rem 0;
   padding-right: 1rem;
   overflow-y: auto;
@@ -386,6 +387,14 @@ ul.info-box-nav {
   }
 }
 
+h3.info-content-title {
+  border-bottom: 1px solid var(--color-gray-light);
+  padding: 1rem 0;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
 .shared {
   display: flex;
   flex-direction: column;
@@ -400,17 +409,23 @@ ul.info-box-nav {
     flex-wrap: wrap;
 
     & li {
+      min-width: 80px;
 
       & a {
         align-items: center;
         display: flex;
         flex-direction: column;
+        margin: 1rem;
 
         & svg {
           fill: var(--color-gray);
-          height: 40px;
-          width: 40px;
-          margin-bottom: 1rem;
+          height: 35px;
+          width: 35px;
+          margin-bottom: .6rem;
+        }
+
+        & span {
+          font-size: .8rem;
         }
       }
     }
