@@ -43,6 +43,18 @@ ul.ui-nav {
           fill: var(--color-blue-dark);
         }
       }
+
+      &.add-poi {
+        animation: moveIn .5s ease;
+
+        & svg {
+          transform: rotate(45deg);
+        }
+      }
+
+      &.pulse {
+        animation: pulse 2s infinite;
+      }
     }
   }
 }
