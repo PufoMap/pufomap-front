@@ -7,7 +7,7 @@ export default {
   name: 'PmMarkerInfoBox',
   data: () => ({
     activedSection: 'info',
-    isExtended: 'true'
+    isExtended: false
   }),
   computed: {
     ...mapGetters({
@@ -26,7 +26,7 @@ export default {
     handleClose () {
       this.setSelectedPOI(null)
       this.activedSection = 'info'
-      this.isExtended = 'true'
+      this.isExtended = false
     },
     handleSetActiveSection (section) {
       this.activedSection = section
