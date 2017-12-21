@@ -30,13 +30,12 @@
 .info-box-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .info-box-header {
   display: flex;
-    @media (--mobile) {
-      min-height: 150px;
-    }
+  flex-shrink: 0;
 
   & .title-tags {
     display: flex;
@@ -77,6 +76,9 @@
     & img {
       max-width: 130px;
       width: 100%;
+      @media (--mobile) {
+        max-width: 100px;
+      }
     }
 
     & span {
@@ -124,6 +126,7 @@ ul.tags {
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+  padding-right: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -149,18 +152,23 @@ ul.tags {
     font-size: .9rem;
     line-height: 1.7;
     margin: 1rem 0;
+    flex-shrink: 0;
   }
 }
 
 ul.img-gallery-th {
   align-items: center;
   display: flex;
+  flex-shrink: 0;
   flex-wrap: wrap;
 
   & li {
     width: 30%;
     margin-right: 3%;
     margin-top: 1rem;
+    @media (--mobile) {
+      width: 100%;
+    }
 
     & img {
       border-radius: 5px;
@@ -172,6 +180,7 @@ ul.img-gallery-th {
 .valoration {
   border-top: 1px solid var(--color-black);
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   margin-top: auto;
   padding: 1rem;
@@ -249,6 +258,7 @@ ul.info-box-nav {
     border-left: none;
     border-bottom: 1px solid var(--color-gray-light);
     flex-direction: row;
+    height: 40px;
     justify-content: space-around;
     margin:.4rem 0 1rem 0;
     padding: .4rem 0;
@@ -285,6 +295,56 @@ ul.info-box-nav {
       & span {
         color: var(--color-black);
       }
+    }
+  }
+}
+
+.comments-content {
+  margin: 1rem 0;
+  padding-right: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  & .comment-info {
+    display: flex;
+    margin-bottom: .5rem;
+
+    & img.comment-img {
+      background-color: var(--color-blue);
+      border-radius: 50%;
+      height: 40px;
+      flex-shrink: 0;
+      margin-right: .6rem;
+      width: 40px;
+    }
+
+    & .comment-info-detail {
+      display: flex;
+      flex-direction: column;
+
+      & .author {
+        font-weight: bold;
+      }
+
+      & .date {
+        color: var(--color-gray);
+        font-size: .8rem;
+      }
+    }
+  }
+  & .message {
+    font-size: .9rem;
+    line-height: 1.5;
+    padding-left: 3rem;
+    @media (--mobile) {
+      padding-left: 0;
     }
   }
 }

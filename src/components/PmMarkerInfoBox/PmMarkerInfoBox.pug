@@ -34,8 +34,11 @@
 
     .comments-content(v-if="activedSection === 'comments'")
       .comment(v-for="comment in poi.poi_comments")
-        .author {{ comment.user.username }}
-        .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
+        .comment-info
+          img(src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078" border="0").comment-img
+          .comment-info-detail
+            .author {{ comment.user.username }}
+            .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
         .message {{ comment.comment }}
 
     .shared-content(v-if="activedSection === 'shared'")
