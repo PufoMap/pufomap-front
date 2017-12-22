@@ -12,17 +12,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: PmHome
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: PmLogin
     },
     {
       path: '/sign-in',
-      name: 'SignIn',
+      name: 'signIn',
       component: PmSignIn
     }
   ]

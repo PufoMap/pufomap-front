@@ -18,7 +18,8 @@ ul.ui-nav {
     display: flex;
     margin-bottom: 1rem;
 
-    & a {
+    & a,
+    & button {
       align-items: center;
       background-color: var(--color-blue-dark);
       border-radius: 50%;

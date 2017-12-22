@@ -1,10 +1,16 @@
 ul.ui-nav
-  li
-    a(href="")
+  li(v-if="!isAuthenticated")
+    router-link(:to="{ name: 'login'}")
       include ../../assets/img/icons/user.svg
+  li(v-if="isAuthenticated")
+     button(
+       type="button"
+       @click="logout()"
+     )
+       include ../../assets/img/icons/user.svg
   li
-    a(href="")
+    button(href="")
       include ../../assets/img/icons/filter.svg
-  li
+  li(v-if="isAuthenticated")
     a(href="").add-poi
       include ../../assets/img/icons/close.svg

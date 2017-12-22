@@ -15,7 +15,7 @@ const setAuthorization = token => {
   if (token) {
     client.defaults.headers.common['Authorization'] = `JWT ${token}`
   } else {
-    delete client.defaults.headers.common['authorization']
+    delete client.defaults.headers.common['Authorization']
   }
 }
 

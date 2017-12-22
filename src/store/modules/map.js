@@ -25,6 +25,10 @@ const mutations = {
 }
 
 const actions = {
+  resetMap ({ dispatch, commit, state }) {
+    commit(mutationTypes.SET_SELECTED_POI, null)
+    dispatch('getPOIs')
+  },
   getPOIs ({ commit, state }) {
     return api.pois.list()
       .then(pois => commit(mutationTypes.SET_POIS, pois))

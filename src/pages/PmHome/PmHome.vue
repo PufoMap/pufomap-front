@@ -2,6 +2,7 @@
 <style src='./PmHome.css'></style>
 
 <script>
+import PmAuth from '@/components/PmAuth/PmAuth'
 import PmMap from '@/components/PmMap/PmMap'
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 import PmMapUi from '@/components/PmMapUi/PmMapUi'
@@ -9,6 +10,7 @@ import PmMapUi from '@/components/PmMapUi/PmMapUi'
 export default {
   name: 'PmHome',
   components: {
+    'pm-auth': PmAuth,
     'pm-map': PmMap,
     'pm-marker-infobox': PmMarkerInfoBox,
     'pm-map-ui': PmMapUi

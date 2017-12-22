@@ -17,7 +17,7 @@ export default {
   watch: {
     isAuthenticated (newVal, oldVal) {
       if (newVal) {
-        this.$router.push({name: 'Home'})
+        this.$router.push({name: 'home'})
       }
     }
   },

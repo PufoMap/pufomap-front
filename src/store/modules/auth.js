@@ -2,14 +2,11 @@ import api from '@/services/api'
 import { localStorage } from '@/services/storage'
 
 const state = {
-  authToken: null,
-  me: null
+  authToken: null
 }
 
 const getters = {
-  authToken: state => state.authToken,
-  isAuthenticated: state => state.authToken !== null,
-  me: state => state.me
+  isAuthenticated: state => state.authToken !== null
 }
 
 const mutationTypes = {
@@ -19,8 +16,8 @@ const mutationTypes = {
 
 const mutations = {
   [mutationTypes.SET_AUTH_TOKEN] (state, token) {
-    state.authToken = token
     api.setAuthorization(token)
+    state.authToken = token
     if (token) {
       localStorage.set('authToken', token)
     } else {
@@ -35,23 +32,18 @@ const mutations = {
 const actions = {
   auth ({ commit, state }) {
     const token = localStorage.get('authToken')
-    return commit(mutationTypes.SET_AUTH_TOKEN, token)
+    if (token) {
+      commit(mutationTypes.SET_AUTH_TOKEN, token)
+    }
   },
   login ({ commit, state }, { email, password }) {
     return api.auth.login(email, password)
-      .then(token => {
-        commit(mutationTypes.SET_AUTH_TOKEN, token)
-        return true
-      })
+      .then(token => commit(mutationTypes.SET_AUTH_TOKEN, token))
       .catch(error => console.error('vuex error:', error))
   },
-  logout ({ commit, state }, { email, password }) {
-    return commit(mutationTypes.SET_AUTH_TOKEN, null)
-  },
-  getMe ({commit, state}) {
-    return api.auth.getMe()
-      .then(me => commit(mutationTypes.SET_ME, me))
-      .catch(error => console.error('vuex error:', error))
+  logout ({ dispatch, commit, state }) {
+    commit(mutationTypes.SET_AUTH_TOKEN, null)
+    dispatch('map/resetMap', null, { root: true })
   }
 }
 
