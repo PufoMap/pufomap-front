@@ -44,17 +44,32 @@ export default {
     }
   },
   mounted () {
-    // if (navigator && navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     (pos) => {
-    //       this.center = [pos.coords.latitude, pos.coords.longitude]
-    //       this.getPOIs()
-    //     }
-    //   )
-    // } else {
-    //   this.getPOIs()
-    // }
-    this.getPOIs()
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    }
+
+    const success = (pos) => {
+      var crd = pos.coords
+
+      console.info(`Geolocationing to ${crd.latitude}, ${crd.longitude} (+/- ${crd.accuracy} m.)`)
+      this.center = [crd.latitude, crd.longitude]
+      this.getPOIs()
+    }
+
+    const error = (error) => {
+      console.warn(`Geolocationing errpr: ${error.message} [ERROR:(${error.code})] `)
+      this.getPOIs()
+    }
+
+    if (navigator && navigator.geolocation) {
+      // The browser support geolocation
+      navigator.geolocation.getCurrentPosition(success, error, options)
+    } else {
+      // The browser has not geolocation
+      this.getPOIs()
+    }
   },
   components: {
     'vl-map': Vue2Leaflet.Map,
