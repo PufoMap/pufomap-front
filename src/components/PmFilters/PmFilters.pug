@@ -1,3 +1,61 @@
 .filters-box
   .filters-box-content
-    span Hola caracola
+    h3.info-content-title Filtrar por
+    
+    form(action="")
+      .filters-row
+        span SEVERIDAD
+        .filters-row-content
+          .round
+            input(type="checkbox" id="baja" value="baja")
+            label(for="baja")
+              span Baja
+          .round
+            input(type="checkbox" id="media" value="media")
+            label(for="media")
+              span Media
+          .round
+            input(type="checkbox" id="alta" value="alta")
+            label(for="alta")
+              span Alta
+          .round
+            input(type="checkbox" id="peligrosa" value="peligrosa")
+            label(for="peligrosa")
+              span Peligrosa
+      .filters-row
+        span TAGS
+        .filters-row-content
+          .round
+            input(type="checkbox" id="1" value="1")
+            label(for="1")
+              span Tag 1
+          .round
+            input(type="checkbox" id="2" value="2")
+            label(for="2")
+              span Tag 2
+          .round
+            input(type="checkbox" id="3" value="3")
+            label(for="3")
+              span Tag 3
+          .round
+            input(type="checkbox" id="4" value="4")
+            label(for="4")
+              span Tag 4
+          .round
+            input(type="checkbox" id="5" value="5")
+            label(for="5")
+              span Tag 5
+          .round
+            input(type="checkbox" id="6" value="6")
+            label(for="6")
+              span Tag 6
+          .round
+            input(type="checkbox" id="7" value="7")
+            label(for="7")
+              span Tag 7
+      input(type="submit" value="Filtrar").btn
+
+  ul.info-box-nav
+    li
+      include ../../assets/img/icons/close.svg
+      span cerrar
