@@ -1,7 +1,7 @@
-.filters-box
+.filters-box(v-if="filtersVisible")
   .filters-box-content
     h3.info-content-title Filtrar por
-    
+
     form(action="")
       .filters-row
         span SEVERIDAD
@@ -56,6 +56,6 @@
       input(type="submit" value="Filtrar").btn
 
   ul.info-box-nav
-    li
+    li(@click="handleClose()")
       include ../../assets/img/icons/close.svg
       span cerrar

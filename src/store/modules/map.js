@@ -27,6 +27,9 @@ const mutations = {
   },
   [mutationTypes.SET_SELECTED_POI] (state, poi) {
     state.selectedPoi = poi
+  },
+  [mutationTypes.SET_FILTERS_VISIBILITY] (state, visibility) {
+    state.filtersVisible = visibility
   }
 }
 
@@ -53,7 +56,6 @@ const actions = {
       .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
       .catch(error => console.error('vuex error:', error))
   },
-
   addComment ({dispatch, commit, state}, { poiId, comment }) {
     return api.pois.addComent(poiId, comment)
       .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))

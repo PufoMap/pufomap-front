@@ -10,7 +10,10 @@ ul.ui-nav
      )
        include ../../assets/img/icons/user.svg
   li
-    button(href="")
+    button(
+      type="button"
+      @click="setFiltersVisibility(true)"
+    )
       include ../../assets/img/icons/filter.svg
 
   li(v-if="isAuthenticated")
