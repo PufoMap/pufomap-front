@@ -2,6 +2,7 @@ ul.ui-nav
   li(v-if="!isAuthenticated")
     router-link(:to="{ name: 'login'}")
       include ../../assets/img/icons/user.svg
+
   li(v-if="isAuthenticated")
      button(
        type="button"
@@ -11,6 +12,10 @@ ul.ui-nav
   li
     button(href="")
       include ../../assets/img/icons/filter.svg
+
   li(v-if="isAuthenticated")
     a(href="").add-poi
       include ../../assets/img/icons/close.svg
+  li
+    router-link(:to="{ name: 'about-us'}")
+      include ../../assets/img/icons/skull-map.svg
