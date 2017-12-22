@@ -1,0 +1,110 @@
+@import '../../assets/css/colors.css';
+@import '../../assets/css/mixins.css';
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+
+  & section {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+.close {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  & svg {
+    fill: var(--color-white);
+    height: 30px;
+    width: 30px;
+  }
+
+  & span {
+    color: var(--color-white);
+    font-size: .8rem;
+    margin-top: .5rem;
+  }
+
+}
+
+.hero {
+  align-items: center;
+  background-image: url("../../assets/img/login.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  & .main-info {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 0;
+
+    & svg {
+      fill: var(--color-main);
+      height: 120px;
+      width: 120px;
+    }
+
+    & h1.title {
+      color: var(--color-white);
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+section.section-text {
+  max-width: 1000px;
+  margin: 2rem auto;
+
+  & .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    @media (--mobile) {
+      font-size: 1.2rem;
+    }
+  }
+
+  & p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--color-gray-text);
+    text-align: justify;
+    @media (--mobile) {
+      font-size: .8rem;
+    }
+  }
+
+  & .faq {
+    background-color: var(--color-gray-light);
+    border-radius: 5px;
+    padding: 1rem;
+    font-style: italic;
+    margin: 1rem 0;
+    font-weight: bold;
+    color: var(--color-gray-text);
+  }
+
+  & span.mail {
+    color: var(--color-main);
+    font-weight: bold;
+  }
+}
