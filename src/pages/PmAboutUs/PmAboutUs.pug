@@ -1,7 +1,7 @@
 .about-us
 
   section.hero
-    .close
+    router-link.close(:to="{ name: 'home'}")
       include ../../assets/img/icons/close.svg
       span cerrar
     .main-info

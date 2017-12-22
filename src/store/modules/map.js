@@ -64,17 +64,17 @@ const actions = {
   },
   vote ({dispatch, commit, state}, { poiId, vote }) {
     return api.pois.addVote(poiId, vote)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
+      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
       .catch(error => console.error('vuex error:', error))
   },
   addComment ({dispatch, commit, state}, { poiId, comment }) {
     return api.pois.addComent(poiId, comment)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
+      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
       .catch(error => console.error('vuex error:', error))
   },
   addChangeRequest ({dispatch, commit, state}, { poiId, changeRequest }) {
     return api.pois.addChangeRequest(poiId, changeRequest)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('getPOI', poiId))))
+      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
       .catch(error => console.error('vuex error:', error))
   }
 }
