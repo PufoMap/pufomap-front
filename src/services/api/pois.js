@@ -2,6 +2,17 @@ import qs from 'qs'
 
 export default client => ({
   list (filters) {
+    let statuses = []
+    if (filters.status.published) {
+      statuses.push('PUB')
+    }
+    if (filters.status.pending) {
+      statuses.push('PEN')
+    }
+    if (filters.status.invalid) {
+      statuses.push('INV')
+    }
+
     let severities = []
     if (filters.severity.low) {
       severities.push(1)
@@ -19,6 +30,7 @@ export default client => ({
     return client
       .get('pois/', {
         params: {
+          status__in: statuses.join(),
           severity__in: severities.join()
         },
         paramsSerializer: (params) => qs.stringify(params, { indices: false })

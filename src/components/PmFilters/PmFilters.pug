@@ -6,6 +6,21 @@
       @submit.prevent="handleSubmit()"
       autocomplete="off"
     )
+      .filters-row(v-if="isAuthenticated")
+        span ESTADO
+        .filters-row-content
+          .round
+            input(type="checkbox" id="pub" v-model="formFilters.status.published")
+            label(for="pub")
+              span Publicado
+          .round
+            input(type="checkbox" id="pen" v-model="formFilters.status.pending")
+            label(for="pen")
+              span Pendiente
+          .round
+            input(type="checkbox" id="inv" v-model="formFilters.status.invalid")
+            label(for="inv")
+              span No válido
       .filters-row
         span SEVERIDAD
         .filters-row-content
