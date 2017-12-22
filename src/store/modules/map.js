@@ -2,7 +2,15 @@ import api from '@/services/api'
 
 const state = {
   pois: [],
-  filters: {},
+  filters: {
+    severity: {
+      low: false,
+      medium: false,
+      high: false,
+      dangerous: false
+    },
+    tags: []
+  },
   selectedPoi: null,
   filtersVisible: false
 }
@@ -30,6 +38,9 @@ const mutations = {
   },
   [mutationTypes.SET_FILTERS_VISIBILITY] (state, visibility) {
     state.filtersVisible = visibility
+  },
+  [mutationTypes.SET_FILTERS] (state, filters) {
+    state.filters = Object.assign({}, state.filters, filters)
   }
 }
 
@@ -39,7 +50,7 @@ const actions = {
     dispatch('getPOIs')
   },
   getPOIs ({ commit, state }) {
-    return api.pois.list()
+    return api.pois.list(state.filters)
       .then(pois => commit(mutationTypes.SET_POIS, pois))
       .catch(error => console.error('vuex error:', error))
   },

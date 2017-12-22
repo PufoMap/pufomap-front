@@ -1,7 +1,28 @@
+import qs from 'qs'
+
 export default client => ({
-  list () {
+  list (filters) {
+    let severities = []
+    if (filters.severity.low) {
+      severities.push(1)
+    }
+    if (filters.severity.medium) {
+      severities.push(2)
+    }
+    if (filters.severity.high) {
+      severities.push(3)
+    }
+    if (filters.severity.dangerous) {
+      severities.push(4)
+    }
+
     return client
-      .get('pois/')
+      .get('pois/', {
+        params: {
+          severity__in: severities.join()
+        },
+        paramsSerializer: (params) => qs.stringify(params, { indices: false })
+      })
       .then(response => response.data.results)
   },
   get (id) {

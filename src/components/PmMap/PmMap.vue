@@ -19,12 +19,21 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      filters: 'map/filters',
       pois: 'map/pois',
       selectedPoi: 'map/selectedPoi'
     })
   },
+  watch: {
+    filters (newVal, oldVal) {
+      if (newVal && oldVal) {
+        this.resetMap()
+      }
+    }
+  },
   methods: {
     ...mapActions({
+      resetMap: 'map/resetMap',
       getPOIs: 'map/getPOIs',
       selectPOI: 'map/selectPOI'
     }),

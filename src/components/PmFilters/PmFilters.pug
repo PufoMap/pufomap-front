@@ -2,25 +2,28 @@
   .filters-box-content
     h3.info-content-title Filtrar por
 
-    form(action="")
+    form(
+      @submit.prevent="handleSubmit()"
+      autocomplete="off"
+    )
       .filters-row
         span SEVERIDAD
         .filters-row-content
           .round
-            input(type="checkbox" id="baja" value="baja")
-            label(for="baja")
+            input(type="checkbox" id="low" v-model="formFilters.severity.low")
+            label(for="low")
               span Baja
           .round
-            input(type="checkbox" id="media" value="media")
-            label(for="media")
+            input(type="checkbox" id="medium" v-model="formFilters.severity.medium")
+            label(for="medium")
               span Media
           .round
-            input(type="checkbox" id="alta" value="alta")
-            label(for="alta")
+            input(type="checkbox" id="high"  v-model="formFilters.severity.high")
+            label(for="high")
               span Alta
           .round
-            input(type="checkbox" id="peligrosa" value="peligrosa")
-            label(for="peligrosa")
+            input(type="checkbox" id="dangerous" v-model="formFilters.severity.dangerous")
+            label(for="dangerous")
               span Peligrosa
       .filters-row
         span TAGS
