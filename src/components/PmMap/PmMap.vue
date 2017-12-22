@@ -44,16 +44,17 @@ export default {
     }
   },
   mounted () {
-    if (navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          this.center = [pos.coords.latitude, pos.coords.longitude]
-          this.getPOIs()
-        }
-      )
-    } else {
-      this.getPOIs()
-    }
+    // if (navigator && navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (pos) => {
+    //       this.center = [pos.coords.latitude, pos.coords.longitude]
+    //       this.getPOIs()
+    //     }
+    //   )
+    // } else {
+    //   this.getPOIs()
+    // }
+    this.getPOIs()
   },
   components: {
     'vl-map': Vue2Leaflet.Map,
