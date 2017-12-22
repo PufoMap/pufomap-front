@@ -26,12 +26,12 @@ export default {
   methods: {
     ...mapActions({
       getPOIs: 'map/getPOIs',
-      getPOI: 'map/getPOI'
+      selectPOI: 'map/selectPOI'
     }),
     poiLeafletIcon,
     poiLatLong,
     handleClickMarker (event, id) {
-      this.getPOI(id)
+      this.selectPOI(id)
     }
   },
   mounted () {

@@ -1,7 +1,7 @@
 export default (client) => ({
   login (email, password) {
     return client
-      .post('login', {
+      .post('login/', {
         username: email,
         password: password
       })

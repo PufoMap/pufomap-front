@@ -2,17 +2,23 @@ import api from '@/services/api'
 
 const state = {
   pois: [],
-  selectedPoi: null
+  filters: {},
+  selectedPoi: null,
+  filtersVisible: false
 }
 
 const getters = {
   pois: state => state.pois,
-  selectedPoi: state => state.selectedPoi
+  filters: state => state.filters,
+  selectedPoi: state => state.selectedPoi,
+  filtersVisible: state => state.filtersVisible
 }
 
 const mutationTypes = {
   SET_POIS: 'SET_POIS',
-  SET_SELECTED_POI: 'SET_SELECTED_POI'
+  SET_FILTERS: 'SET_FILTERS',
+  SET_SELECTED_POI: 'SET_SELECTED_POI',
+  SET_FILTERS_VISIBILITY: 'SET_FILTERS_VISIBILITY'
 }
 
 const mutations = {
@@ -34,10 +40,13 @@ const actions = {
       .then(pois => commit(mutationTypes.SET_POIS, pois))
       .catch(error => console.error('vuex error:', error))
   },
-  getPOI ({commit, state}, id) {
+  selectPOI ({commit, state}, id) {
     return api.pois.get(id)
       .then(poi => commit(mutationTypes.SET_SELECTED_POI, poi))
       .catch(error => console.error('vuex error:', error))
+  },
+  unselectPOI ({ dispatch, commit, state }) {
+    commit(mutationTypes.SET_SELECTED_POI, null)
   },
   vote ({dispatch, commit, state}, { poiId, vote }) {
     return api.pois.addVote(poiId, vote)

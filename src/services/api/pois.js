@@ -1,12 +1,12 @@
 export default client => ({
   list () {
     return client
-      .get('pois')
+      .get('pois/')
       .then(response => response.data.results)
   },
   get (id) {
     return client
-      .get(`pois/${id}`)
+      .get(`pois/${id}/`)
       .then(response => response.data)
   },
   addVote (poiId, vote) {
