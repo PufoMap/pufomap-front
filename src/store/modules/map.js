@@ -3,12 +3,12 @@ import api from '@/services/api'
 const state = {
   pois: [],
   filters: {
-    status: {
+    statuses: {
       published: false,
       pending: false,
       invalid: false
     },
-    severity: {
+    severities: {
       low: false,
       medium: false,
       high: false,

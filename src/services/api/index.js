@@ -3,6 +3,7 @@ import { localStorage } from '@/services/storage'
 
 import Auth from './auth'
 import PoisResource from './pois'
+import TagsResource from './tags'
 
 const client = axios.create({
   baseURL: process.env.API_SERVER_URL
@@ -27,5 +28,6 @@ if (token) {
 export default {
   setAuthorization: setAuthorization,
   auth: Auth(client),
-  pois: PoisResource(client)
+  pois: PoisResource(client),
+  tags: TagsResource(client)
 }

@@ -10,67 +10,43 @@
         span ESTADO
         .filters-row-content
           .round
-            input(type="checkbox" id="pub" v-model="formFilters.status.published")
+            input(type="checkbox" id="pub" v-model="formFilters.statuses.published")
             label(for="pub")
               span Publicado
           .round
-            input(type="checkbox" id="pen" v-model="formFilters.status.pending")
+            input(type="checkbox" id="pen" v-model="formFilters.statuses.pending")
             label(for="pen")
               span Pendiente
           .round
-            input(type="checkbox" id="inv" v-model="formFilters.status.invalid")
+            input(type="checkbox" id="inv" v-model="formFilters.statuses.invalid")
             label(for="inv")
               span No válido
       .filters-row
         span SEVERIDAD
         .filters-row-content
           .round
-            input(type="checkbox" id="low" v-model="formFilters.severity.low")
+            input(type="checkbox" id="low" v-model="formFilters.severities.low")
             label(for="low")
               span Baja
           .round
-            input(type="checkbox" id="medium" v-model="formFilters.severity.medium")
+            input(type="checkbox" id="medium" v-model="formFilters.severities.medium")
             label(for="medium")
               span Media
           .round
-            input(type="checkbox" id="high"  v-model="formFilters.severity.high")
+            input(type="checkbox" id="high"  v-model="formFilters.severities.high")
             label(for="high")
               span Alta
           .round
-            input(type="checkbox" id="dangerous" v-model="formFilters.severity.dangerous")
+            input(type="checkbox" id="dangerous" v-model="formFilters.severities.dangerous")
             label(for="dangerous")
               span Peligrosa
-      //- .filters-row
-      //-   span TAGS
-      //-   .filters-row-content
-      //-     .round
-      //-       input(type="checkbox" id="1" value="1")
-      //-       label(for="1")
-      //-         span Tag 1
-      //-     .round
-      //-       input(type="checkbox" id="2" value="2")
-      //-       label(for="2")
-      //-         span Tag 2
-      //-     .round
-      //-       input(type="checkbox" id="3" value="3")
-      //-       label(for="3")
-      //-         span Tag 3
-      //-     .round
-      //-       input(type="checkbox" id="4" value="4")
-      //-       label(for="4")
-      //-         span Tag 4
-      //-     .round
-      //-       input(type="checkbox" id="5" value="5")
-      //-       label(for="5")
-      //-         span Tag 5
-      //-     .round
-      //-       input(type="checkbox" id="6" value="6")
-      //-       label(for="6")
-      //-         span Tag 6
-      //-     .round
-      //-       input(type="checkbox" id="7" value="7")
-      //-       label(for="7")
-      //-         span Tag 7
+      .filters-row
+        span TAGS
+        .filters-row-content
+          .round(v-for="tag in formFilters.tags")
+            input(type="checkbox" :id="tag.slug" v-model="tag.selected")
+            label(:for="tag.slug")
+              span {{ tag.name }}
       input(type="submit" value="Filtrar").btn
 
   ul.info-box-nav

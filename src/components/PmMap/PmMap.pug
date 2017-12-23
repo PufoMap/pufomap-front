@@ -1,4 +1,4 @@
-vl-map.map(ref="map", :zoom="zoom", :center="center")
+vl-map.map(ref="map", :zoom="zoom", :center="center", :options="options")
   vl-tilelayer(:url="url", :attribution="attribution")
   vl-marker(
     v-for="poi in pois"

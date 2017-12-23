@@ -3,35 +3,35 @@ import qs from 'qs'
 export default client => ({
   list (filters) {
     let statuses = []
-    if (filters.status.published) {
+    if (filters.statuses.published) {
       statuses.push('PUB')
     }
-    if (filters.status.pending) {
+    if (filters.statuses.pending) {
       statuses.push('PEN')
     }
-    if (filters.status.invalid) {
+    if (filters.statuses.invalid) {
       statuses.push('INV')
     }
 
     let severities = []
-    if (filters.severity.low) {
+    if (filters.severities.low) {
       severities.push(1)
     }
-    if (filters.severity.medium) {
+    if (filters.severities.medium) {
       severities.push(2)
     }
-    if (filters.severity.high) {
+    if (filters.severities.high) {
       severities.push(3)
     }
-    if (filters.severity.dangerous) {
+    if (filters.severities.dangerous) {
       severities.push(4)
     }
-
     return client
       .get('pois/', {
         params: {
           status__in: statuses.join(),
-          severity__in: severities.join()
+          severity__in: severities.join(),
+          tags__name__in: filters.tags.join()
         },
         paramsSerializer: (params) => qs.stringify(params, { indices: false })
       })
