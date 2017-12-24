@@ -7,7 +7,8 @@ export default {
   name: 'PmMapUi',
   computed: {
     ...mapGetters({
-      isAuthenticated: 'auth/isAuthenticated'
+      isAuthenticated: 'auth/isAuthenticated',
+      isFilterApplied: 'map/isFilterApplied'
     })
   },
   methods: {

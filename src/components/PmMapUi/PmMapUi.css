@@ -32,9 +32,26 @@ ul.ui-nav {
       flex-shrink: 0;
 
       & svg {
-      fill: var(--color-main);
-      height: 30px;
-      width: 30px;
+        fill: var(--color-main);
+        height: 30px;
+        width: 30px;
+      }
+
+      &.enabled {
+        background-color: var(--color-main);
+
+        & svg {
+          fill: var(--color-blue-dark);
+        }
+
+      }
+
+      &.logout{
+        animation: moveIn .5s ease;
+
+        & svg {
+          transform: rotate(90deg);
+        }
       }
 
       &:hover {

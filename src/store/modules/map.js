@@ -22,9 +22,23 @@ const state = {
 
 const getters = {
   pois: state => state.pois,
-  filters: state => state.filters,
   selectedPoi: state => state.selectedPoi,
-  filtersVisible: state => state.filtersVisible
+  filters: state => state.filters,
+  filtersVisible: state => state.filtersVisible,
+  isFilterApplied: state => (
+    (state.filters.statuses && (
+      state.filters.statuses.published ||
+      state.filters.statuses.pending ||
+      state.filters.statuses.invalid
+    )) || (state.filters.severities && (
+      state.filters.severities.low ||
+      state.filters.severities.medium ||
+      state.filters.severities.high ||
+      state.filters.severities.dangerous
+    )) || (state.filters.tags &&
+      state.filters.tags.length > 0
+    )
+  )
 }
 
 const mutationTypes = {

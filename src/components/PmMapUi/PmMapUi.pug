@@ -4,20 +4,21 @@ ul.ui-nav
       include ../../assets/img/icons/user.svg
 
   li(v-if="isAuthenticated")
-     button(
+     button.logout(
        type="button"
        @click="logout()"
      )
-       include ../../assets/img/icons/user.svg
+       include ../../assets/img/icons/share.svg
   li
     button(
       type="button"
+      :class="{enabled: isFilterApplied}"
       @click="setFiltersVisibility(true)"
     )
       include ../../assets/img/icons/filter.svg
 
   li(v-if="isAuthenticated")
-    a(href="").add-poi
+    button(href="").add-poi
       include ../../assets/img/icons/close.svg
   li
     router-link(:to="{ name: 'about-us'}")
