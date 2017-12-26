@@ -2,6 +2,7 @@ import api from '@/services/api'
 
 const state = {
   pois: [],
+  boundingBox: null,
   filters: {
     statuses: {
       published: false,
@@ -43,6 +44,7 @@ const getters = {
 
 const mutationTypes = {
   SET_POIS: 'SET_POIS',
+  SET_BOUNDINGBOX: 'SET_BOUNDINGBOX',
   SET_FILTERS: 'SET_FILTERS',
   SET_SELECTED_POI: 'SET_SELECTED_POI',
   SET_FILTERS_VISIBILITY: 'SET_FILTERS_VISIBILITY'
@@ -51,6 +53,13 @@ const mutationTypes = {
 const mutations = {
   [mutationTypes.SET_POIS] (state, pois) {
     state.pois = pois
+  },
+  [mutationTypes.SET_BOUNDINGBOX] (state, boundingBox) {
+    // To double the area of the bounds (approximately, not taking projection into account),
+    // you have to increase the total length in each axis by sqrt(2), hence increase the bounds
+    // in each direction by sqrt(2) / 2
+    const bigBoundingBox = boundingBox.pad(Math.sqrt(2) / 2)
+    state.boundingBox = bigBoundingBox.toBBoxString()
   },
   [mutationTypes.SET_SELECTED_POI] (state, poi) {
     state.selectedPoi = poi
@@ -68,8 +77,12 @@ const actions = {
     commit(mutationTypes.SET_SELECTED_POI, null)
     dispatch('getPOIs')
   },
+  changeBoundingBox ({ dispatch, commit, state }, boundingBox) {
+    commit(mutationTypes.SET_BOUNDINGBOX, boundingBox)
+    return dispatch('getPOIs')
+  },
   getPOIs ({ commit, state }) {
-    return api.pois.list(state.filters)
+    return api.pois.list(state.boundingBox, state.filters)
       .then(pois => commit(mutationTypes.SET_POIS, pois))
       .catch(error => console.error('vuex error:', error))
   },

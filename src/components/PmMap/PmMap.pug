@@ -1,5 +1,15 @@
-vl-map.map(ref="map", :zoom="zoom", :center="center", :options="options")
-  vl-tilelayer(:url="url", :attribution="attribution")
+vl-map.map(
+  ref="map"
+  :zoom="zoom"
+  :center="center"
+  :options="options"
+  @l-moveend="handleChangeBoundingBox"
+  @l-zoomend="handleChangeBoundingBox"
+)
+  vl-tilelayer(
+    :url="url"
+    :attribution="attribution"
+  )
   vl-marker(
     v-for="poi in pois"
     :key="poi.id"

@@ -37,14 +37,18 @@ export default {
   methods: {
     ...mapActions({
       resetMap: 'map/resetMap',
-      getPOIs: 'map/getPOIs',
+      changeBoundingBox: 'map/changeBoundingBox',
       selectPOI: 'map/selectPOI'
     }),
     poiLeafletIcon,
     poiLatLong,
+    handleChangeBoundingBox (event) {
+      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+    },
     handleClickMarker (event, id) {
       this.selectPOI(id)
     }
+
   },
   mounted () {
     const options = {
@@ -58,12 +62,12 @@ export default {
 
       console.info(`Geolocationing to ${crd.latitude}, ${crd.longitude} (+/- ${crd.accuracy} m.)`)
       this.center = [crd.latitude, crd.longitude]
-      this.getPOIs()
+      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
     }
 
     const error = (error) => {
       console.warn(`Geolocationing errpr: ${error.message} [ERROR:(${error.code})] `)
-      this.getPOIs()
+      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
     }
 
     if (navigator && navigator.geolocation) {
@@ -71,10 +75,8 @@ export default {
       navigator.geolocation.getCurrentPosition(success, error, options)
     } else {
       // The browser has not geolocation
-      this.getPOIs()
+      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
     }
-    // -> Get the map viewbox
-    // console.log('Map:', this.$refs.map.mapObject.getBounds())
   },
   components: {
     'vl-map': Vue2Leaflet.Map,

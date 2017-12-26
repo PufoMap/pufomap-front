@@ -1,7 +1,7 @@
 import qs from 'qs'
 
 export default client => ({
-  list (filters) {
+  list (bbox, filters) {
     let statuses = []
     if (filters.statuses.published) {
       statuses.push('PUB')
@@ -29,6 +29,7 @@ export default client => ({
     return client
       .get('pois/', {
         params: {
+          in_bbox: bbox,
           status__in: statuses.join(),
           severity__in: severities.join(),
           tags__name__in: filters.tags.join()

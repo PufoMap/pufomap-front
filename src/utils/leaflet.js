@@ -81,5 +81,9 @@ export function poiLeafletIcon (poi, isSelected = false) {
 }
 
 export function poiLatLong (poi) {
-  return [poi.location.coordinates[1], poi.location.coordinates[0]]
+  if (poi.location) {
+    return [poi.location.coordinates[1], poi.location.coordinates[0]]
+  } else {
+    return [poi.lat, poi.lng]
+  }
 }
