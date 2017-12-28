@@ -2,10 +2,11 @@
 <style src='./PmMap.css' scoped></style>
 
 <script>
+
 import { mapActions, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 
-import { poiLeafletIcon, poiLatLong } from '@/utils/leaflet'
+import { poiLeafletIcon, poiLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
 
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 
@@ -43,14 +44,17 @@ export default {
     poiLeafletIcon,
     poiLatLong,
     handleChangeBoundingBox (event) {
-      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+      this.changeBoundingBox(this.map.getBounds())
     },
     handleClickMarker (event, id) {
+      this.map.panTo(calculateLatLngWithOffset(this.map, event.latlng), {animate: true})
+      this.changeBoundingBox(this.map.getBounds())
       this.selectPOI(id)
     }
-
   },
   mounted () {
+    this.map = this.$refs.map.mapObject
+
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,

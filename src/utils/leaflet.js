@@ -87,3 +87,28 @@ export function poiLatLong (poi) {
     return [poi.lat, poi.lng]
   }
 }
+
+export function calculateLatLngWithOffset (map, latlng) {
+  const markerPoint = map.latLngToContainerPoint(latlng)
+
+  if (typeof window.orientation !== 'undefined') {
+    // Mobile / Tablet
+    // TODO: Calculate the magic number (+100, related with the screen size).
+    //       Control screen orientation.
+    return map.containerPointToLatLng(
+      L.point(
+        markerPoint.x,
+        markerPoint.y + 180
+      )
+    )
+  }
+
+  // PC
+  // TODO: Calculate the magic number (+100, related with the screen size).
+  return map.containerPointToLatLng(
+    L.point(
+      markerPoint.x + 300,
+      markerPoint.y
+    )
+  )
+}
