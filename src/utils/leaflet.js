@@ -22,18 +22,18 @@ export function fixMarkerIcons () {
   })
 }
 
-const MarkerLeafletIcon = ({isSelected, ...props}) => {
+const MarkerLeafletIcon = ({isSelected, isNew, ...props}) => {
   return L.icon(
     Object.assign({
       iconSize: [44, 36],
       iconAnchor: [44, 36],
       tooltipAnchor: [0, -22],
-      className: isSelected ? 'selected-marker' : ''
+      className: isSelected ? 'selected-marker' : isNew ? 'new-marker' : ''
     }, props)
   )
 }
 
-export function poiLeafletIcon (poi, isSelected = false) {
+export function poiLeafletIcon (poi, isSelected = false, isNew = false, ...props) {
   if (!poi.visit) {
     if (poi.status === 'PEN') {
       return MarkerLeafletIcon({
@@ -44,17 +44,18 @@ export function poiLeafletIcon (poi, isSelected = false) {
       })
     }
     if (poi.severity === 4) {
-      return MarkerLeafletIcon({ iconUrl: FourIcon, isSelected: isSelected })
+      return MarkerLeafletIcon({ iconUrl: FourIcon, isSelected: isSelected, isNew: isNew })
     }
     if (poi.severity === 3) {
-      return MarkerLeafletIcon({ iconUrl: ThreeIcon, isSelected: isSelected })
+      return MarkerLeafletIcon({ iconUrl: ThreeIcon, isSelected: isSelected, isNew: isNew })
     }
     if (poi.severity === 2) {
-      return MarkerLeafletIcon({ iconUrl: TwoIcon, isSelected: isSelected })
+      return MarkerLeafletIcon({ iconUrl: TwoIcon, isSelected: isSelected, isNew: isNew })
     }
     return MarkerLeafletIcon({
       iconUrl: OneIcon,
-      isSelected: isSelected
+      isSelected: isSelected,
+      isNew: isNew
     })
   }
   if (poi.status === 'PEN') {
@@ -66,17 +67,18 @@ export function poiLeafletIcon (poi, isSelected = false) {
     })
   }
   if (poi.severity === 4) {
-    return MarkerLeafletIcon({ iconUrl: FourVisitedIcon, isSelected: isSelected })
+    return MarkerLeafletIcon({ iconUrl: FourVisitedIcon, isSelected: isSelected, isNew: isNew })
   }
   if (poi.severity === 3) {
-    return MarkerLeafletIcon({ iconUrl: ThreeVisitedIcon, isSelected: isSelected })
+    return MarkerLeafletIcon({ iconUrl: ThreeVisitedIcon, isSelected: isSelected, isNew: isNew })
   }
   if (poi.severity === 2) {
-    return MarkerLeafletIcon({ iconUrl: TwoVisitedIcon, isSelected: isSelected })
+    return MarkerLeafletIcon({ iconUrl: TwoVisitedIcon, isSelected: isSelected, isNew: isNew })
   }
   return MarkerLeafletIcon({
     iconUrl: OneVisitedIcon,
-    isSelected: isSelected
+    isSelected: isSelected,
+    isNew: isNew
   })
 }
 

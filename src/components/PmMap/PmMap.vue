@@ -25,6 +25,7 @@ export default {
     ...mapGetters({
       filters: 'map/filters',
       pois: 'map/pois',
+      newPoi: 'map/newPoi',
       selectedPoi: 'map/selectedPoi'
     })
   },
@@ -39,6 +40,7 @@ export default {
     ...mapActions({
       resetMap: 'map/resetMap',
       changeBoundingBox: 'map/changeBoundingBox',
+      setNewPoi: 'map/setNewPoi',
       selectPOI: 'map/selectPOI'
     }),
     poiLeafletIcon,
@@ -50,6 +52,19 @@ export default {
       this.map.panTo(calculateLatLngWithOffset(this.map, event.latlng), {animate: true})
       this.changeBoundingBox(this.map.getBounds())
       this.selectPOI(id)
+    },
+    handleContextMenu (event) {
+      this.setNewPoi({
+        visit: false,
+        severity: 1,
+        location: {
+          type: 'Point',
+          coordinates: [event.latlng.lng, event.latlng.lat]
+        }
+      })
+    },
+    handleClickNewMarker (event) {
+      this.setNewPoi(null)
     }
   },
   mounted () {

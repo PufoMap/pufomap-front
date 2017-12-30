@@ -5,7 +5,9 @@ vl-map.map(
   :options="options"
   @l-moveend="handleChangeBoundingBox"
   @l-zoomend="handleChangeBoundingBox"
+  @l-contextmenu="handleContextMenu"
 )
+  div New Poi: {{ newPoi }}
   vl-tilelayer(
     :url="url"
     :attribution="attribution"
@@ -14,6 +16,13 @@ vl-map.map(
     v-for="poi in pois"
     :key="poi.id"
     :lat-lng="poiLatLong(poi)"
-    :icon="poiLeafletIcon(poi, selectedPoi && poi.id === selectedPoi.id)"
+    :icon="poiLeafletIcon(poi, selectedPoi && selectedPoi.id === poi.id)"
     @l-click="handleClickMarker($event, poi.id)"
+  )
+  vl-marker(
+    v-if="newPoi"
+    :lat-lng="poiLatLong(newPoi)"
+    :icon="poiLeafletIcon(newPoi, false, true)"
+    :options="{opacity: 0.6}"
+    @l-click="handleClickNewMarker($event)"
   )

@@ -8,7 +8,8 @@ export default {
   computed: {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
-      isFilterApplied: 'map/isFilterApplied'
+      isFilterApplied: 'map/isFilterApplied',
+      newPoi: 'map/newPoi'
     })
   },
   methods: {
