@@ -1,0 +1,229 @@
+@import '../../assets/css/colors.css';
+@import '../../assets/css/mixins.css';
+
+.new-poi-box {
+  animation: fadeIn .4s linear;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 55px -10px rgba(136,136,136,0.85);
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 2rem);
+  padding: 1.5rem;
+  padding-right: 1rem;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 40%;
+  min-width: 600px;
+  transition: all .4s ease;
+  z-index: 1000;
+  @media (--mobile) {
+    font-size: .9rem;
+    flex-direction: column-reverse;
+    height: 60%;
+    min-width: auto;
+    padding: 1.2rem;
+    width: calc(100% - 2rem);
+  }
+}
+
+.new-poi-box-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+h3.info-content-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.new-poi-row {
+  border-radius: 5px;
+  border: 1px solid var(--color-gray-light);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  & span {
+    color: var(--color-gray);
+    font-weight: bold;
+    font-size: .9rem;
+    margin-bottom: 1rem;
+  }
+
+  & .new-poi-row-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.btn {
+  background-color: var(--color-main);
+  border-radius: 50px;
+  padding: .5rem;
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  @media (--mobile) {
+    padding-bottom: 1.5rem;
+  }
+}
+
+.round {
+  position: relative;
+  display: flex;
+  height: 30px;
+  margin-bottom: .5rem;
+  padding: 1rem;
+  width: 50%;
+}
+
+.round label {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+
+  & span {
+    color: var(--color-black);
+    margin-left: 2rem;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+}
+
+.round label:after {
+  border: 2px solid var(--color-white);
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+input[type="text"] {
+  border: 1px solid var(--color-gray-light);
+  border-radius: 15px;
+  color: var(--color-black);
+  font-size: .9rem;
+  font-weight: bold;
+  height: 40px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--color-gray);
+    font-weight: normal;
+  }
+}
+
+textarea {
+ border: 1px solid var(--color-gray-light);
+ border-radius: 15px;
+ color: var(--color-black);
+ margin-bottom: 1rem;
+ padding: 1rem;
+ width: 100%;
+
+ &::placeholder {
+   color: var(--color-gray);
+ }
+}
+
+.round input[type="radio"],
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="radio"]:checked + label,
+.round input[type="checkbox"]:checked + label {
+  background-color: var(--color-main);
+  border-color: var(--color-main);
+}
+
+.round input[type="radio"]:checked + label:after,
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+ul.info-box-nav {
+  align-items: center;
+  border-left: 1px solid var(--color-gray-light);
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  position: relative;
+  @media (--mobile) {
+    border-left: none;
+    border-bottom: 1px solid var(--color-gray-light);
+    flex-direction: row;
+    height: 40px;
+    justify-content: flex-end;
+    margin:.4rem 0 1rem 0;
+    padding: .4rem 0;
+  }
+
+  & li {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    & svg {
+      fill: var(--color-gray);
+      height: 30px;
+      width: 30px;
+    }
+
+    & span {
+      color: var(--color-gray);
+      font-size: .7rem;
+      margin-top: .3rem;
+      @media (--mobile) {
+        display: none;
+      }
+    }
+
+    &.current,
+    &:hover {
+
+      & svg {
+        fill: var(--color-black);
+      }
+
+      & span {
+        color: var(--color-black);
+      }
+    }
+  }
+}
+

@@ -9,7 +9,7 @@ export default {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
       isFilterApplied: 'map/isFilterApplied',
-      newPoi: 'map/newPoi'
+      newPoiExist: 'map/newPoiExist'
     })
   },
   methods: {
@@ -17,7 +17,8 @@ export default {
       logout: 'auth/logout'
     }),
     ...mapMutations({
-      setFiltersVisibility: 'map/SET_FILTERS_VISIBILITY'
+      setFiltersVisibility: 'map/SET_FILTERS_VISIBILITY',
+      setNewPoiFormVisibility: 'map/SET_NEW_POI_FORM_VISIBILITY'
     })
   }
 }

@@ -18,8 +18,9 @@ const state = {
   },
   filtersVisible: false,
   pois: [],
-  newPoi: null,
-  selectedPoi: null
+  selectedPoi: null,
+  newPoi: {},
+  newPoiFormVisible: false
 }
 
 const getters = {
@@ -41,7 +42,9 @@ const getters = {
   ),
   pois: state => state.pois,
   selectedPoi: state => state.selectedPoi,
-  newPoi: state => state.newPoi
+  newPoi: state => state.newPoi,
+  newPoiExist: state => state.newPoi.location,
+  newPoiFormVisible: state => state.newPoiFormVisible
 }
 
 const mutationTypes = {
@@ -49,8 +52,9 @@ const mutationTypes = {
   SET_FILTERS: 'SET_FILTERS',
   SET_FILTERS_VISIBILITY: 'SET_FILTERS_VISIBILITY',
   SET_POIS: 'SET_POIS',
+  SET_SELECTED_POI: 'SET_SELECTED_POI',
   SET_NEW_POI: 'SET_NEW_POI',
-  SET_SELECTED_POI: 'SET_SELECTED_POI'
+  SET_NEW_POI_FORM_VISIBILITY: 'SET_NEW_POI_FORM_VISIBILITY'
 }
 
 const mutations = {
@@ -70,11 +74,14 @@ const mutations = {
   [mutationTypes.SET_POIS] (state, pois) {
     state.pois = pois
   },
+  [mutationTypes.SET_SELECTED_POI] (state, poi) {
+    state.selectedPoi = poi
+  },
   [mutationTypes.SET_NEW_POI] (state, newPoi) {
     state.newPoi = newPoi
   },
-  [mutationTypes.SET_SELECTED_POI] (state, poi) {
-    state.selectedPoi = poi
+  [mutationTypes.SET_NEW_POI_FORM_VISIBILITY] (state, visibility) {
+    state.newPoiFormVisible = visibility
   }
 }
 

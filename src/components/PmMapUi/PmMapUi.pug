@@ -17,8 +17,10 @@ ul.ui-nav
     )
       include ../../assets/img/icons/filter.svg
 
-  li(v-if="isAuthenticated && newPoi")
-    button.add-poi(href="")
+  li(v-if="isAuthenticated && newPoiExist")
+    button.add-poi(
+      @click="setNewPoiFormVisibility(true)"
+    )
       include ../../assets/img/icons/close.svg
   li
     router-link(:to="{ name: 'about-us'}")

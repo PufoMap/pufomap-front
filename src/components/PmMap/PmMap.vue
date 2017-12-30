@@ -6,7 +6,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 
-import { poiLeafletIcon, poiLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
+import { newPoiLeafletIcon, poiLeafletIcon, poiLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
 
 import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
 
@@ -26,6 +26,7 @@ export default {
       filters: 'map/filters',
       pois: 'map/pois',
       newPoi: 'map/newPoi',
+      newPoiExist: 'map/newPoiExist',
       selectedPoi: 'map/selectedPoi'
     })
   },
@@ -43,6 +44,7 @@ export default {
       setNewPoi: 'map/setNewPoi',
       selectPOI: 'map/selectPOI'
     }),
+    newPoiLeafletIcon,
     poiLeafletIcon,
     poiLatLong,
     handleChangeBoundingBox (event) {
@@ -55,8 +57,8 @@ export default {
     },
     handleContextMenu (event) {
       this.setNewPoi({
-        visit: false,
-        severity: 1,
+        visit: this.newPoi.visit || false,
+        severity: this.newPoi.severity || 1,
         location: {
           type: 'Point',
           coordinates: [event.latlng.lng, event.latlng.lat]
@@ -64,7 +66,7 @@ export default {
       })
     },
     handleClickNewMarker (event) {
-      this.setNewPoi(null)
+      this.setNewPoi({})
     }
   },
   mounted () {

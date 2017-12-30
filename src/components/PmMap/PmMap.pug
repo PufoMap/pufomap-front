@@ -20,9 +20,10 @@ vl-map.map(
     @l-click="handleClickMarker($event, poi.id)"
   )
   vl-marker(
-    v-if="newPoi"
+    v-if="newPoiExist"
     :lat-lng="poiLatLong(newPoi)"
-    :icon="poiLeafletIcon(newPoi, false, true)"
-    :options="{opacity: 0.6}"
+    :icon="newPoiLeafletIcon()"
+    :zIndexOffset="1000"
+    :options="{opacity: 0.5}"
     @l-click="handleClickNewMarker($event)"
   )
