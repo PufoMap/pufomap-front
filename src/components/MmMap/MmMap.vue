@@ -1,17 +1,17 @@
-<template lang="pug" src='./PmMap.pug'></template>
-<style src='./PmMap.css' scoped></style>
+<template lang="pug" src='./MmMap.pug'></template>
+<style src='./MmMap.css' scoped></style>
 
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 
-import { newPoiLeafletIcon, poiLeafletIcon, poiLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
+import { newPoimLeafletIcon, poimLeafletIcon, poimLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
 
-import PmMarkerInfoBox from '@/components/PmMarkerInfoBox/PmMarkerInfoBox'
+import MmPOIMInfoBox from '@/components/MmPOIMInfoBox/MmPOIMInfoBox'
 
 export default {
-  name: 'PmMap',
+  name: 'MmMap',
   data: () => ({
     zoom: 10,
     center: [40.4360, -3.6714],
@@ -23,11 +23,12 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      isAuthenticated: 'auth/isAuthenticated',
       filters: 'map/filters',
-      pois: 'map/pois',
-      newPoi: 'map/newPoi',
-      newPoiExist: 'map/newPoiExist',
-      selectedPoi: 'map/selectedPoi'
+      poims: 'map/poims',
+      newPoim: 'map/newPoim',
+      newPoimExist: 'map/newPoimExist',
+      selectedPoim: 'map/selectedPoim'
     })
   },
   watch: {
@@ -41,24 +42,28 @@ export default {
     ...mapActions({
       resetMap: 'map/resetMap',
       changeBoundingBox: 'map/changeBoundingBox',
-      setNewPoi: 'map/setNewPoi',
-      selectPOI: 'map/selectPOI'
+      setNewPoim: 'map/setNewPoim',
+      selectPOIM: 'map/selectPOIM'
     }),
-    newPoiLeafletIcon,
-    poiLeafletIcon,
-    poiLatLong,
+    newPoimLeafletIcon,
+    poimLeafletIcon,
+    poimLatLong,
     handleChangeBoundingBox (event) {
       this.changeBoundingBox(this.map.getBounds())
     },
     handleClickMarker (event, id) {
       this.map.panTo(calculateLatLngWithOffset(this.map, event.latlng), {animate: true})
       this.changeBoundingBox(this.map.getBounds())
-      this.selectPOI(id)
+      this.selectPOIM(id)
     },
     handleContextMenu (event) {
-      this.setNewPoi({
-        visit: this.newPoi.visit || false,
-        severity: this.newPoi.severity || 1,
+      if (!this.isAuthenticated) {
+        return
+      }
+
+      this.setNewPoim({
+        visit: this.newPoim.visit || false,
+        severity: this.newPoim.severity || 1,
         location: {
           type: 'Point',
           coordinates: [event.latlng.lng, event.latlng.lat]
@@ -66,7 +71,7 @@ export default {
       })
     },
     handleClickNewMarker (event) {
-      this.setNewPoi({})
+      this.setNewPoim({})
     }
   },
   mounted () {
@@ -103,7 +108,7 @@ export default {
     'vl-map': Vue2Leaflet.Map,
     'vl-tilelayer': Vue2Leaflet.TileLayer,
     'vl-marker': Vue2Leaflet.Marker,
-    'pm-marker-infobox': PmMarkerInfoBox
+    'mm-marker-infobox': MmPOIMInfoBox
   }
 }
 </script>

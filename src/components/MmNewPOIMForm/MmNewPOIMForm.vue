@@ -1,12 +1,12 @@
-<template lang='pug' src='./PmNewMarkerForm.pug'></template>
-<style src='./PmNewMarkerForm.css' scoped></style>
+<template lang='pug' src='./MmNewPOIMForm.pug'></template>
+<style src='./MmNewPOIMForm.css' scoped></style>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'PmNewMarkerForm',
+  name: 'MmNewPOIMForm',
   data: () => ({
-    formNewPoi: {
+    formNewPoim: {
       name: '',
       description: '',
       severity: 'low',
@@ -15,13 +15,13 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      newPoiFormVisible: 'map/newPoiFormVisible',
-      newPoi: 'map/newPoi',
+      newPoimFormVisible: 'map/newPoimFormVisible',
+      newPoim: 'map/newPoim',
       tags: 'tags/tags'
     })
   },
   watch: {
-    newPoiFormVisible (newVal, oldVal) {
+    newPoimFormVisible (newVal, oldVal) {
       if (newVal) {
         this.getTags()
       }
@@ -35,23 +35,23 @@ export default {
           selected: false
         })
       ))
-      this.formNewPoi.tags = tags
+      this.formNewPoim.tags = tags
     }
   },
   methods: {
     ...mapMutations({
-      setNewPoiFormVisibility: 'map/SET_NEW_POI_FORM_VISIBILITY'
+      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
     }),
     ...mapActions({
       getTags: 'tags/getTags',
-      setNewPoi: 'map/setNewPoi'
+      setNewPoim: 'map/setNewPoim'
     }),
     handleClose () {
-      this.setNewPoiFormVisibility(false)
+      this.setNewPoimFormVisibility(false)
     },
     handleSubmit () {
-      // this.setNewPoi({
-      console.log('Submit new POI')
+      // this.setNewPoim({
+      console.log('Submit new POIM')
     }
   }
 }

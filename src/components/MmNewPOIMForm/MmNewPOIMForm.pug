@@ -1,49 +1,49 @@
-.new-poi-box(v-if="newPoiFormVisible")
-  .new-poi-box-content
+.new-poim-box(v-if="newPoimFormVisible")
+  .new-poim-box-content
     h3.info-content-title Nuevo POIM
 
     form(
       @submit.prevent="handleSubmit()"
       autocomplete="off"
     )
-      .new-poi-row
+      .new-poim-row
         span NOMBRE
-        .new-poi-row-content
-          input(type="text" id="name" v-model="formNewPoi.name"
+        .new-poim-row-content
+          input(type="text" id="name" v-model="formNewPoim.name"
                 placeholder="Escribe el nombre del establecimiento, clínica, evento,...")
 
-      .new-poi-row
+      .new-poim-row
         span SEVERIDAD
-        .new-poi-row-content
+        .new-poim-row-content
           .round
-            input(type="radio" id="low" value="low" v-model="formNewPoi.severity")
+            input(type="radio" id="low" value="low" v-model="formNewPoim.severity")
             label(for="low")
               span Baja
           .round
-            input(type="radio" id="medium" value="medium" v-model="formNewPoi.severity")
+            input(type="radio" id="medium" value="medium" v-model="formNewPoim.severity")
             label(for="medium")
               span Media
           .round
-            input(type="radio" id="high" value="high" v-model="formNewPoi.severity")
+            input(type="radio" id="high" value="high" v-model="formNewPoim.severity")
             label(for="high")
               span Alta
           .round
-            input(type="radio" id="dangerous" value="dangerous" v-model="formNewPoi.severity")
+            input(type="radio" id="dangerous" value="dangerous" v-model="formNewPoim.severity")
             label(for="dangerous")
               span Peligrosa
 
-      .new-poi-row
+      .new-poim-row
         span TAGS
-        .new-pois-row-content
-          .round(v-for="tag in formNewPoi.tags")
+        .new-poims-row-content
+          .round(v-for="tag in formNewPoim.tags")
             input(type="checkbox" :id="tag.slug" v-model="tag.selected")
             label(:for="tag.slug")
               span {{ tag.name }}
 
-      .new-poi-row
+      .new-poim-row
         Span DESCRIPCIÓN
-        .new-poi-row-content
-          textarea(id="description" v-model="formNewPoi.description"
+        .new-poim-row-content
+          textarea(id="description" v-model="formNewPoim.description"
                    placeholder="Escribe una buena descripción para que el POIM sea aprobado por el equipo de editoras")
 
       input(type="submit" value="Añadir").btn

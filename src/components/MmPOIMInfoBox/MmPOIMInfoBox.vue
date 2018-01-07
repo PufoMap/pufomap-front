@@ -1,10 +1,10 @@
-<template lang='pug' src='./PmMarkerInfoBox.pug'></template>
-<style src='./PmMarkerInfoBox.css' scoped></style>
+<template lang='pug' src='./MmPOIMInfoBox.pug'></template>
+<style src='./MmPOIMInfoBox.css' scoped></style>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
-  name: 'PmMarkerInfoBox',
+  name: 'MmPOIMInfoBox',
   data: () => ({
     activedSection: 'info',
     isExtended: false,
@@ -13,12 +13,12 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      poi: 'map/selectedPoi',
+      poim: 'map/selectedPoim',
       isAuthenticated: 'auth/isAuthenticated'
     })
   },
   watch: {
-    poi (newVal, oldVal) {
+    poim (newVal, oldVal) {
       if (oldVal && newVal && oldVal.id !== newVal.id) {
         this.activedSection = 'info'
         this.isExtended = false
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSelectedPOI: 'map/SET_SELECTED_POI'
+      setSelectedPOIM: 'map/SET_SELECTED_POIM'
     }),
     ...mapActions({
       addComent: 'map/addComment',
@@ -37,7 +37,7 @@ export default {
       vote: 'map/vote'
     }),
     handleClose () {
-      this.setSelectedPOI(null)
+      this.setSelectedPOIM(null)
       this.activedSection = 'info'
       this.isExtended = false
     },
@@ -45,16 +45,16 @@ export default {
       this.activedSection = section
     },
     handleSubmitComment () {
-      this.addComent({ poiId: this.poi.id, comment: this.comment })
+      this.addComent({ poimId: this.poim.id, comment: this.comment })
     },
     handleSubmitChangeRequest () {
-      this.addChangeRequest({ poiId: this.poi.id, changeRequest: this.changeRequest })
+      this.addChangeRequest({ poimId: this.poim.id, changeRequest: this.changeRequest })
     },
     handleClickVoteNegative () {
-      this.vote({ poiId: this.poi.id, vote: -1 })
+      this.vote({ poimId: this.poim.id, vote: -1 })
     },
     handleClickVotePositive () {
-      this.vote({ poiId: this.poi.id, vote: 1 })
+      this.vote({ poimId: this.poim.id, vote: 1 })
     }
   }
 }

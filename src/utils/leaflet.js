@@ -33,7 +33,7 @@ const MarkerLeafletIcon = ({isSelected, isNew, ...props}) => {
   )
 }
 
-export function newPoiLeafletIcon (...props) {
+export function newPoimLeafletIcon (...props) {
   return MarkerLeafletIcon({
     iconUrl: EditorIcon,
     isNew: true,
@@ -42,9 +42,9 @@ export function newPoiLeafletIcon (...props) {
     ...props
   })
 }
-export function poiLeafletIcon (poi, isSelected = false, ...props) {
-  if (!poi.visit) {
-    if (poi.status === 'PEN') {
+export function poimLeafletIcon (poim, isSelected = false, ...props) {
+  if (!poim.isVisited) {
+    if (poim.status === 'PEN') {
       return MarkerLeafletIcon({
         iconUrl: EditorIcon,
         isSelected: isSelected,
@@ -53,13 +53,13 @@ export function poiLeafletIcon (poi, isSelected = false, ...props) {
         ...props
       })
     }
-    if (poi.severity === 4) {
+    if (poim.severity === 4) {
       return MarkerLeafletIcon({ iconUrl: FourIcon, isSelected: isSelected, ...props })
     }
-    if (poi.severity === 3) {
+    if (poim.severity === 3) {
       return MarkerLeafletIcon({ iconUrl: ThreeIcon, isSelected: isSelected, ...props })
     }
-    if (poi.severity === 2) {
+    if (poim.severity === 2) {
       return MarkerLeafletIcon({ iconUrl: TwoIcon, isSelected: isSelected, ...props })
     }
     return MarkerLeafletIcon({
@@ -68,7 +68,7 @@ export function poiLeafletIcon (poi, isSelected = false, ...props) {
       ...props
     })
   }
-  if (poi.status === 'PEN') {
+  if (poim.status === 'PEN') {
     return MarkerLeafletIcon({
       iconUrl: EditorVisitedIcon,
       isSelected: isSelected,
@@ -77,13 +77,13 @@ export function poiLeafletIcon (poi, isSelected = false, ...props) {
       ...props
     })
   }
-  if (poi.severity === 4) {
+  if (poim.severity === 4) {
     return MarkerLeafletIcon({ iconUrl: FourVisitedIcon, isSelected: isSelected, ...props })
   }
-  if (poi.severity === 3) {
+  if (poim.severity === 3) {
     return MarkerLeafletIcon({ iconUrl: ThreeVisitedIcon, isSelected: isSelected, ...props })
   }
-  if (poi.severity === 2) {
+  if (poim.severity === 2) {
     return MarkerLeafletIcon({ iconUrl: TwoVisitedIcon, isSelected: isSelected, ...props })
   }
   return MarkerLeafletIcon({
@@ -93,11 +93,11 @@ export function poiLeafletIcon (poi, isSelected = false, ...props) {
   })
 }
 
-export function poiLatLong (poi) {
-  if (poi.location) {
-    return [poi.location.coordinates[1], poi.location.coordinates[0]]
+export function poimLatLong (poim) {
+  if (poim.location) {
+    return [poim.location.coordinates[1], poim.location.coordinates[0]]
   } else {
-    return [poi.lat, poi.lng]
+    return [poim.lat, poim.lng]
   }
 }
 

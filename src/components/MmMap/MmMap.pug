@@ -7,22 +7,22 @@ vl-map.map(
   @l-zoomend="handleChangeBoundingBox"
   @l-contextmenu="handleContextMenu"
 )
-  div New Poi: {{ newPoi }}
+  div New Poim: {{ newPoim }}
   vl-tilelayer(
     :url="url"
     :attribution="attribution"
   )
   vl-marker(
-    v-for="poi in pois"
-    :key="poi.id"
-    :lat-lng="poiLatLong(poi)"
-    :icon="poiLeafletIcon(poi, selectedPoi && selectedPoi.id === poi.id)"
-    @l-click="handleClickMarker($event, poi.id)"
+    v-for="poim in poims"
+    :key="poim.id"
+    :lat-lng="poimLatLong(poim)"
+    :icon="poimLeafletIcon(poim, selectedPoim && selectedPoim.id === poim.id)"
+    @l-click="handleClickMarker($event, poim.id)"
   )
   vl-marker(
-    v-if="newPoiExist"
-    :lat-lng="poiLatLong(newPoi)"
-    :icon="newPoiLeafletIcon()"
+    v-if="newPoimExist"
+    :lat-lng="poimLatLong(newPoim)"
+    :icon="newPoimLeafletIcon()"
     :zIndexOffset="1000"
     :options="{opacity: 0.5}"
     @l-click="handleClickNewMarker($event)"

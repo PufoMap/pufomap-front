@@ -1,41 +1,41 @@
-.info-box(v-if="poi"
+.info-box(v-if="poim"
   :class="{extend: isExtended}"
 )
   .info-box-content
     .info-box-header
       .title-tags
-        h2.title {{ poi.name }}
+        h2.title {{ poim.name }}
         .place
           include ../../assets/img/icons/location.svg
           span
-            | {{ poi.location.coordinates[1] }} / {{ poi.location.coordinates[0] }}
-      .severity(v-if="poi.severity === 1")
-        img(v-if="!poi.visit" src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
-        img(v-if="poi.visit" src="../../assets/img/markers/1-mark-visited.svg" border="0" alt="Baja")
+            | {{ poim.location.coordinates[1] }} / {{ poim.location.coordinates[0] }}
+      .severity(v-if="poim.severity === 1")
+        img(v-if="!poim.isVisited" src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
+        img(v-if="poim.isVisited" src="../../assets/img/markers/1-mark-visited.svg" border="0" alt="Baja")
         span.low Baja
-      .severity(v-if="poi.severity === 2")
-        img(v-if="!poi.visit" src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
-        img(v-if="poi.visit" src="../../assets/img/markers/2-mark-visited.svg" border="0" alt="Media")
+      .severity(v-if="poim.severity === 2")
+        img(v-if="!poim.isVisited" src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
+        img(v-if="poim.isVisited" src="../../assets/img/markers/2-mark-visited.svg" border="0" alt="Media")
         span.medium Media
-      .severity(v-if="poi.severity === 3")
-        img(v-if="!poi.visit" src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
-        img(v-if="poi.visit" src="../../assets/img/markers/3-mark-visited.svg" border="0" alt="Alta")
+      .severity(v-if="poim.severity === 3")
+        img(v-if="!poim.isVisited" src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
+        img(v-if="poim.isVisited" src="../../assets/img/markers/3-mark-visited.svg" border="0" alt="Alta")
         span.high Alta
-      .severity(v-if="poi.severity === 4")
-        img(v-if="!poi.visit" src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
-        img(v-if="poi.visit" src="../../assets/img/markers/4-mark-visited.svg" border="0" alt="Peligroso")
+      .severity(v-if="poim.severity === 4")
+        img(v-if="!poim.isVisited" src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
+        img(v-if="poim.isVisited" src="../../assets/img/markers/4-mark-visited.svg" border="0" alt="Peligroso")
         span.dangerous Peligroso
     ul.tags
-      li.tag(v-for="tag in poi.tags") {{ tag }}
+      li.tag(v-for="tag in poim.tags") {{ tag }}
 
     .info-content(v-if="activedSection === 'info'")
       .date-author
         include ../../assets/img/icons/calendar.svg
         span
-          | {{ poi.created_date | moment('L') }} - {{ poi.author.username }}
-      p.info-text {{ poi.description }}
+          | {{ poim.createdDate | moment('L') }} - {{ poim.owner.username }}
+      p.info-text {{ poim.description }}
       ul.img-gallery-th
-        li(v-for="photo in poi.photos")
+        li(v-for="photo in poim.photos")
           img(:src="photo.photo" border="0")
 
     .comments-content(v-if="activedSection === 'comments'")
@@ -55,15 +55,15 @@
           v-model="comment"
         )
         input(type="submit", value="Enviar")
-      .comment(v-for="comment in poi.poi_comments")
+      .comment(v-for="comment in poim.comments")
         .comment-info
           img.comment-img(
             src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
             border="0"
           )
           .comment-info-detail
-            .author {{ comment.user.username }}
-            .date {{ comment.created_date | moment('LL') }} | {{ comment.created_date | moment('LT') }}
+            .author {{ comment.owner.username }}
+            .date {{ comment.createdDate | moment('LL') }} | {{ comment.createdDate | moment('LT') }}
         .message {{ comment.comment }}
 
     .comments-content(v-if="activedSection === 'enmiendas'")
@@ -83,16 +83,16 @@
           v-model="changeRequest"
         )
         input(type="submit", value="Enviar")
-      .comment(v-for="change in poi.poi_changes")
+      .comment(v-for="change in poim.changeRequests")
         .comment-info
           img.comment-img(
             src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
             border="0"
           )
           .comment-info-detail
-            .author {{ change.user.username }}
+            .author {{ change.owner.username }}
             .date
-              | {{ change.created_date | moment('LL') }} | {{ change.created_date | moment('LT') }}
+              | {{ change.createdDate | moment('LL') }} | {{ change.createdDate | moment('LT') }}
             .status.accepted(v-if="change.status === 'ACE'") Aceptada
             .status.pending(v-if="change.status === 'PEN'") Pendiente
             .status.rejected(v-if="change.status === 'REC'") Rechazada
@@ -118,20 +118,20 @@
     .valoration
       button.thumbs.thumbs-up(
         type="button"
-        :disabled="poi.voted !== null || !isAuthenticated"
-        :class="{current: poi.voted === -1}"
-        @click="handleClickVoteNegative()"
-      )
-        include ../../assets/img/icons/thumbs-up.svg
-        span {{ poi.positive_ratings_count }}
-      button.thumbs.thumbs-down(
-        type="button"
-        :disabled="poi.voted !== null || !isAuthenticated"
-        :class="{current: poi.voted === 1}"
+        :disabled="poim.myRating !== null || !isAuthenticated"
+        :class="{current: poim.myRating && poim.myRating.vote === 1}"
         @click="handleClickVotePositive()"
       )
+        include ../../assets/img/icons/thumbs-up.svg
+        span {{ poim.positiveRatingsCount }}
+      button.thumbs.thumbs-down(
+        type="button"
+        :disabled="poim.myRating !== null || !isAuthenticated"
+        :class="{current: poim.myRating && poim.myRating.vote === -1}"
+        @click="handleClickVoteNegative()"
+      )
         include ../../assets/img/icons/thumbs-down.svg
-        span {{ poi.negative_ratings_count }}
+        span {{ poim.negativeRatingsCount }}
 
   ul.info-box-nav
     .box-handler(@click="isExtended = !isExtended")

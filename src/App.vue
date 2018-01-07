@@ -2,12 +2,12 @@
 <style src='./App.css'></style>
 
 <script>
-import PmAuth from '@/components/PmAuth/PmAuth'
+import MmAuth from '@/components/MmAuth/MmAuth'
 
 export default {
   name: 'App',
   components: {
-    'pm-auth': PmAuth
+    'mm-auth': MmAuth
   }
 }
 </script>

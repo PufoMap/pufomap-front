@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import PmHome from '@/pages/PmHome/PmHome'
-import PmLogin from '@/pages/PmLogin/PmLogin'
-import PmSignIn from '@/pages/PmSignIn/PmSignIn'
-import PmAboutUs from '@/pages/PmAboutUs/PmAboutUs'
+import MmHome from '@/pages/MmHome/MmHome'
+import MmLogin from '@/pages/MmLogin/MmLogin'
+import MmSignIn from '@/pages/MmSignIn/MmSignIn'
+import MmAboutUs from '@/pages/MmAboutUs/MmAboutUs'
 
 Vue.use(Router)
 
@@ -14,22 +14,22 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: PmHome
+      component: MmHome
     },
     {
       path: '/login',
       name: 'login',
-      component: PmLogin
+      component: MmLogin
     },
     {
       path: '/sign-in',
       name: 'signIn',
-      component: PmSignIn
+      component: MmSignIn
     },
     {
       path: '/about-us',
       name: 'about-us',
-      component: PmAboutUs
+      component: MmAboutUs
     }
   ]
 })

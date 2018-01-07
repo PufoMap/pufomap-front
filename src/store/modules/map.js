@@ -17,10 +17,10 @@ const state = {
     tags: []
   },
   filtersVisible: false,
-  pois: [],
-  selectedPoi: null,
-  newPoi: {},
-  newPoiFormVisible: false
+  poims: [],
+  selectedPoim: null,
+  newPoim: {},
+  newPoimFormVisible: false
 }
 
 const getters = {
@@ -40,21 +40,21 @@ const getters = {
       state.filters.tags.length > 0
     )
   ),
-  pois: state => state.pois,
-  selectedPoi: state => state.selectedPoi,
-  newPoi: state => state.newPoi,
-  newPoiExist: state => state.newPoi.location,
-  newPoiFormVisible: state => state.newPoiFormVisible
+  poims: state => state.poims,
+  selectedPoim: state => state.selectedPoim,
+  newPoim: state => state.newPoim,
+  newPoimExist: state => state.newPoim.location,
+  newPoimFormVisible: state => state.newPoimFormVisible
 }
 
 const mutationTypes = {
   SET_BOUNDINGBOX: 'SET_BOUNDINGBOX',
   SET_FILTERS: 'SET_FILTERS',
   SET_FILTERS_VISIBILITY: 'SET_FILTERS_VISIBILITY',
-  SET_POIS: 'SET_POIS',
-  SET_SELECTED_POI: 'SET_SELECTED_POI',
-  SET_NEW_POI: 'SET_NEW_POI',
-  SET_NEW_POI_FORM_VISIBILITY: 'SET_NEW_POI_FORM_VISIBILITY'
+  SET_POIMS: 'SET_POIMS',
+  SET_SELECTED_POIM: 'SET_SELECTED_POIM',
+  SET_NEW_POIM: 'SET_NEW_POIM',
+  SET_NEW_POIM_FORM_VISIBILITY: 'SET_NEW_POIM_FORM_VISIBILITY'
 }
 
 const mutations = {
@@ -71,59 +71,59 @@ const mutations = {
   [mutationTypes.SET_FILTERS_VISIBILITY] (state, visibility) {
     state.filtersVisible = visibility
   },
-  [mutationTypes.SET_POIS] (state, pois) {
-    state.pois = pois
+  [mutationTypes.SET_POIMS] (state, poims) {
+    state.poims = poims
   },
-  [mutationTypes.SET_SELECTED_POI] (state, poi) {
-    state.selectedPoi = poi
+  [mutationTypes.SET_SELECTED_POIM] (state, poim) {
+    state.selectedPoim = poim
   },
-  [mutationTypes.SET_NEW_POI] (state, newPoi) {
-    state.newPoi = newPoi
+  [mutationTypes.SET_NEW_POIM] (state, newPoim) {
+    state.newPoim = newPoim
   },
-  [mutationTypes.SET_NEW_POI_FORM_VISIBILITY] (state, visibility) {
-    state.newPoiFormVisible = visibility
+  [mutationTypes.SET_NEW_POIM_FORM_VISIBILITY] (state, visibility) {
+    state.newPoimFormVisible = visibility
   }
 }
 
 const actions = {
   resetMap ({ dispatch, commit, state }) {
-    commit(mutationTypes.SET_SELECTED_POI, null)
-    dispatch('getPOIs')
+    commit(mutationTypes.SET_SELECTED_POIM, null)
+    dispatch('getPOIMs')
   },
   changeBoundingBox ({ dispatch, commit, state }, boundingBox) {
     commit(mutationTypes.SET_BOUNDINGBOX, boundingBox)
-    return dispatch('getPOIs')
+    return dispatch('getPOIMs')
   },
-  getPOIs ({ commit, state }) {
-    return api.pois.list(state.boundingBox, state.filters)
-      .then(pois => commit(mutationTypes.SET_POIS, pois))
+  getPOIMs ({ commit, state }) {
+    return api.poims.list(state.boundingBox, state.filters)
+      .then(poims => commit(mutationTypes.SET_POIMS, poims))
       .catch(error => console.error('vuex error:', error))
   },
-  selectPOI ({commit, state}, id) {
-    return api.pois.get(id)
-      .then(poi => commit(mutationTypes.SET_SELECTED_POI, poi))
+  selectPOIM ({commit, state}, id) {
+    return api.poims.get(id)
+      .then(poim => commit(mutationTypes.SET_SELECTED_POIM, poim))
       .catch(error => console.error('vuex error:', error))
   },
-  unselectPOI ({ dispatch, commit, state }) {
-    commit(mutationTypes.SET_SELECTED_POI, null)
+  unselectPOIM ({ dispatch, commit, state }) {
+    commit(mutationTypes.SET_SELECTED_POIM, null)
   },
-  vote ({dispatch, commit, state}, { poiId, vote }) {
-    return api.pois.addVote(poiId, vote)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
+  vote ({dispatch, commit, state}, { poimId, vote }) {
+    return api.poims.addVote(poimId, vote)
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
       .catch(error => console.error('vuex error:', error))
   },
-  addComment ({dispatch, commit, state}, { poiId, comment }) {
-    return api.pois.addComent(poiId, comment)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
+  addComment ({dispatch, commit, state}, { poimId, comment }) {
+    return api.poims.addComent(poimId, comment)
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
       .catch(error => console.error('vuex error:', error))
   },
-  addChangeRequest ({dispatch, commit, state}, { poiId, changeRequest }) {
-    return api.pois.addChangeRequest(poiId, changeRequest)
-      .then(() => (dispatch('getPOIs').then(() => dispatch('selectPOI', poiId))))
+  addChangeRequest ({dispatch, commit, state}, { poimId, changeRequest }) {
+    return api.poims.addChangeRequest(poimId, changeRequest)
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
       .catch(error => console.error('vuex error:', error))
   },
-  setNewPoi ({commit, state}, newPoi) {
-    commit(mutationTypes.SET_NEW_POI, newPoi)
+  setNewPoim ({commit, state}, newPoim) {
+    commit(mutationTypes.SET_NEW_POIM, newPoim)
   }
 }
 

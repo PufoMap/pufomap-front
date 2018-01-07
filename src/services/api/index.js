@@ -2,7 +2,7 @@ import axios from 'axios'
 import { localStorage } from '@/services/storage'
 
 import Auth from './auth'
-import PoisResource from './pois'
+import PoimsResource from './poims'
 import TagsResource from './tags'
 
 const client = axios.create({
@@ -28,6 +28,6 @@ if (token) {
 export default {
   setAuthorization: setAuthorization,
   auth: Auth(client),
-  pois: PoisResource(client),
+  poims: PoimsResource(client),
   tags: TagsResource(client)
 }

@@ -1,10 +1,10 @@
-<template lang='pug' src='./PmFilters.pug'></template>
-<style src='./PmFilters.css' scoped></style>
+<template lang='pug' src='./MmFilters.pug'></template>
+<style src='./MmFilters.css' scoped></style>
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'PmFilters',
+  name: 'MmFilters',
   data: () => ({
     formFilters: {
       statuses: {

@@ -17,9 +17,9 @@ ul.ui-nav
     )
       include ../../assets/img/icons/filter.svg
 
-  li(v-if="isAuthenticated && newPoiExist")
-    button.add-poi(
-      @click="setNewPoiFormVisibility(true)"
+  li(v-if="isAuthenticated && newPoimExist")
+    button.add-poim(
+      @click="setNewPoimFormVisibility(true)"
     )
       include ../../assets/img/icons/close.svg
   li

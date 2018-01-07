@@ -27,7 +27,7 @@ export default client => ({
       severities.push(4)
     }
     return client
-      .get('pois/', {
+      .get('poims/', {
         params: {
           in_bbox: bbox,
           status__in: statuses.join(),
@@ -40,29 +40,29 @@ export default client => ({
   },
   get (id) {
     return client
-      .get(`pois/${id}/`)
+      .get(`poims/${id}/`)
       .then(response => response.data)
   },
-  addVote (poiId, vote) {
+  addVote (poimId, vote) {
     return client
       .post('ratings/', {
-        poi: poiId,
+        poim: poimId,
         vote: vote
       })
       .then(response => response.data)
   },
-  addComent (poiId, comment) {
+  addComent (poimId, comment) {
     return client
       .post('comments/', {
-        poi: poiId,
+        poim: poimId,
         comment: comment
       })
       .then(response => response.data)
   },
-  addChangeRequest (poiId, change) {
+  addChangeRequest (poimId, change) {
     return client
-      .post('changerequests/', {
-        poi: poiId,
+      .post('change-requests/', {
+        poim: poimId,
         change: change
       })
       .then(response => response.data)

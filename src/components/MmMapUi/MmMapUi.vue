@@ -1,15 +1,15 @@
-<template lang='pug' src='./PmMapUi.pug'></template>
-<style src='./PmMapUi.css' scoped></style>
+<template lang='pug' src='./MmMapUi.pug'></template>
+<style src='./MmMapUi.css' scoped></style>
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
-  name: 'PmMapUi',
+  name: 'MmMapUi',
   computed: {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
       isFilterApplied: 'map/isFilterApplied',
-      newPoiExist: 'map/newPoiExist'
+      newPoimExist: 'map/newPoimExist'
     })
   },
   methods: {
@@ -18,7 +18,7 @@ export default {
     }),
     ...mapMutations({
       setFiltersVisibility: 'map/SET_FILTERS_VISIBILITY',
-      setNewPoiFormVisibility: 'map/SET_NEW_POI_FORM_VISIBILITY'
+      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
     })
   }
 }

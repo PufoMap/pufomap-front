@@ -2,7 +2,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'PmAuth',
+  name: 'MmAuth',
   template: '  ',
   methods: {
     ...mapActions({

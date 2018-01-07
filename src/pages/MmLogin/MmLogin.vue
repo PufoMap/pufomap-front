@@ -1,10 +1,10 @@
-<template lang="pug" src='./PmLogin.pug'></template>
-<style src='./PmLogin.css'></style>
+<template lang="pug" src='./MmLogin.pug'></template>
+<style src='./MmLogin.css'></style>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'PmLogin',
+  name: 'MmLogin',
   data: () => ({
     email: '',
     password: ''

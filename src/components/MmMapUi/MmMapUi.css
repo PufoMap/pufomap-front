@@ -62,7 +62,7 @@ ul.ui-nav {
         }
       }
 
-      &.add-poi {
+      &.add-poim {
         animation: moveIn .5s ease, pulse 2s infinite;;
 
         & svg {
