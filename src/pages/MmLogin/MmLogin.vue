@@ -6,11 +6,13 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'MmLogin',
   data: () => ({
-    email: '',
+    username: '',
     password: ''
   }),
   computed: {
     ...mapGetters({
+      isLoading: 'auth/isLoading',
+      error: 'auth/error',
       isAuthenticated: 'auth/isAuthenticated'
     })
   },
@@ -27,7 +29,7 @@ export default {
     }),
     handleSubmit () {
       this.login({
-        email: this.email,
+        username: this.username,
         password: this.password
       })
     }

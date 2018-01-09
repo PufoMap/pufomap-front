@@ -8,27 +8,32 @@
         a(href="#").current LOG IN
       li
         a(href="#") SIGN UP
-
     form.signin-form(
       @submit.prevent="handleSubmit()"
       autocomplete="off"
     )
-      label(for="email") Email
+      .error(v-if="error") {{ error }}
+      label(for="username") Nombre de usuario
       input(
-        id="email"
-        name="email"
+        id="username"
+        name="username"
         type="text"
-        placeholder="Enter email"
+        placeholder="Escriba su nombre de usuario"
         required
-        v-model="email"
+        v-model="username"
       )
-      label(for="password") Password
+      label(for="password") Contraseña
       input(
         id="password"
         name="password"
         type="password"
-        placeholder="Enter password"
+        placeholder="Escriba su contraseña"
         required
         v-model="password"
       )
-      input.btn-login(type="submit" value="LOG IN")
+      input.btn-login(
+        type="submit"
+        value="LOG IN"
+        :disabled="isLoading"
+        :class='{loading: isLoading}'
+      )

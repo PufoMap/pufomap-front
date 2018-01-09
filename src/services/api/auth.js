@@ -1,8 +1,8 @@
 export default (client) => ({
-  login (email, password) {
+  login (username, password) {
     return client
       .post('login/', {
-        username: email,
+        username: username,
         password: password
       })
       .then(response => response.data.token)
