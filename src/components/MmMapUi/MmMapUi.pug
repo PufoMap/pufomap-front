@@ -16,12 +16,6 @@ ul.ui-nav
       @click="setFiltersVisibility(true)"
     )
       include ../../assets/img/icons/filter.svg
-
-  li(v-if="isAuthenticated && newPoimExist")
-    button.add-poim(
-      @click="setNewPoimFormVisibility(true)"
-    )
-      include ../../assets/img/icons/close.svg
   li
     router-link(:to="{ name: 'about-us'}")
       include ../../assets/img/icons/about-us.svg

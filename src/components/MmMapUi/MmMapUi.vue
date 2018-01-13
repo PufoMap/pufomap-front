@@ -8,8 +8,7 @@ export default {
   computed: {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
-      isFilterApplied: 'map/isFilterApplied',
-      newPoimExist: 'map/newPoimExist'
+      isFilterApplied: 'map/isFilterApplied'
     })
   },
   methods: {
@@ -17,8 +16,7 @@ export default {
       logout: 'auth/logout'
     }),
     ...mapMutations({
-      setFiltersVisibility: 'map/SET_FILTERS_VISIBILITY',
-      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
+      setFiltersVisibility: 'map/SET_FILTERS_VISIBILITY'
     })
   }
 }

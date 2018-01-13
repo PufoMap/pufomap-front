@@ -7,7 +7,6 @@ vl-map.map(
   @l-zoomend="handleChangeBoundingBox"
   @l-contextmenu="handleContextMenu"
 )
-  div New Poim: {{ newPoim }}
   vl-tilelayer(
     :url="url"
     :attribution="attribution"
@@ -24,6 +23,18 @@ vl-map.map(
     :lat-lng="poimLatLong(newPoim)"
     :icon="newPoimLeafletIcon()"
     :zIndexOffset="1000"
-    :options="{opacity: 0.5}"
-    @l-click="handleClickNewMarker($event)"
+    :options="newMarkerOptions"
+    @l-click="handleClickNewMarkerCancel($event)"
   )
+  .new-marker-contextmenu(
+    ref="newMarkerContextMenu"
+    v-if="newPoimExist && ! newPoimFormVisible"
+    :style="{top: newMarkerPositionTop, left: newMarkerPositionLeft}"
+  )
+    button.contentmenu-item(
+      @click="handleClickNewMarkerAdd($event)"
+    ) Añadir POIM
+    button.contentmenu-item(
+      @click="handleClickNewMarkerCancel($event)"
+    ) Cancelar
+

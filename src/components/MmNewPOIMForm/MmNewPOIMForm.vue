@@ -48,6 +48,7 @@ export default {
     }),
     handleClose () {
       this.setNewPoimFormVisibility(false)
+      this.setNewPoim({})
     },
     handleSubmit () {
       // this.setNewPoim({

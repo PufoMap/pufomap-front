@@ -1,3 +1,27 @@
+@import '../../assets/css/colors.css';
+
 .map {
   height: 100%;
+}
+
+.new-marker-contextmenu {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  z-index: 10000;
+  background-color: var(--color-blue-dark);
+  width: 100px;
+  box-shadow: 10px 10px 28px -5px rgba(0,0,0,0.65);
+
+  & .contentmenu-item {
+    height: 1.5rem;
+    width: 100%;
+    background-color: var(--color-blue-dark);
+    color: var(--color-main);
+
+    &:hover {
+      color: var(--color-blue-dark);
+      background-color: var(--color-white);
+    }
+  }
 }

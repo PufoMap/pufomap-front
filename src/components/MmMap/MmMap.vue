@@ -3,7 +3,7 @@
 
 <script>
 
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 
 import { newPoimLeafletIcon, poimLeafletIcon, poimLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
@@ -19,16 +19,22 @@ export default {
     attribution: 'Tiles &copy; Esri & Co.',
     options: {
       maxBoundsViscosity: 1
-    }
+    },
+    newMarkerOptions: {
+      opacity: 0.5
+    },
+    newMarkerPositionTop: 0,
+    newMarkerPositionLeft: 0
   }),
   computed: {
     ...mapGetters({
       isAuthenticated: 'auth/isAuthenticated',
       filters: 'map/filters',
       poims: 'map/poims',
+      selectedPoim: 'map/selectedPoim',
       newPoim: 'map/newPoim',
       newPoimExist: 'map/newPoimExist',
-      selectedPoim: 'map/selectedPoim'
+      newPoimFormVisible: 'map/newPoimFormVisible'
     })
   },
   watch: {
@@ -44,6 +50,9 @@ export default {
       changeBoundingBox: 'map/changeBoundingBox',
       setNewPoim: 'map/setNewPoim',
       selectPOIM: 'map/selectPOIM'
+    }),
+    ...mapMutations({
+      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
     }),
     newPoimLeafletIcon,
     poimLeafletIcon,
@@ -61,6 +70,7 @@ export default {
         return
       }
 
+      // Create new POIM
       this.setNewPoim({
         visit: this.newPoim.visit || false,
         severity: this.newPoim.severity || 1,
@@ -69,8 +79,31 @@ export default {
           coordinates: [event.latlng.lng, event.latlng.lat]
         }
       })
+
+      // Calculate contex menu position
+      const clickCoordsX = event.originalEvent.pageX
+      const clickCoordsY = event.originalEvent.pageY
+
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight
+
+      const menuWidth = 100 + 10 // newMarkerContextMenu.offsetWidth + 10
+      const menuHeight = 48 + 10 // newMarkerContextMenu.offsetHeight + 10
+
+      this.newMarkerPositionLeft = ((windowWidth - clickCoordsX) < menuWidth)
+        ? `${windowWidth - menuWidth}px`
+        : `${clickCoordsX}px`
+
+      this.newMarkerPositionTop = ((windowHeight - clickCoordsY) < menuHeight)
+        ? `${windowHeight - menuHeight}px`
+        : `${clickCoordsY}px`
     },
-    handleClickNewMarker (event) {
+    handleClickNewMarkerAdd (event) {
+      event.stopPropagation()
+      this.setNewPoimFormVisibility(true)
+    },
+    handleClickNewMarkerCancel (event) {
+      event.stopPropagation()
       this.setNewPoim({})
     }
   },

@@ -37,6 +37,14 @@ ul.ui-nav {
         width: 30px;
       }
 
+      &:hover {
+        background-color: var(--color-white);
+
+        & svg {
+          fill: var(--color-blue-dark);
+        }
+      }
+
       &.enabled {
         background-color: var(--color-main);
 
@@ -52,26 +60,6 @@ ul.ui-nav {
         & svg {
           transform: rotate(90deg);
         }
-      }
-
-      &:hover {
-        background-color: var(--color-white);
-
-        & svg {
-          fill: var(--color-blue-dark);
-        }
-      }
-
-      &.add-poim {
-        animation: moveIn .5s ease, pulse 2s infinite;;
-
-        & svg {
-          transform: rotate(45deg);
-        }
-      }
-
-      &.pulsed {
-        animation: none;
       }
     }
   }
