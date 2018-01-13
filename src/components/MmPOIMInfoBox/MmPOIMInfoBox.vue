@@ -36,6 +36,7 @@ export default {
       addChangeRequest: 'map/addChangeRequest',
       vote: 'map/vote'
     }),
+    // Panel handlers
     handleClose () {
       this.setSelectedPOIM(null)
       this.activedSection = 'info'
@@ -44,6 +45,17 @@ export default {
     handleSetActiveSection (section) {
       this.activedSection = section
     },
+    // Movile handlers
+    handleClickExtendButton (event) {
+      this.isExtended = !this.isExtended
+    },
+    handSwipeTop (event) {
+      this.isExtended = true
+    },
+    handSwipeBottom (event) {
+      this.isExtended = false
+    },
+    // Forms handlers
     handleSubmitComment () {
       this.addComent({ poimId: this.poim.id, comment: this.comment })
     },

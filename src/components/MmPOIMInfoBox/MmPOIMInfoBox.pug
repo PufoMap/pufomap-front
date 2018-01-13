@@ -1,5 +1,7 @@
 .info-box(v-if="poim"
   :class="{extend: isExtended}"
+  v-touch:swipe.top="handSwipeTop"
+  v-touch:swipe.buttom="handSwipeBottom"
 )
   .info-box-content
     .info-box-header
@@ -134,7 +136,7 @@
         span {{ poim.negativeRatingsCount }}
 
   ul.info-box-nav
-    .box-handler(@click="isExtended = !isExtended")
+    .box-handler(@click="handleClickExtendButton()")
       include ../../assets/img/icons/arrow.svg
     li(
       @click="handleClose()"

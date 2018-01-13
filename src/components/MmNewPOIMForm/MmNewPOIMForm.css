@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   height: calc(100% - 2rem);
+  height: 92%;
   padding: 1.5rem;
   padding-right: 1rem;
   position: fixed;
@@ -21,7 +22,7 @@
   @media (--mobile) {
     font-size: .9rem;
     flex-direction: column-reverse;
-    height: 60%;
+    height: 92%;
     min-width: auto;
     padding: 1.2rem;
     width: calc(100% - 2rem);
