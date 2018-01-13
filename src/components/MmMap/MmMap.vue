@@ -80,30 +80,18 @@ export default {
         }
       })
 
+      // Centrr map
+      this.map.panTo(event.latlng, {animate: true})
+      this.changeBoundingBox(this.map.getBounds())
+
       // Calculate contex menu position
-      const clickCoordsX = event.originalEvent.pageX
-      const clickCoordsY = event.originalEvent.pageY
-
-      const windowWidth = window.innerWidth
-      const windowHeight = window.innerHeight
-
-      const menuWidth = 100 + 10 // newMarkerContextMenu.offsetWidth + 10
-      const menuHeight = 48 + 10 // newMarkerContextMenu.offsetHeight + 10
-
-      this.newMarkerPositionLeft = ((windowWidth - clickCoordsX) < menuWidth)
-        ? `${windowWidth - menuWidth}px`
-        : `${clickCoordsX}px`
-
-      this.newMarkerPositionTop = ((windowHeight - clickCoordsY) < menuHeight)
-        ? `${windowHeight - menuHeight}px`
-        : `${clickCoordsY}px`
+      this.newMarkerPositionLeft = `${(window.innerWidth / 2) - 65}px`
+      this.newMarkerPositionTop = `${(window.innerHeight / 2) + 10}px`
     },
     handleClickNewMarkerAdd (event) {
-      event.stopPropagation()
       this.setNewPoimFormVisibility(true)
     },
     handleClickNewMarkerCancel (event) {
-      event.stopPropagation()
       this.setNewPoim({})
     }
   },

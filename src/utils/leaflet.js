@@ -106,7 +106,7 @@ export function calculateLatLngWithOffset (map, latlng) {
 
   if (typeof window.orientation !== 'undefined') {
     // Mobile / Tablet
-    // TODO: Calculate the magic number (+100, related with the screen size).
+    // TODO: Calculate the magic number (+180, related with the screen size).
     //       Control screen orientation.
     return map.containerPointToLatLng(
       L.point(
@@ -117,7 +117,7 @@ export function calculateLatLngWithOffset (map, latlng) {
   }
 
   // PC
-  // TODO: Calculate the magic number (+100, related with the screen size).
+  // TODO: Calculate the magic number (+300, related with the screen size).
   return map.containerPointToLatLng(
     L.point(
       markerPoint.x + 300,

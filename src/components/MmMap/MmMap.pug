@@ -31,10 +31,10 @@ vl-map.map(
     v-if="newPoimExist && ! newPoimFormVisible"
     :style="{top: newMarkerPositionTop, left: newMarkerPositionLeft}"
   )
-    button.contentmenu-item(
+    button.contentmenu-item.add(
       @click="handleClickNewMarkerAdd($event)"
     ) Añadir POIM
-    button.contentmenu-item(
+    button.contentmenu-item.cancel(
       @click="handleClickNewMarkerCancel($event)"
     ) Cancelar
 

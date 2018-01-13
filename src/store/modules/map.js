@@ -88,6 +88,7 @@ const mutations = {
 const actions = {
   resetMap ({ dispatch, commit, state }) {
     commit(mutationTypes.SET_SELECTED_POIM, null)
+    commit(mutationTypes.SET_NEW_POIM, {})
     dispatch('getPOIMs')
   },
   changeBoundingBox ({ dispatch, commit, state }, boundingBox) {
