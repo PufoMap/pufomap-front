@@ -13,7 +13,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      poim: 'map/selectedPoim',
+      poim: 'map/selectedPOIM',
       isAuthenticated: 'auth/isAuthenticated'
     })
   },

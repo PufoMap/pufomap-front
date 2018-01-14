@@ -66,5 +66,10 @@ export default client => ({
         change: change
       })
       .then(response => response.data)
+  },
+  addPOIM (newPOIMData) {
+    return client
+      .post('poims/', newPOIMData)
+      .then(response => response.data)
   }
 })

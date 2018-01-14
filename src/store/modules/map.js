@@ -18,9 +18,9 @@ const state = {
   },
   filtersVisible: false,
   poims: [],
-  selectedPoim: null,
-  newPoim: {},
-  newPoimFormVisible: false
+  selectedPOIM: null,
+  newPOIM: {},
+  newPOIMFormVisible: false
 }
 
 const getters = {
@@ -41,10 +41,10 @@ const getters = {
     )
   ),
   poims: state => state.poims,
-  selectedPoim: state => state.selectedPoim,
-  newPoim: state => state.newPoim,
-  newPoimExist: state => state.newPoim.location,
-  newPoimFormVisible: state => state.newPoimFormVisible
+  selectedPOIM: state => state.selectedPOIM,
+  newPOIM: state => state.newPOIM,
+  newPOIMExist: state => state.newPOIM.location,
+  newPOIMFormVisible: state => state.newPOIMFormVisible
 }
 
 const mutationTypes = {
@@ -75,13 +75,17 @@ const mutations = {
     state.poims = poims
   },
   [mutationTypes.SET_SELECTED_POIM] (state, poim) {
-    state.selectedPoim = poim
+    state.selectedPOIM = poim
   },
-  [mutationTypes.SET_NEW_POIM] (state, newPoim) {
-    state.newPoim = newPoim
+  [mutationTypes.SET_NEW_POIM] (state, newPOIM) {
+    if (newPOIM) {
+      state.newPOIM = Object.assign({}, state.newPOIM, newPOIM)
+    } else {
+      state.newPOIM = {}
+    }
   },
   [mutationTypes.SET_NEW_POIM_FORM_VISIBILITY] (state, visibility) {
-    state.newPoimFormVisible = visibility
+    state.newPOIMFormVisible = visibility
   }
 }
 
@@ -123,8 +127,14 @@ const actions = {
       .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
       .catch(error => console.error('vuex error:', error))
   },
-  setNewPoim ({commit, state}, newPoim) {
-    commit(mutationTypes.SET_NEW_POIM, newPoim)
+  saveNewPOIM ({dispatch, commit, state}) {
+    return api.poims.addPOIM(state.newPOIM)
+      .then((newPOIM) => {
+        dispatch('getPOIMs')
+        commit(mutationTypes.SET_NEW_POIM, null)
+        dispatch('selectPOIM', newPOIM.id)
+      })
+      .catch(error => console.error('vuex error:', error))
   }
 }
 

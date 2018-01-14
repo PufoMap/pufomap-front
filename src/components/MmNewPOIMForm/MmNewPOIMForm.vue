@@ -6,22 +6,22 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'MmNewPOIMForm',
   data: () => ({
-    formNewPoim: {
+    formNewPOIM: {
       name: '',
       description: '',
-      severity: 'low',
+      severity: '1',
       tags: []
     }
   }),
   computed: {
     ...mapGetters({
-      newPoimFormVisible: 'map/newPoimFormVisible',
-      newPoim: 'map/newPoim',
+      newPOIMFormVisible: 'map/newPOIMFormVisible',
+      newPOIM: 'map/newPOIM',
       tags: 'tags/tags'
     })
   },
   watch: {
-    newPoimFormVisible (newVal, oldVal) {
+    newPOIMFormVisible (newVal, oldVal) {
       if (newVal) {
         this.getTags()
       }
@@ -35,26 +35,33 @@ export default {
           selected: false
         })
       ))
-      this.formNewPoim.tags = tags
+      this.formNewPOIM.tags = tags
     }
   },
   methods: {
     ...mapMutations({
-      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
+      setNewPOIMFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY',
+      setNewPOIM: 'map/SET_NEW_POIM'
     }),
     ...mapActions({
       getTags: 'tags/getTags',
-      setNewPoim: 'map/setNewPoim'
+      saveNewPOIM: 'map/saveNewPOIM'
     }),
     handleClose () {
-      this.setNewPoimFormVisibility(false)
-      this.setNewPoim({})
+      this.setNewPOIMFormVisibility(false)
+      this.setNewPOIM(null)
     },
     handleSubmit () {
-      // this.setNewPoim({
-      console.log('Submit new POIM')
+      // this.setNewPOIM({
+      console.log('Submit new POIM', this.formNewPOIM)
+      this.setNewPOIM({
+        name: this.formNewPOIM.name,
+        description: this.formNewPOIM.description,
+        severity: this.formNewPOIM.severity,
+        tags: this.formNewPOIM.tags.filter(tag => tag.selected).map(tag => tag.name)
+      })
+      this.saveNewPOIM()
     }
   }
 }
 </script>
-

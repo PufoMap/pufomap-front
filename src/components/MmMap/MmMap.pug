@@ -16,21 +16,21 @@ vl-map.map(
     v-for="poim in poims"
     :key="poim.id"
     :lat-lng="poimLatLong(poim)"
-    :icon="poimLeafletIcon(poim, selectedPoim && selectedPoim.id === poim.id)"
+    :icon="poimLeafletIcon(poim, selectedPOIM && selectedPOIM.id === poim.id)"
     @l-click="handleClickMarker($event, poim.id)"
   )
   vl-marker(
-    v-if="newPoimExist"
-    ref="newPoimMarker"
-    :lat-lng="poimLatLong(newPoim)"
-    :icon="newPoimLeafletIcon()"
+    v-if="newPOIMExist"
+    ref="newPOIMMarker"
+    :lat-lng="poimLatLong(newPOIM)"
+    :icon="newPOIMLeafletIcon()"
     :zIndexOffset="1000"
     :options="newMarkerOptions"
     @l-add="handleAddNewMarker($event)"
     @l-click="handleClickNewMarkerCancel($event)"
   )
     vl-popup(
-      ref="newPoimPopup"
+      ref="newPOIMPopup"
       :options="newMarkerPopupOptions"
     )
       div.new-marker-contextmenu

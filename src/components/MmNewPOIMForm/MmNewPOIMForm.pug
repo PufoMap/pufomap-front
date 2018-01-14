@@ -1,4 +1,4 @@
-.new-poim-box(v-if="newPoimFormVisible")
+.new-poim-box(v-if="newPOIMFormVisible")
   .new-poim-box-content
     h3.info-content-title Nuevo POIM
 
@@ -9,33 +9,33 @@
       .new-poim-row
         span NOMBRE
         .new-poim-row-content
-          input(type="text" id="name" v-model="formNewPoim.name"
+          input(type="text" id="name" v-model="formNewPOIM.name" required
                 placeholder="Escribe el nombre del establecimiento, clínica, evento,...")
 
       .new-poim-row
         span SEVERIDAD
         .new-poim-row-content
           .round
-            input(type="radio" id="low" value="low" v-model="formNewPoim.severity")
+            input(type="radio" id="low" value="1" v-model="formNewPOIM.severity" required)
             label(for="low")
               span Baja
           .round
-            input(type="radio" id="medium" value="medium" v-model="formNewPoim.severity")
+            input(type="radio" id="medium" value="2" v-model="formNewPOIM.severity")
             label(for="medium")
               span Media
           .round
-            input(type="radio" id="high" value="high" v-model="formNewPoim.severity")
+            input(type="radio" id="high" value="3" v-model="formNewPOIM.severity")
             label(for="high")
               span Alta
           .round
-            input(type="radio" id="dangerous" value="dangerous" v-model="formNewPoim.severity")
+            input(type="radio" id="dangerous" value="4" v-model="formNewPOIM.severity")
             label(for="dangerous")
               span Peligrosa
 
       .new-poim-row
         span TAGS
         .new-poims-row-content
-          .round(v-for="tag in formNewPoim.tags")
+          .round(v-for="tag in formNewPOIM.tags")
             input(type="checkbox" :id="tag.slug" v-model="tag.selected")
             label(:for="tag.slug")
               span {{ tag.name }}
@@ -43,7 +43,7 @@
       .new-poim-row
         Span DESCRIPCIÓN
         .new-poim-row-content
-          textarea(id="description" v-model="formNewPoim.description"
+          textarea(id="description" v-model="formNewPOIM.description" required
                    placeholder="Escribe una buena descripción para que el POIM sea aprobado por el equipo de editoras")
 
       input(type="submit" value="Añadir").btn

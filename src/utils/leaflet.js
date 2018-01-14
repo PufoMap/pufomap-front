@@ -33,7 +33,7 @@ const MarkerLeafletIcon = ({isSelected, isNew, ...props}) => {
   )
 }
 
-export function newPoimLeafletIcon (...props) {
+export function newPOIMLeafletIcon (...props) {
   return MarkerLeafletIcon({
     iconUrl: EditorIcon,
     isNew: true,

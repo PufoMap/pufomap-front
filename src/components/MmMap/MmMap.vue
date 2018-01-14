@@ -7,7 +7,7 @@ import { mapActions, mapMutations, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 import L from 'leaflet'
 
-import { newPoimLeafletIcon, poimLeafletIcon, poimLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
+import { newPOIMLeafletIcon, poimLeafletIcon, poimLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
 
 import MmPOIMInfoBox from '@/components/MmPOIMInfoBox/MmPOIMInfoBox'
 
@@ -36,10 +36,10 @@ export default {
       isAuthenticated: 'auth/isAuthenticated',
       filters: 'map/filters',
       poims: 'map/poims',
-      selectedPoim: 'map/selectedPoim',
-      newPoim: 'map/newPoim',
-      newPoimExist: 'map/newPoimExist',
-      newPoimFormVisible: 'map/newPoimFormVisible'
+      selectedPOIM: 'map/selectedPOIM',
+      newPOIM: 'map/newPOIM',
+      newPOIMExist: 'map/newPOIMExist',
+      newPOIMFormVisible: 'map/newPOIMFormVisible'
     })
   },
   watch: {
@@ -53,13 +53,13 @@ export default {
     ...mapActions({
       resetMap: 'map/resetMap',
       changeBoundingBox: 'map/changeBoundingBox',
-      setNewPoim: 'map/setNewPoim',
       selectPOIM: 'map/selectPOIM'
     }),
     ...mapMutations({
-      setNewPoimFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY'
+      setNewPOIMFormVisibility: 'map/SET_NEW_POIM_FORM_VISIBILITY',
+      setNewPOIM: 'map/SET_NEW_POIM'
     }),
-    newPoimLeafletIcon,
+    newPOIMLeafletIcon,
     poimLeafletIcon,
     poimLatLong,
     handleChangeBoundingBox (event) {
@@ -76,9 +76,7 @@ export default {
       }
 
       // Create new POIM
-      this.setNewPoim({
-        visit: this.newPoim.visit || false,
-        severity: this.newPoim.severity || 1,
+      this.setNewPOIM({
         location: {
           type: 'Point',
           coordinates: [event.latlng.lng, event.latlng.lat]
@@ -90,14 +88,14 @@ export default {
       this.changeBoundingBox(this.map.getBounds())
     },
     handleAddNewMarker (event) {
-      this.$refs.newPoimMarker.mapObject.openPopup()
+      this.$refs.newPOIMMarker.mapObject.openPopup()
     },
     handleClickNewMarkerAdd (event) {
-      this.setNewPoimFormVisibility(true)
-      this.$refs.newPoimMarker.mapObject.closePopup()
+      this.setNewPOIMFormVisibility(true)
+      this.$refs.newPOIMMarker.mapObject.closePopup()
     },
     handleClickNewMarkerCancel (event) {
-      this.setNewPoim({})
+      this.setNewPOIM(null)
     }
   },
   mounted () {
