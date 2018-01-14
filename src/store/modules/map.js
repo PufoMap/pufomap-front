@@ -92,7 +92,7 @@ const mutations = {
 const actions = {
   resetMap ({ dispatch, commit, state }) {
     commit(mutationTypes.SET_SELECTED_POIM, null)
-    commit(mutationTypes.SET_NEW_POIM, {})
+    commit(mutationTypes.SET_NEW_POIM, null)
     dispatch('getPOIMs')
   },
   changeBoundingBox ({ dispatch, commit, state }, boundingBox) {
@@ -132,6 +132,7 @@ const actions = {
       .then((newPOIM) => {
         dispatch('getPOIMs')
         commit(mutationTypes.SET_NEW_POIM, null)
+        commit(mutationTypes.SET_NEW_POIM_FORM_VISIBILITY, false)
         dispatch('selectPOIM', newPOIM.id)
       })
       .catch(error => console.error('vuex error:', error))

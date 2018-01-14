@@ -6,13 +6,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'MmNewPOIMForm',
   data: () => ({
-    formNewPOIM: {
-      name: '',
-      description: '',
-      severity: '1',
-      tags: [],
-      photos: {}
-    }
+    formNewPOIM: {}
   }),
   computed: {
     ...mapGetters({
@@ -24,6 +18,13 @@ export default {
   watch: {
     newPOIMFormVisible (newVal, oldVal) {
       if (newVal) {
+        this.formNewPOIM = Object.assign({}, {
+          name: '',
+          description: '',
+          severity: '1',
+          tags: [],
+          photos: {}
+        })
         this.getTags()
       }
     },
