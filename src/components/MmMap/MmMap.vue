@@ -14,11 +14,12 @@ export default {
   name: 'MmMap',
   data: () => ({
     zoom: 10,
+    minZoom: 3,
     center: [40.4360, -3.6714],
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
     attribution: 'Tiles &copy; Esri & Co.',
     options: {
-      maxBoundsViscosity: 1
+      maxBoundsViscosity: 1.0
     },
     newMarkerOptions: {
       opacity: 0.5
