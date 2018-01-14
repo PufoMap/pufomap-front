@@ -36,5 +36,44 @@
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
+    <script>
+      // Prevent pull-fown-to-refresh in Chrome Browser for Android Mobiles
+      // https://stackoverflow.com/questions/36212722/how-to-prevent-pull-down-to-refresh-of-mobile-chrome
+      window.addEventListener('load', function() {
+        var maybePreventPullToRefresh = false;
+        var lastTouchY = 0;
+        var touchstartHandler = function(e) {
+          if (e.touches.length != 1) return;
+          lastTouchY = e.touches[0].clientY;
+          // Pull-to-refresh will only trigger if the scroll begins when the
+          // document's Y offset is zero.
+          maybePreventPullToRefresh = window.pageYOffset == 0;
+        }
+
+        var touchmoveHandler = function(e) {
+          var touchY = e.touches[0].clientY;
+          var touchYDelta = touchY - lastTouchY;
+          lastTouchY = touchY;
+
+          if (maybePreventPullToRefresh) {
+            // To suppress pull-to-refresh it is sufficient to preventDefault the
+            // first overscrolling touchmove.
+            maybePreventPullToRefresh = false;
+            if (touchYDelta > 0) {
+              e.preventDefault();
+              return;
+            }
+          }
+
+          if (window.pageYOffset == 0 && touchYDelta > 0) {
+             e.preventDefault();
+             return;
+          }
+        }
+
+        document.addEventListener('touchstart', touchstartHandler, {passive: false });
+        document.addEventListener('touchmove', touchmoveHandler, {passive: false });
+      });
+    </script>
   </body>
 </html>
