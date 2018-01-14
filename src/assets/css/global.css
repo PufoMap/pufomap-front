@@ -17,6 +17,15 @@ body,
   border-radius: 50px;
 }
 
+.leaflet-popup-content-wrapper {
+  background: none;
+  box-shadow: none;
+}
+.leaflet-popup-tip-container,
+.leaflet-popup-close-button {
+  display: none;
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
 }

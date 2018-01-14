@@ -5,9 +5,6 @@
 }
 
 .new-marker-contextmenu {
-  position: absolute;
-  top: 200px;
-  left: 200px;
   z-index: 10000;
   width: 100px;
 

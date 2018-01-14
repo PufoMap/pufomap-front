@@ -21,21 +21,23 @@ vl-map.map(
   )
   vl-marker(
     v-if="newPoimExist"
+    ref="newPoimMarker"
     :lat-lng="poimLatLong(newPoim)"
     :icon="newPoimLeafletIcon()"
     :zIndexOffset="1000"
     :options="newMarkerOptions"
+    @l-add="handleAddNewMarker($event)"
     @l-click="handleClickNewMarkerCancel($event)"
   )
-  .new-marker-contextmenu(
-    ref="newMarkerContextMenu"
-    v-if="newPoimExist && ! newPoimFormVisible"
-    :style="{top: newMarkerPositionTop, left: newMarkerPositionLeft}"
-  )
-    button.contentmenu-item.add(
-      @click="handleClickNewMarkerAdd($event)"
-    ) Añadir POIM
-    button.contentmenu-item.cancel(
-      @click="handleClickNewMarkerCancel($event)"
-    ) Cancelar
+    vl-popup(
+      ref="newPoimPopup"
+      :options="newMarkerPopupOptions"
+    )
+      div.new-marker-contextmenu
+        button.contentmenu-item.add(
+          @click="handleClickNewMarkerAdd($event)"
+        ) Añadir POIM
+        button.contentmenu-item.cancel(
+          @click="handleClickNewMarkerCancel($event)"
+        ) Cancelar
 

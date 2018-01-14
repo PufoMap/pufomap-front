@@ -96,9 +96,11 @@ export function poimLeafletIcon (poim, isSelected = false, ...props) {
 export function poimLatLong (poim) {
   if (poim.location) {
     return [poim.location.coordinates[1], poim.location.coordinates[0]]
-  } else {
+  }
+  if (poim.lat !== undefined && poim.lng !== undefined) {
     return [poim.lat, poim.lng]
   }
+  return [0, 0]
 }
 
 export function calculateLatLngWithOffset (map, latlng) {

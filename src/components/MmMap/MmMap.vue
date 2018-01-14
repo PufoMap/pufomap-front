@@ -5,6 +5,7 @@
 
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
+import L from 'leaflet'
 
 import { newPoimLeafletIcon, poimLeafletIcon, poimLatLong, calculateLatLngWithOffset } from '@/utils/leaflet'
 
@@ -24,8 +25,11 @@ export default {
     newMarkerOptions: {
       opacity: 0.5
     },
-    newMarkerPositionTop: 0,
-    newMarkerPositionLeft: 0
+    newMarkerPopupOptions: {
+      closeButton: false,
+      closeOnClick: false,
+      offset: L.point(-18, -10)
+    }
   }),
   computed: {
     ...mapGetters({
@@ -84,13 +88,13 @@ export default {
       // Centrr map
       this.map.panTo(event.latlng, {animate: true})
       this.changeBoundingBox(this.map.getBounds())
-
-      // Calculate contex menu position
-      this.newMarkerPositionLeft = `${(window.innerWidth / 2) - 65}px`
-      this.newMarkerPositionTop = `${(window.innerHeight / 2) + 10}px`
+    },
+    handleAddNewMarker (event) {
+      this.$refs.newPoimMarker.mapObject.openPopup()
     },
     handleClickNewMarkerAdd (event) {
       this.setNewPoimFormVisibility(true)
+      this.$refs.newPoimMarker.mapObject.closePopup()
     },
     handleClickNewMarkerCancel (event) {
       this.setNewPoim({})
@@ -130,6 +134,7 @@ export default {
     'vl-map': Vue2Leaflet.Map,
     'vl-tilelayer': Vue2Leaflet.TileLayer,
     'vl-marker': Vue2Leaflet.Marker,
+    'vl-popup': Vue2Leaflet.Popup,
     'mm-marker-infobox': MmPOIMInfoBox
   }
 }
