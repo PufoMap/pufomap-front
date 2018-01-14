@@ -46,6 +46,21 @@
           textarea(id="description" v-model="formNewPOIM.description" required
                    placeholder="Escribe una buena descripción para que el POIM sea aprobado por el equipo de editoras")
 
+      .new-poim-row
+        span FOTOGRAFÍAS
+        .new-poims-row-content
+          input(id="file" name="file" type="file" multiple  accept="image/*"
+                @change="handleCnageToAttachPhotos($event)")
+          label(for="file")
+            span
+              include ../../assets/img/icons/share.svg
+            span Adjuntar fotografías
+
+          ul.photos
+            li(v-for="photo in formNewPOIM.photos")
+              span {{ photo.name }}
+              button.delete( @click.prevent="handleClickDeletePhoto(photo.name)" ) [eliminar]
+
       input(type="submit" value="Añadir").btn
 
   ul.info-box-nav

@@ -175,6 +175,45 @@ textarea {
   opacity: 1;
 }
 
+input[type="file"] {
+  visibility: hidden;
+}
+
+input[type="file"] + label {
+  color: var(--color-black);
+  font-weight: normal;
+  white-space: nowrap;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    margin-right: .2rem;
+    fill: var(--color-main);
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+}
+
+.photos {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: lighter;
+  padding-left: 2rem;
+
+  & button {
+    margin-left: .2rem;
+    color: var(--color-gray-light);
+    font-size: .7rem;
+    font-style: italic;
+    &:hover {
+      color: var(--color-gray);
+    }
+  }
+}
+
 ul.info-box-nav {
   align-items: center;
   border-left: 1px solid var(--color-gray-light);

@@ -10,7 +10,8 @@ export default {
       name: '',
       description: '',
       severity: '1',
-      tags: []
+      tags: [],
+      photos: {}
     }
   }),
   computed: {
@@ -51,14 +52,23 @@ export default {
       this.setNewPOIMFormVisibility(false)
       this.setNewPOIM(null)
     },
+    handleCnageToAttachPhotos ({target}) {
+      for (var i = 0; i < target.files.length; i++) {
+        this.formNewPOIM.photos[target.files[i].name] = target.files[i]
+      }
+      this.formNewPOIM.photos = Object.assign({}, this.formNewPOIM.photos)
+    },
+    handleClickDeletePhoto (name) {
+      delete this.formNewPOIM.photos[name]
+      this.formNewPOIM.photos = Object.assign({}, this.formNewPOIM.photos)
+    },
     handleSubmit () {
-      // this.setNewPOIM({
-      console.log('Submit new POIM', this.formNewPOIM)
       this.setNewPOIM({
         name: this.formNewPOIM.name,
         description: this.formNewPOIM.description,
         severity: this.formNewPOIM.severity,
-        tags: this.formNewPOIM.tags.filter(tag => tag.selected).map(tag => tag.name)
+        tags: this.formNewPOIM.tags.filter(tag => tag.selected).map(tag => tag.name),
+        photos: Object.values(this.formNewPOIM.photos).map(photo => ({photo: photo}))
       })
       this.saveNewPOIM()
     }
