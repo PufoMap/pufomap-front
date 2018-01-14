@@ -9,8 +9,7 @@ export default {
     formFilters: {
       statuses: {
         published: false,
-        pending: false,
-        invalid: false
+        pending: false
       },
       severities: {
         low: false,
