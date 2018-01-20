@@ -69,7 +69,7 @@ export default {
         description: this.formNewPOIM.description,
         severity: this.formNewPOIM.severity,
         tags: this.formNewPOIM.tags.filter(tag => tag.selected).map(tag => tag.name),
-        photos: Object.values(this.formNewPOIM.photos).map(photo => ({photo: photo}))
+        photos: Object.values(this.formNewPOIM.photos)
       })
       this.saveNewPOIM()
     }

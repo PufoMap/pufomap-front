@@ -70,6 +70,14 @@ export default client => ({
   addPOIM (newPOIMData) {
     return client
       .post('poims/', newPOIMData)
-      .then(response => response.data)
+      .then(response => {
+        for (let photo of newPOIMData.photos) {
+          const form = new FormData()
+          form.append('poim', response.data.id)
+          form.append('photo', photo)
+          client.post('poim-images/', form, { headers: { 'Content-Type': 'multipart/form-data' } })
+        }
+        return response.data
+      })
   }
 })

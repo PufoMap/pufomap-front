@@ -28,8 +28,7 @@ const getters = {
   isFilterApplied: state => (
     (state.filters.statuses && (
       state.filters.statuses.published ||
-      state.filters.statuses.pending ||
-      state.filters.statuses.invalid
+      state.filters.statuses.pending
     )) || (state.filters.severities && (
       state.filters.severities.low ||
       state.filters.severities.medium ||
