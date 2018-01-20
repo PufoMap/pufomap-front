@@ -43,7 +43,7 @@ export default {
           selected: false
         })
       ))
-      this.formFilters.tags = tags
+      this.formFilters.tags = Object.assign(tags, this.formFilters.tags)
     }
   },
   methods: {
