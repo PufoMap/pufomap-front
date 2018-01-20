@@ -62,7 +62,7 @@
       .comment(v-for="comment in poim.comments")
         .comment-info
           img.comment-img(
-            src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
+            :src="comment.owner.photo"
             border="0"
           )
           .comment-info-detail
@@ -90,7 +90,7 @@
       .comment(v-for="change in poim.changeRequests")
         .comment-info
           img.comment-img(
-            src="https://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=55083078"
+            :src="change.owner.photo"
             border="0"
           )
           .comment-info-detail
