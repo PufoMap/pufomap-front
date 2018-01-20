@@ -15,7 +15,7 @@ require('moment/locale/es')
 
 fixMarkerIcons()
 
-Vue.use(Vue2TouchEvents)
+Vue.use(Vue2TouchEvents, { swipeTolerance: 10 })
 Vue.use(vueMoment, { moment })
 Vue.config.productionTip = false
 

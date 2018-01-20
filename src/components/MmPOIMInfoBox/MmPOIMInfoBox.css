@@ -45,11 +45,17 @@
   flex: 1;
 }
 
+.info-box-header-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
 .info-box-header {
   display: flex;
   flex-shrink: 0;
 
-  & .title-tags {
+  & .title-place {
     display: flex;
     flex-direction: column;
 
