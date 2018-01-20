@@ -2,7 +2,6 @@
 <style src='./MmMap.css' scoped></style>
 
 <script>
-
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 import Vue2Leaflet from 'vue2-leaflet'
 import L from 'leaflet'
