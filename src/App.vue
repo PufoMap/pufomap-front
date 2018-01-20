@@ -2,12 +2,12 @@
 <style src='./App.css'></style>
 
 <script>
-import MmAuth from '@/components/MmAuth/MmAuth'
+import MmAuthChecker from '@/components/MmAuthChecker/MmAuthChecker'
 
 export default {
   name: 'App',
   components: {
-    'mm-auth': MmAuth
+    'mm-auth-checker': MmAuthChecker
   }
 }
 </script>

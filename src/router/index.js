@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import MmHome from '@/pages/MmHome/MmHome'
-import MmLogin from '@/pages/MmLogin/MmLogin'
-import MmSignIn from '@/pages/MmSignIn/MmSignIn'
+import MmAuth from '@/pages/MmAuth/MmAuth'
 import MmAboutUs from '@/pages/MmAboutUs/MmAboutUs'
 
 Vue.use(Router)
@@ -19,12 +18,14 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: MmLogin
+      component: MmAuth,
+      props: { type: 'login' }
     },
     {
-      path: '/sign-in',
-      name: 'signIn',
-      component: MmSignIn
+      path: '/sign-up',
+      name: 'sign-up',
+      component: MmAuth,
+      props: { type: 'sign-up' }
     },
     {
       path: '/about-us',

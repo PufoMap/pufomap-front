@@ -1,0 +1,54 @@
+.auth
+  router-link.close(:to="{ name: 'home'}")
+    include ../../assets/img/icons/close.svg
+    span cerrar
+
+  .auth-content
+    include ../../assets/img/icons/skull-map.svg
+    h1.title MAGUFOMAP
+
+    ul.auth-nav
+      li
+        router-link(to="login") LOG IN
+      li
+        router-link(to="sign-up") SIGN UP
+
+    //- Login
+    form.login.auth-form(
+      v-if="type === 'login'"
+      @submit.prevent="handleSubmit()"
+      autocomplete="off"
+    )
+      .error(v-if="error") {{ error }}
+      label(for="username") Nombre de usuario
+      input(
+        id="username"
+        name="username"
+        type="text"
+        placeholder="Escriba su nombre de usuario"
+        required
+        v-model="username"
+      )
+      label(for="password") Contraseña
+      input(
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Escriba su contraseña"
+        required
+        v-model="password"
+      )
+      input.btn-auth(
+        type="submit"
+        value="LOG IN"
+        :disabled="isLoading"
+        :class='{loading: isLoading}'
+      )
+
+    //- Sign Up
+    div.signup(
+      v-if="type === 'sign-up'"
+    )
+      h3.title Alta de usuario desactivada temporalmente
+      p.message Estamos en una fase de pruebas y queremos ir puliendo las capacidades de la plataforma dentro de un grupo relativamente reducido (y escogido) de personas. Más adelante, abriremos este grupo poco a poco a usuarias activas y con una alta valoración por parte de la comunidad de MagufoMap.
+      p.message No obstante si quieres contribuiir puedes eescribirnos a <a href="mailto:hola@magufomap.com">hola@magufomap.com</a> contándonos tu caso.

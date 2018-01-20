@@ -2,7 +2,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'MmAuth',
+  name: 'MmAuthChecker',
   template: '  ',
   methods: {
     ...mapActions({

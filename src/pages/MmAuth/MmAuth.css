@@ -1,7 +1,7 @@
 @import '../../assets/css/colors.css';
 @import '../../assets/css/mixins.css';
 
-.signin {
+.auth {
   align-items: center;
   background-image: url("../../assets/img/login.jpg");
   background-size: cover;
@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.signin-content {
+.auth-content {
   animation: fadeIn 1.6s ease;
   align-items: center;
   display: flex;
@@ -33,13 +33,12 @@
   }
 }
 
-ul.signin-nav {
+ul.auth-nav {
   align-items: center;
   display: flex;
   margin-bottom: 2rem;
 
   & li {
-
     & a {
       border-bottom: 3px solid transparent;
       color: var(--color-white-trans);
@@ -49,7 +48,7 @@ ul.signin-nav {
       transition: .3s all ease;
 
       &:hover,
-      &.current {
+      &.router-link-active {
         border-color: var(--color-main);
         color: var(--color-white);
       }
@@ -57,7 +56,39 @@ ul.signin-nav {
   }
 }
 
-form.signin-form {
+.signup{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+
+  & a {
+    color: var(--color-white);
+    font-size: .9rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & .title {
+    color: var(--color-white);
+    font-size: .9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  & .message {
+    color: var(--color-white-trans);
+    font-size: .9rem;
+    margin-bottom: .6rem;
+    font-size: .9rem;
+  }
+}
+
+.auth-form {
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -104,7 +135,7 @@ form.signin-form {
       background-color: var(--color-white-trans);
     }
 
-    &.btn-login {
+    &.btn-auth {
       background-color: var(--color-main);
       line-height: 0;
       margin-top: 1rem;
@@ -119,4 +150,27 @@ form.signin-form {
       }
     }
   }
+}
+
+.close {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  & svg {
+    fill: var(--color-white);
+    height: 30px;
+    width: 30px;
+  }
+
+  & span {
+    color: var(--color-white);
+    font-size: .8rem;
+    margin-top: .5rem;
+  }
+
 }

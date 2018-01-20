@@ -1,10 +1,11 @@
-<template lang="pug" src='./MmLogin.pug'></template>
-<style src='./MmLogin.css'></style>
+<template lang="pug" src='./MmAuth.pug'></template>
+<style src='./MmAuth.css'></style>
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'MmLogin',
+  name: 'MmAuth',
+  props: ['type'],
   data: () => ({
     username: '',
     password: ''

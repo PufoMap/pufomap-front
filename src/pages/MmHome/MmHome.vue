@@ -2,7 +2,6 @@
 <style src='./MmHome.css'></style>
 
 <script>
-import MmAuth from '@/components/MmAuth/MmAuth'
 import MmMap from '@/components/MmMap/MmMap'
 import MmMapUi from '@/components/MmMapUi/MmMapUi'
 import MmFilters from '@/components/MmFilters/MmFilters'
@@ -12,7 +11,6 @@ import MmNewPOIMForm from '@/components/MmNewPOIMForm/MmNewPOIMForm'
 export default {
   name: 'MmHome',
   components: {
-    'mm-auth': MmAuth,
     'mm-map': MmMap,
     'mm-map-ui': MmMapUi,
     'mm-filters': MmFilters,
