@@ -107,15 +107,24 @@
         h3.info-content-title Compartir vía
         ul.share-icons
           li
-            a(href="", target="_blank")
+            a.share-email(
+              :href="emailHref"
+              target="_blank"
+            )
               include ../../assets/img/icons/email.svg
               span Email
           li
-            a(href="", target="_blank")
+            a.share-twitter(
+              :href="twitterHref"
+              target="_blank"
+            )
               include ../../assets/img/icons/twitter.svg
               span Twitter
           li
-            a(href="", target="_blank")
+            a.share-facebook(
+              :href="facebookHref"
+              target="_blank"
+            )
               include ../../assets/img/icons/facebook.svg
               span Facebook
 

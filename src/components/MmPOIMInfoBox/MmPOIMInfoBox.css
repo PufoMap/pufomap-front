@@ -448,7 +448,7 @@ h3.info-content-title {
 .shared {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   & span {
     color: var(--color-gray);
   }
@@ -476,6 +476,30 @@ h3.info-content-title {
 
         & span {
           font-size: .8rem;
+        }
+      }
+      & .share-email:hover {
+        & svg {
+          fill: var(--color-main);
+        }
+        & span {
+          color: var(--color-main);
+        }
+      }
+      & .share-twitter:hover {
+        & svg {
+          fill: var(--color-twitter);
+        }
+        & span {
+          color: var(--color-twitter);
+        }
+      }
+      & .share-facebook:hover {
+        & svg {
+          fill: var(--color-facebook);
+        }
+        & span {
+          color: var(--color-facebook);
         }
       }
     }

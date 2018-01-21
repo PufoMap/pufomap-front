@@ -15,7 +15,25 @@ export default {
     ...mapGetters({
       poim: 'map/selectedPOIM',
       isAuthenticated: 'auth/isAuthenticated'
-    })
+    }),
+    emailHref () {
+      return 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description'
+        .replace(/@title/g, encodeURIComponent(this.poim.name))
+        .replace(/@url/g, encodeURIComponent(window.location.href))
+        .replace(/@description/g, encodeURIComponent(this.poim.description))
+    },
+    twitterHref () {
+      return 'https://twitter.com/intent/tweet?url=@url&text=@text&hashtags=magufo&via=magufomap'
+        .replace(/@text/g, encodeURIComponent(this.poim.name))
+        .replace(/@url/g, encodeURIComponent(window.location.href))
+    },
+    facebookHref () {
+      return 'https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote'
+        .replace(/@title/g, encodeURIComponent(this.poim.name))
+        .replace(/@url/g, encodeURIComponent(window.location.href))
+        .replace(/@description/g, encodeURIComponent(this.poim.description))
+        .replace(/@quote/g, encodeURIComponent(this.poim.description))
+    }
   },
   watch: {
     poim (newVal, oldVal) {
