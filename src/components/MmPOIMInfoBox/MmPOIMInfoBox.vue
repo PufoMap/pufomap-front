@@ -19,6 +19,14 @@ export default {
   },
   watch: {
     poim (newVal, oldVal) {
+      // Update url
+      if (newVal) {
+        this.$router.push({ name: 'poim', params: { slug: newVal.slug } })
+      } else {
+        this.$router.push({ name: 'map' })
+      }
+
+      // Initialize params
       if (oldVal && newVal && oldVal.id !== newVal.id) {
         this.activedSection = 'info'
         this.isExtended = false

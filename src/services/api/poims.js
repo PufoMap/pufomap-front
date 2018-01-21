@@ -38,9 +38,9 @@ export default client => ({
       })
       .then(response => response.data.results)
   },
-  get (id) {
+  get (slug) {
     return client
-      .get(`poims/${id}/`)
+      .get(`poims/${slug}/`)
       .then(response => response.data)
   },
   addVote (poimId, vote) {

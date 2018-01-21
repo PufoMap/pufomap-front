@@ -104,7 +104,7 @@ export function poimLatLong (poim) {
 }
 
 export function calculateLatLngWithOffset (map, latlng) {
-  const markerPoint = map.latLngToContainerPoint(latlng)
+  const markerPoint = map.latLngToContainerPoint(L.latLng(latlng))
 
   if (typeof window.orientation !== 'undefined') {
     // Mobile / Tablet

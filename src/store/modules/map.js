@@ -102,8 +102,8 @@ const actions = {
       .then(poims => commit(mutationTypes.SET_POIMS, poims))
       .catch(error => console.error('vuex error:', error))
   },
-  selectPOIM ({commit, state}, id) {
-    return api.poims.get(id)
+  selectPOIM ({commit, state}, slug) {
+    return api.poims.get(slug)
       .then(poim => commit(mutationTypes.SET_SELECTED_POIM, poim))
       .catch(error => console.error('vuex error:', error))
   },
@@ -131,7 +131,7 @@ const actions = {
         dispatch('getPOIMs')
         commit(mutationTypes.SET_NEW_POIM, null)
         commit(mutationTypes.SET_NEW_POIM_FORM_VISIBILITY, false)
-        dispatch('selectPOIM', newPOIM.id)
+        dispatch('selectPOIM', newPOIM.slug)
       })
       .catch(error => console.error('vuex error:', error))
   }

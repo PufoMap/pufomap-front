@@ -17,7 +17,7 @@ vl-map.map(
     :key="poim.id"
     :lat-lng="poimLatLong(poim)"
     :icon="poimLeafletIcon(poim, selectedPOIM && selectedPOIM.id === poim.id)"
-    @l-click="handleClickMarker($event, poim.id)"
+    @l-click="handleClickMarker($event, poim.slug)"
   )
   vl-marker(
     v-if="newPOIMExist"

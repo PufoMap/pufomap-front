@@ -22,7 +22,7 @@
     <!-- Add to home screen for Windows -->
     <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
     <meta name="msapplication-TileColor" content="#000000">
-    <link rel="stylesheet" type="text/css" href="static/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="/static/leaflet.css" />
     <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>

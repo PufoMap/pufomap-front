@@ -46,6 +46,14 @@ export default {
       if (newVal && oldVal) {
         this.resetMap()
       }
+    },
+    selectedPOIM (newVal, oldVal) {
+      if (newVal) {
+        // Center map
+        const latlng = { lat: newVal.location.coordinates[1], lng: newVal.location.coordinates[0] }
+        this.map.panTo(calculateLatLngWithOffset(this.map, latlng, {animate: true}))
+        this.changeBoundingBox(this.map.getBounds())
+      }
     }
   },
   methods: {
@@ -64,10 +72,8 @@ export default {
     handleChangeBoundingBox (event) {
       this.changeBoundingBox(this.map.getBounds())
     },
-    handleClickMarker (event, id) {
-      this.map.panTo(calculateLatLngWithOffset(this.map, event.latlng), {animate: true})
-      this.changeBoundingBox(this.map.getBounds())
-      this.selectPOIM(id)
+    handleClickMarker (event, slug) {
+      this.selectPOIM(slug)
     },
     handleContextMenu (event) {
       if (!this.isAuthenticated) {
@@ -82,7 +88,12 @@ export default {
         }
       })
 
-      // Centrr map
+      // Close POIM Info Box if it is open
+      if (this.selectPOIM) {
+        this.setNewPOIM(null)
+      }
+
+      // Center map
       this.map.panTo(event.latlng, {animate: true})
       this.changeBoundingBox(this.map.getBounds())
     },
@@ -100,31 +111,36 @@ export default {
   mounted () {
     this.map = this.$refs.map.mapObject
 
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    }
+    if (!this.$route.params.slug) {
+      if (navigator && navigator.geolocation) {
+        // The browser support geolocation
+        const options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+        }
 
-    const success = (pos) => {
-      var crd = pos.coords
+        const success = (pos) => {
+          var crd = pos.coords
 
-      console.info(`Geolocationing to ${crd.latitude}, ${crd.longitude} (+/- ${crd.accuracy} m.)`)
-      this.center = [crd.latitude, crd.longitude]
-      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
-    }
+          console.info(`Geolocationing to ${crd.latitude}, ${crd.longitude} (+/- ${crd.accuracy} m.)`)
+          this.center = [crd.latitude, crd.longitude]
+          this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+        }
 
-    const error = (error) => {
-      console.warn(`Geolocationing errpr: ${error.message} [ERROR:(${error.code})] `)
-      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
-    }
+        const error = (error) => {
+          console.warn(`Geolocationing errpr: ${error.message} [ERROR:(${error.code})] `)
+          this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+        }
 
-    if (navigator && navigator.geolocation) {
-      // The browser support geolocation
-      navigator.geolocation.getCurrentPosition(success, error, options)
+        navigator.geolocation.getCurrentPosition(success, error, options)
+      } else {
+        // The browser has not geolocation
+        this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+      }
     } else {
-      // The browser has not geolocation
-      this.changeBoundingBox(this.$refs.map.mapObject.getBounds())
+      // A POIM is selected
+      this.selectPOIM(this.$route.params.slug)
     }
   },
   components: {

@@ -12,11 +12,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/map'
+      name: 'map',
+      component: MmHome
     },
     {
-      path: '/map',
-      name: 'home',
+      path: '/poim/:slug',
+      name: 'poim',
       component: MmHome
     },
     {
