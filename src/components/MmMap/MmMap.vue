@@ -89,8 +89,8 @@ export default {
       })
 
       // Close POIM Info Box if it is open
-      if (this.selectPOIM) {
-        this.setNewPOIM(null)
+      if (this.selectedPOIM) {
+        this.unselectPOIM()
       }
 
       // Center map
