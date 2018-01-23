@@ -112,17 +112,17 @@ const actions = {
   },
   vote ({dispatch, commit, state}, { poimId, vote }) {
     return api.poims.addVote(poimId, vote)
-      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', state.selectedPOIM.slug))))
       .catch(error => console.error('vuex error:', error))
   },
   addComment ({dispatch, commit, state}, { poimId, comment }) {
     return api.poims.addComent(poimId, comment)
-      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', state.selectedPOIM.slug))))
       .catch(error => console.error('vuex error:', error))
   },
   addChangeRequest ({dispatch, commit, state}, { poimId, changeRequest }) {
     return api.poims.addChangeRequest(poimId, changeRequest)
-      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', poimId))))
+      .then(() => (dispatch('getPOIMs').then(() => dispatch('selectPOIM', state.selectedPOIM.slug))))
       .catch(error => console.error('vuex error:', error))
   },
   saveNewPOIM ({dispatch, commit, state}) {
