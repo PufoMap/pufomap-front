@@ -1,6 +1,6 @@
-# pufomap
+# MagufoMap
 
-> The pufomap project
+> The MagufoMap project
 
 ## Build Setup
 
