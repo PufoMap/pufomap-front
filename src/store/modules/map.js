@@ -84,6 +84,11 @@ const mutations = {
   },
   [mutationTypes.SET_NEW_POIM_FORM_VISIBILITY] (state, visibility) {
     state.newPOIMFormVisible = visibility
+
+    if (visibility) {
+      state.selectedPOIM = null
+      state.filtersVisible = false
+    }
   }
 }
 
