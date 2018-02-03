@@ -18,19 +18,27 @@
           .round
             input(type="radio" id="low" value="1" v-model="formNewPOIM.severity" required)
             label(for="low")
-              span Baja
+              span
+                img(src="../../assets/img/markers/1-mark.svg" alt="Baja")
+                | Baja
           .round
             input(type="radio" id="medium" value="2" v-model="formNewPOIM.severity")
             label(for="medium")
-              span Media
+              span
+                img(src="../../assets/img/markers/2-mark.svg" alt="Media")
+                | Media
           .round
             input(type="radio" id="high" value="3" v-model="formNewPOIM.severity")
             label(for="high")
-              span Alta
+              span
+                img(src="../../assets/img/markers/3-mark.svg" alt="Alta")
+                | Alta
           .round
             input(type="radio" id="dangerous" value="4" v-model="formNewPOIM.severity")
             label(for="dangerous")
-              span Peligrosa
+              span
+                img(src="../../assets/img/markers/4-mark.svg" alt="Peligroso")
+                | Peligrosa
 
       .new-poim-row
         span TAGS

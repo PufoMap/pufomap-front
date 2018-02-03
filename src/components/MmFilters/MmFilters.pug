@@ -16,26 +16,36 @@
           .round
             input(type="checkbox" id="pen" v-model="formFilters.statuses.pending")
             label(for="pen")
-              span Pendiente
+              span
+                img(src="../../assets/img/markers/editor-mark.svg" alt="Pendientes")
+                | Pendiente
       .filters-row
         span SEVERIDAD
         .filters-row-content
           .round
             input(type="checkbox" id="low" v-model="formFilters.severities.low")
             label(for="low")
-              span Baja
+              span
+                img(src="../../assets/img/markers/1-mark.svg" alt="Baja")
+                | Baja
           .round
             input(type="checkbox" id="medium" v-model="formFilters.severities.medium")
             label(for="medium")
-              span Media
+              span
+                img(src="../../assets/img/markers/2-mark.svg" alt="Media")
+                | Media
           .round
             input(type="checkbox" id="high"  v-model="formFilters.severities.high")
             label(for="high")
-              span Alta
+              span
+                img(src="../../assets/img/markers/3-mark.svg" alt="Alta")
+                | Alta
           .round
             input(type="checkbox" id="dangerous" v-model="formFilters.severities.dangerous")
             label(for="dangerous")
-              span Peligrosa
+              span
+                img(src="../../assets/img/markers/4-mark.svg" alt="Peligroso")
+                | Peligrosa
       .filters-row
         span TAGS
         .filters-row-content
