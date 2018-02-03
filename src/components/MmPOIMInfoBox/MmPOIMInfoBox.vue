@@ -75,12 +75,6 @@ export default {
     handleClickExtendButton (event) {
       this.isExtended = !this.isExtended
     },
-    handSwipeTop (event) {
-      this.isExtended = true
-    },
-    handSwipeBottom (event) {
-      this.isExtended = false
-    },
     // Forms handlers
     handleSubmitComment () {
       this.addComent({ poimId: this.poim.id, comment: this.comment })

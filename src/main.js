@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vue2TouchEvents from 'vue2-touch-events'
 import moment from 'moment'
 import vueMoment from 'vue-moment'
 
@@ -15,7 +14,6 @@ require('moment/locale/es')
 
 fixMarkerIcons()
 
-Vue.use(Vue2TouchEvents, { swipeTolerance: 10 })
 Vue.use(vueMoment, { moment })
 Vue.config.productionTip = false
 

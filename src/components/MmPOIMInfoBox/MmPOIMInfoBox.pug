@@ -2,10 +2,7 @@
   :class="{extend: isExtended}"
 )
   .info-box-content
-    .info-box-header-container(
-      v-touch:swipe.top="handSwipeTop"
-      v-touch:swipe.buttom="handSwipeBottom"
-    )
+    .info-box-header-container
       .info-box-header
         .title-place
           h2.title {{ poim.name }}
@@ -146,10 +143,7 @@
         include ../../assets/img/icons/thumbs-down.svg
         span {{ poim.negativeRatingsCount }}
 
-  ul.info-box-nav(
-    v-touch:swipe.top="handSwipeTop"
-    v-touch:swipe.buttom="handSwipeBottom"
-  )
+  ul.info-box-nav
     .box-handler(@click="handleClickExtendButton()")
       include ../../assets/img/icons/arrow.svg
     li(
