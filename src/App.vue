@@ -8,7 +8,7 @@ export default {
   name: 'App',
   metaInfo: {
     title: 'MagufoMap',
-    titleTemplate: '%s | MagufoMap',
+    titleTemplate: (titleChunk) => titleChunk ? `${titleChunk} | Magufo Map` : 'MagufoMap',
     meta: [
       { vmid: 'description', name: 'description', content: 'El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos.' }
     ]

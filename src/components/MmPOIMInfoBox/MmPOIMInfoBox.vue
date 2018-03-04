@@ -106,13 +106,14 @@ export default {
         { vmid: 'twitter:description', name: 'twitter:description', content: this.poim.description },
         { vmid: 'twitter:image', name: 'twitter:image', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
         // Open Graph data
-        { vmid: 'og:type', property: 'og:type', content: 'article' },
+        { vmid: 'og:type', property: 'og:type', content: 'place' },
         { vmid: 'og:url', property: 'og:url', content: window.location.href },
         { vmid: 'og:site_name', property: 'og:site_name', content: 'MagufoMap' },
         { vmid: 'og:title', property: 'og:title', content: this.poim.name },
         { vmid: 'og:description', property: 'og:description', content: this.poim.description },
-        { vmid: 'og:image', property: 'og:image', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
-        { vmid: 'article:tag', property: 'article:tag', content: this.poim.tags.join(', ') }
+        { vmid: 'og:image:url', property: 'og:image:url', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
+        { vmid: 'place:location:latitude', property: 'place:location:latitude', content: this.poim.location.coordinates[1] },
+        { vmid: 'place:location:longitude', property: 'place:location:longitude', content: this.poim.location.coordinates[0] }
       ]
     }
   }

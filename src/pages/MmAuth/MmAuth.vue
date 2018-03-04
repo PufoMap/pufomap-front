@@ -34,6 +34,24 @@ export default {
         password: this.password
       })
     }
+  },
+  metaInfo () {
+    switch (this.type) {
+      case 'login':
+        return {
+          title: 'Login',
+          meta: [
+            { vmid: 'description', name: 'description', content: 'El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos. Página de login de usuarios de MagufoMap.' }
+          ]
+        }
+      case 'sign-up':
+        return {
+          title: 'Registro',
+          meta: [
+            { vmid: 'description', name: 'description', content: 'El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos. Página de registro de usuarios de MagufoMap.' }
+          ]
+        }
+    }
   }
 }
 </script>

@@ -8,7 +8,7 @@ export default {
     return {
       title: 'Acerca de',
       meta: [
-        { vmid: 'description', name: 'description', content: 'Página de información sobre MagufoMap. El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos.' }
+        { vmid: 'description', name: 'description', content: 'El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos. Página de información sobre MagufoMap.' }
       ]
     }
   }
