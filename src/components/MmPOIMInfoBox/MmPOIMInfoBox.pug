@@ -29,6 +29,7 @@
       ul.tags
         li.tag(v-for="tag in poim.tags") {{ tag }}
 
+    //- Info content
     .info-content(v-if="activedSection === 'info'")
       .date-author
         include ../../assets/img/icons/calendar.svg
@@ -39,6 +40,7 @@
         li(v-for="photo in poim.photos")
           img(:src="photo.photo" border="0")
 
+    //- Comments content
     .comments-content(v-if="activedSection === 'comments'")
       h3.info-content-title Comentarios
       form.comment-form(
@@ -67,6 +69,7 @@
             .date {{ comment.createdDate | moment('LL') }} | {{ comment.createdDate | moment('LT') }}
         .message {{ comment.comment }}
 
+    //- Change Request content
     .comments-content(v-if="activedSection === 'enmiendas'")
       h3.info-content-title Enmiendas
       form.comment-form(
@@ -99,6 +102,7 @@
             .status.rejected(v-if="change.status === 'REC'") Rechazada
         .message {{ change.change }}
 
+    //- Shared content
     .shared-content(v-if="activedSection === 'shared'")
       .shared
         h3.info-content-title Compartir vía
@@ -125,6 +129,7 @@
               include ../../assets/img/icons/facebook.svg
               span Facebook
 
+    //- Valoration
     .valoration
       button.thumbs.thumbs-up(
         type="button"
@@ -143,6 +148,7 @@
         include ../../assets/img/icons/thumbs-down.svg
         span {{ poim.negativeRatingsCount }}
 
+  //- Menu
   ul.info-box-nav
     .box-handler(@click="handleClickExtendButton()")
       include ../../assets/img/icons/arrow.svg
