@@ -88,6 +88,33 @@ export default {
     handleClickVotePositive () {
       this.vote({ poimId: this.poim.id, vote: 1 })
     }
+  },
+  metaInfo () {
+    return {
+      title: !this.poim ? null : this.poim.name,
+      meta: !this.poim ? [] : [
+        { vmid: 'description', name: 'description', content: this.poim.description },
+        // Schema.org markup for Google+
+        { vmid: 'sch:name', itemprop: 'name', content: this.poim.name },
+        { vmid: 'sch:description', itemprop: 'description', content: this.poim.description },
+        { vmid: 'sch:image', itemprop: 'image', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
+        // Twitter Card data
+        { vmid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+        { vmid: 'twitter:site', name: 'twitter:site', content: '@MagufoMap' },
+        { vmid: 'twitter:creatoror', name: 'twitter:creator', content: '@MagufoMap' },
+        { vmid: 'twitter:title', name: 'twitter:title', content: this.poim.name },
+        { vmid: 'twitter:description', name: 'twitter:description', content: this.poim.description },
+        { vmid: 'twitter:image', name: 'twitter:image', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
+        // Open Graph data
+        { vmid: 'og:type', property: 'og:type', content: 'article' },
+        { vmid: 'og:url', property: 'og:url', content: window.location.href },
+        { vmid: 'og:site_name', property: 'og:site_name', content: 'MagufoMap' },
+        { vmid: 'og:title', property: 'og:title', content: this.poim.name },
+        { vmid: 'og:description', property: 'og:description', content: this.poim.description },
+        { vmid: 'og:image', property: 'og:image', content: this.poim.photos[0] ? this.poim.photos[0].photo : '' },
+        { vmid: 'article:tag', property: 'article:tag', content: this.poim.tags.join(', ') }
+      ]
+    }
   }
 }
 </script>

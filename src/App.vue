@@ -6,6 +6,13 @@ import MmAuthChecker from '@/components/MmAuthChecker/MmAuthChecker'
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'MagufoMap',
+    titleTemplate: '%s | MagufoMap',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'El mapa de negocios y actividades que promuevan o comercien con fenómenos paranormales o pseudocientíficos.' }
+    ]
+  },
   components: {
     'mm-auth-checker': MmAuthChecker
   }

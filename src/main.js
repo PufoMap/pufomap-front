@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import moment from 'moment'
 import vueMoment from 'vue-moment'
+import Meta from 'vue-meta'
 
 import App from '@/App'
 import router from '@/router'
@@ -16,6 +17,7 @@ fixMarkerIcons()
 
 Vue.use(vueMoment, { moment })
 Vue.config.productionTip = false
+Vue.use(Meta)
 
 /* eslint-disable no-new */
 new Vue({
