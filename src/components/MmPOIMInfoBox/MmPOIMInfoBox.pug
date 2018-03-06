@@ -2,132 +2,133 @@
   :class="{extend: isExtended}"
 )
   .info-box-content
-    .info-box-header-container
-      .info-box-header
-        .title-place
-          h2.title {{ poim.name }}
-          .place
-            include ../../assets/img/icons/location.svg
-            span
-              | {{ poim.location.coordinates[1] }} / {{ poim.location.coordinates[0] }}
-        .severity(v-if="poim.severity === 1")
-          img(v-if="!poim.isVisited" src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
-          img(v-if="poim.isVisited" src="../../assets/img/markers/1-mark-visited.svg" border="0" alt="Baja")
-          span.low Baja
-        .severity(v-if="poim.severity === 2")
-          img(v-if="!poim.isVisited" src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
-          img(v-if="poim.isVisited" src="../../assets/img/markers/2-mark-visited.svg" border="0" alt="Media")
-          span.medium Media
-        .severity(v-if="poim.severity === 3")
-          img(v-if="!poim.isVisited" src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
-          img(v-if="poim.isVisited" src="../../assets/img/markers/3-mark-visited.svg" border="0" alt="Alta")
-          span.high Alta
-        .severity(v-if="poim.severity === 4")
-          img(v-if="!poim.isVisited" src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
-          img(v-if="poim.isVisited" src="../../assets/img/markers/4-mark-visited.svg" border="0" alt="Peligroso")
-          span.dangerous Peligroso
-      ul.tags
-        li.tag(v-for="tag in poim.tags") {{ tag }}
+    .info-box-detail
+      .info-box-header-container
+        .info-box-header
+          .title-place
+            h2.title {{ poim.name }}
+            .place
+              include ../../assets/img/icons/location.svg
+              span
+                | {{ poim.location.coordinates[1] }} / {{ poim.location.coordinates[0] }}
+          .severity(v-if="poim.severity === 1")
+            img(v-if="!poim.isVisited" src="../../assets/img/markers/1-mark.svg" border="0" alt="Baja")
+            img(v-if="poim.isVisited" src="../../assets/img/markers/1-mark-visited.svg" border="0" alt="Baja")
+            span.low Baja
+          .severity(v-if="poim.severity === 2")
+            img(v-if="!poim.isVisited" src="../../assets/img/markers/2-mark.svg" border="0" alt="Media")
+            img(v-if="poim.isVisited" src="../../assets/img/markers/2-mark-visited.svg" border="0" alt="Media")
+            span.medium Media
+          .severity(v-if="poim.severity === 3")
+            img(v-if="!poim.isVisited" src="../../assets/img/markers/3-mark.svg" border="0" alt="Alta")
+            img(v-if="poim.isVisited" src="../../assets/img/markers/3-mark-visited.svg" border="0" alt="Alta")
+            span.high Alta
+          .severity(v-if="poim.severity === 4")
+            img(v-if="!poim.isVisited" src="../../assets/img/markers/4-mark.svg" border="0" alt="Peligroso")
+            img(v-if="poim.isVisited" src="../../assets/img/markers/4-mark-visited.svg" border="0" alt="Peligroso")
+            span.dangerous Peligroso
+        ul.tags
+          li.tag(v-for="tag in poim.tags") {{ tag }}
 
-    //- Info content
-    .info-content(v-if="activedSection === 'info'")
-      .date-author
-        include ../../assets/img/icons/calendar.svg
-        span
-          | {{ poim.createdDate | moment('L') }} - {{ poim.owner.username }}
-      p.info-text {{ poim.description }}
-      ul.img-gallery-th
-        li(v-for="photo in poim.photos")
-          img(:src="photo.photo" border="0")
+      //- Info content
+      .info-content(v-if="activedSection === 'info'")
+        .date-author
+          include ../../assets/img/icons/calendar.svg
+          span
+            | {{ poim.createdDate | moment('L') }} - {{ poim.owner.username }}
+        p.info-text {{ poim.description }}
+        ul.img-gallery-th
+          li(v-for="photo in poim.photos")
+            img(:src="photo.photo" border="0")
 
-    //- Comments content
-    .comments-content(v-if="activedSection === 'comments'")
-      h3.info-content-title Comentarios
-      form.comment-form(
-        v-if="isAuthenticated"
-        id="comment-form"
-        @submit.prevent="handleSubmitComment()"
-        autocomplete="off"
-      )
-        textarea(
-          id="comment"
-          name="comment"
-          form="comment-form"
-          placeholder="Escribe un comentario"
-          required
-          v-model="comment"
+      //- Comments content
+      .comments-content(v-if="activedSection === 'comments'")
+        h3.info-content-title Comentarios
+        form.comment-form(
+          v-if="isAuthenticated"
+          id="comment-form"
+          @submit.prevent="handleSubmitComment()"
+          autocomplete="off"
         )
-        input(type="submit", value="Enviar")
-      .comment(v-for="comment in poim.comments")
-        .comment-info
-          img.comment-img(
-            :src="comment.owner.photo"
-            border="0"
+          textarea(
+            id="comment"
+            name="comment"
+            form="comment-form"
+            placeholder="Escribe un comentario"
+            required
+            v-model="comment"
           )
-          .comment-info-detail
-            .author {{ comment.owner.username }}
-            .date {{ comment.createdDate | moment('LL') }} | {{ comment.createdDate | moment('LT') }}
-        .message {{ comment.comment }}
+          input(type="submit", value="Enviar")
+        .comment(v-for="comment in poim.comments")
+          .comment-info
+            img.comment-img(
+              :src="comment.owner.photo"
+              border="0"
+            )
+            .comment-info-detail
+              .author {{ comment.owner.username }}
+              .date {{ comment.createdDate | moment('LL') }} | {{ comment.createdDate | moment('LT') }}
+          .message {{ comment.comment }}
 
-    //- Change Request content
-    .comments-content(v-if="activedSection === 'enmiendas'")
-      h3.info-content-title Enmiendas
-      form.comment-form(
-        v-if="isAuthenticated"
-        id="change-request-form"
-        @submit.prevent="handleSubmitChangeRequest()"
-        autocomplete="off"
-      )
-        textarea(
-          id="change-request"
-          name="change-request"
-          form="change-request-form"
-          placeholder="Escribe tu propuesta"
-          required
-          v-model="changeRequest"
+      //- Change Request content
+      .comments-content(v-if="activedSection === 'enmiendas'")
+        h3.info-content-title Enmiendas
+        form.comment-form(
+          v-if="isAuthenticated"
+          id="change-request-form"
+          @submit.prevent="handleSubmitChangeRequest()"
+          autocomplete="off"
         )
-        input(type="submit", value="Enviar")
-      .comment(v-for="change in poim.changeRequests")
-        .comment-info
-          img.comment-img(
-            :src="change.owner.photo"
-            border="0"
+          textarea(
+            id="change-request"
+            name="change-request"
+            form="change-request-form"
+            placeholder="Escribe tu propuesta"
+            required
+            v-model="changeRequest"
           )
-          .comment-info-detail
-            .author {{ change.owner.username }}
-            .date
-              | {{ change.createdDate | moment('LL') }} | {{ change.createdDate | moment('LT') }}
-            .status.accepted(v-if="change.status === 'ACE'") Aceptada
-            .status.pending(v-if="change.status === 'PEN'") Pendiente
-            .status.rejected(v-if="change.status === 'REC'") Rechazada
-        .message {{ change.change }}
+          input(type="submit", value="Enviar")
+        .comment(v-for="change in poim.changeRequests")
+          .comment-info
+            img.comment-img(
+              :src="change.owner.photo"
+              border="0"
+            )
+            .comment-info-detail
+              .author {{ change.owner.username }}
+              .date
+                | {{ change.createdDate | moment('LL') }} | {{ change.createdDate | moment('LT') }}
+              .status.accepted(v-if="change.status === 'ACE'") Aceptada
+              .status.pending(v-if="change.status === 'PEN'") Pendiente
+              .status.rejected(v-if="change.status === 'REC'") Rechazada
+          .message {{ change.change }}
 
-    //- Shared content
-    .shared-content(v-if="activedSection === 'shared'")
-      .shared
-        h3.info-content-title Compartir vía
-        ul.share-icons
-          li
-            a.share-email(
-              :href="emailHref"
-              target="_blank"
-            )
-              include ../../assets/img/icons/email.svg
-              span Email
-          li
-            a.share-twitter(
-              :href="twitterHref"
-              target="_blank"
-            )
-              include ../../assets/img/icons/twitter.svg
-              span Twitter
-          li
-            a.share-facebook(
-              :href="facebookHref"
-              target="_blank"
-            )
-              include ../../assets/img/icons/facebook.svg
-              span Facebook
+      //- Shared content
+      .shared-content(v-if="activedSection === 'shared'")
+        .shared
+          h3.info-content-title Compartir vía
+          ul.share-icons
+            li
+              a.share-email(
+                :href="emailHref"
+                target="_blank"
+              )
+                include ../../assets/img/icons/email.svg
+                span Email
+            li
+              a.share-twitter(
+                :href="twitterHref"
+                target="_blank"
+              )
+                include ../../assets/img/icons/twitter.svg
+                span Twitter
+            li
+              a.share-facebook(
+                :href="facebookHref"
+                target="_blank"
+              )
+                include ../../assets/img/icons/facebook.svg
+                span Facebook
 
     //- Valoration
     .valoration

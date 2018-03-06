@@ -42,7 +42,15 @@
 .info-box-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.info-box-detail {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .info-box-header-content {
@@ -145,8 +153,6 @@ ul.tags {
   flex-direction: column;
   margin: 1rem 0;
   padding-right: 1rem;
-  overflow-y: auto;
-  overflow-x: hidden;
 
   & .date-author {
     align-items: center;
