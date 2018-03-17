@@ -171,11 +171,11 @@ ul.tags {
     }
   }
 
-  & p.info-text {
+  & .info-text {
     color: var(--color-black);
     font-size: .9rem;
     line-height: 1.7;
-    margin: 1rem 0;
+    margin-top: 1rem;
     flex-shrink: 0;
   }
 }

@@ -5,6 +5,7 @@ import moment from 'moment'
 import vueMoment from 'vue-moment'
 import Meta from 'vue-meta'
 
+import '@/filters'
 import App from '@/App'
 import router from '@/router'
 import store from '@/store'

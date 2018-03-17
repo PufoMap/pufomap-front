@@ -36,7 +36,7 @@
           include ../../assets/img/icons/calendar.svg
           span
             | {{ poim.createdDate | moment('L') }} - {{ poim.owner.username }}
-        p.info-text {{ poim.description }}
+        .info-text.markdown(v-html="$options.filters.markdown(poim.description)")
         ul.img-gallery-th
           li(v-for="photo in poim.photos")
             img(:src="photo.photo" border="0")

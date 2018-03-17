@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "commonmark": "^0.28.1",
     "qs": "^6.5.1",
     "vue": "^2.5.2",
     "vue-meta": "^1.4.3",

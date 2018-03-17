@@ -1,0 +1,60 @@
+@import './colors.css';
+
+.markdown {
+  & h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
+  & h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  & h3 {
+    font-size: 1.4rem;
+    margin: 3rem 0 1rem;
+    text-transform: uppercase;
+  }
+  & h4 {
+    font-size: 1.2rem;
+    margin: 2rem 0 1rem;
+  }
+  & ul,
+  & ol {
+    margin-left: 1rem;
+  }
+  & ul {
+    list-style-type: disc;
+  }
+  & dl {
+    line-height: 1.25;
+    & dt {
+      clear: left;
+      font-weight: bold;
+      float: left;
+      width: 150px;
+      max-width: 150px;
+      text-align: right;
+    }
+    & dd {
+      margin: 0 0 0 170px;
+      padding: 0 0 1rem 0;
+    }
+  }
+  & a {
+    color: var(--color-main);
+    &:hover {
+      color: var(--color-gray-text);
+      text-decoration: underline;
+    }
+    &:visited {
+      color: var(--color-gray-light);
+      &:hover {
+        color: var(--color-gray-text);
+      }
+    }
+  }
+  & p {
+    margin-bottom: 1rem;
+  }
+}
+
